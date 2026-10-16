@@ -1,0 +1,14 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import { websiteService } from '../../data/website-service';
+---
+<Page title={websiteService.seoTitle} description={websiteService.description} image="/images/hero-layer-3.png">
+  <Header />
+  <main id="main">
+    <ServiceHero />
+    <SiteFormats />
+  </main>
+</Page>

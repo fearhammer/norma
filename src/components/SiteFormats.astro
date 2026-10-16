@@ -1,0 +1,18 @@
+---
+import { websiteService as content } from '../data/website-service';
+---
+<section class="site-formats container" id="formats" aria-labelledby="formats-title">
+  <div class="section-intro">
+    <h2 id="formats-title">Какие сайты делаем</h2>
+    <p>{content.formatsIntro}</p>
+  </div>
+  <ol class="format-list">
+    {content.formats.map((format, index) => (
+      <li>
+        <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <h3>{format.title}</h3>
+        {format.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+      </li>
+    ))}
+  </ol>
+</section>

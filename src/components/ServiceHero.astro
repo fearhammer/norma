@@ -1,0 +1,32 @@
+---
+import { Image, getImage } from 'astro:assets';
+import hero from '../assets/website-hero.png';
+import heroMobile from '../assets/photos/hero-mobile.jpg';
+import { websiteService as content } from '../data/website-service';
+const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
+  getImage({ src: heroMobile, width, format: 'webp', quality: 85 })
+));
+const mobileSrcset = mobileVariants.map((image, index) => `${image.src} ${[480, 768, 1254][index]}w`).join(', ');
+---
+<section class="service-hero" aria-labelledby="service-title">
+  <div class="hero-media">
+    <picture>
+      <source media="(max-width: 767px)" srcset={mobileSrcset} sizes="100vw" width={heroMobile.width} height={heroMobile.height} />
+      <Image src={hero} alt="Женщина и мужчина рассматривают материалы на мониторе за рабочим столом" widths={[960, 1440, 1920]} sizes="100vw" format="webp" quality={85} loading="eager" fetchpriority="high" class="hero-photo" />
+    </picture>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-copy">
+      <h1 id="service-title">{content.title}</h1>
+      <p class="hero-intro">{content.intro}</p>
+      <div class="hero-actions">
+        <a class="button" href="https://norma-studio.ru/">Получить консультацию и примеры <span aria-hidden="true">→</span></a>
+        <a class="button button-plain" href="https://norma-studio.ru/">Обсудить задачу <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="hero-steps" aria-label="Состав работы">
+        {content.steps.map(step => <li>{step}</li>)}
+      </ul>
+    </div>
+    <p class="hero-summary">{content.summary}</p>
+  </div>
+</section>

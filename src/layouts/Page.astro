@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description: string; image: string; }
+const { title, description, image } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true';
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="/fonts/suisse-intl-regular.woff" as="font" type="font/woff" crossorigin />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={indexable ? 'index, follow' : 'noindex, follow'} />
+    <meta name="theme-color" content="#ddd0c8" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Norma Studio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+    <slot />
+  </body>
+</html>

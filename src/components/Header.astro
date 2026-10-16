@@ -1,0 +1,24 @@
+---
+// Адреса существующего сайта сохраняются до подготовки остальных страниц.
+const links = [
+  { href: '#formats', label: 'Услуги ↓' },
+  { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
+  { href: 'https://norma-studio.ru/', label: 'О студии' },
+  { href: 'https://norma-studio.ru/', label: 'Блог' },
+];
+---
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="brand" href="https://norma-studio.ru/" aria-label="Norma Studio — главная">Norma Studio</a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      {links.map(link => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="header-contact" href="https://norma-studio.ru/">Про контент-маркетинг в Telegram <span aria-hidden="true">→</span></a>
+    <details class="mobile-menu">
+      <summary>Меню <span aria-hidden="true">☰</span></summary>
+      <nav aria-label="Мобильная навигация">
+        {links.map(link => <a href={link.href}>{link.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>
