@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props {
+  id: string;
+  title: string;
+  intro: string;
+  items: { title: string; paragraphs: string[] }[];
+  image: ImageMetadata;
+  imageAlt: string;
+  imageFirst?: boolean;
+}
+const { id, title, intro, items, image, imageAlt, imageFirst = false } = Astro.props;
+---
+<section class:list={['service-process', 'container', { 'process-image-first': imageFirst }]} id={id} aria-labelledby={`${id}-title`}>
+  <div class="section-intro">
+    <h2 id={`${id}-title`}>{title}</h2>
+    <p>{intro}</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-copy">
+      {items.map(item => (
+        <div class="process-item">
+          <h3>{item.title}</h3>
+          {item.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        </div>
+      ))}
+    </div>
+    <Image class="process-photo" src={image} alt={imageAlt} widths={[400, 600, 900, 1200]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) * .5455), 600px" format="webp" loading="lazy" decoding="async" />
+  </div>
+</section>

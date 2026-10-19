@@ -1,0 +1,33 @@
+---
+// Редакционные заглушки из макета 240. Заменить перед публикацией.
+const article = {
+  title: 'Как превратить экспертизу компании в системный B2B-контент',
+  description: 'Показываем путь от интервью с экспертами до регулярного выпуска материалов, которые объясняют ценность компании и помогают продажам.',
+};
+---
+<section class="service-blog container" id="blog" aria-labelledby="blog-title">
+  <h2 id="blog-title">Читайте про контент-маркетинг<br class="desktop-break" /> в блоге Norma Studio</h2>
+  <article class="blog-feature">
+    <a class="blog-feature-link" href="https://norma-studio.ru/#blog" aria-label={`Читать: ${article.title}`}>
+      <div class="blog-feature-copy">
+        <div class="article-meta"><span>10 минут</span><time datetime="2026-08-28">28 августа 2026</time></div>
+        <h3><span class="animated-underline">{article.title}</span></h3>
+        <p>{article.description}</p>
+        <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
+      </div>
+      <div class="blog-cover" aria-hidden="true"></div>
+    </a>
+  </article>
+  <div class="blog-grid">
+    {[0, 1, 2].map(() => (
+      <article class="blog-card">
+        <a class="blog-card-link" href="https://norma-studio.ru/#blog" aria-label={`Читать: ${article.title}`}>
+          <div class="article-meta"><span>10 минут</span><time datetime="2026-08-28">28 августа 2026</time></div>
+          <h3><span class="animated-underline">{article.title}</span></h3>
+          <p>{article.description}</p>
+          <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

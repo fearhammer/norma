@@ -1,0 +1,17 @@
+---
+import { testimonials } from '../data/website-continuation';
+---
+<section class="testimonials container" aria-label="Отзывы клиентов">
+  <div class="testimonial-stack">
+    {testimonials.map(item => (
+      <figure class="testimonial">
+        <blockquote><p>«{item.quote}»</p></blockquote>
+        <figcaption>
+          <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>
+          <span class="testimonial-name">{item.name}</span>
+          <span class="testimonial-company">{item.company}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

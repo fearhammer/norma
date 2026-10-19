@@ -1,0 +1,52 @@
+---
+import { contacts } from '../data/contacts';
+
+const navigation = [
+  { label: 'Главная', href: 'https://norma-studio.ru/' },
+  { label: 'Услуги', href: '#formats' },
+  { label: 'Блог', href: '#blog' },
+  { label: 'Контакты', href: '#consultation' },
+];
+
+// Остальные страницы услуг ещё готовятся: их названия остаются текстом до появления адресов.
+const services = [
+  ['Контент-маркетинг', 'Ведение корпоративного блога', 'GEO-продвижение', 'Экспертные статьи', 'Кейсы для бизнеса', 'Презентации и материалы для продаж', 'Редакция на аутсорсе'],
+  ['Контент-стратегия', 'SEO-продвижение компании', 'SEO-статьи', 'Email-рассылки', 'Статьи для внешних площадок', 'Тексты и структура сайта'],
+];
+---
+
+<footer class="site-footer" aria-label="Подвал сайта">
+  <div class="footer-inner container">
+    <div class="footer-top">
+      <nav class="footer-navigation" aria-label="Навигация в подвале">
+        <p class="footer-heading">Навигация</p>
+        <ul class="footer-link-list">
+          {navigation.map(item => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="footer-services">
+        <p class="footer-heading">Услуги</p>
+        <div class="footer-service-columns">
+          {services.map(column => (
+            <ul class="footer-link-list">
+              {column.map(item => <li>{item === 'Тексты и структура сайта' ? <a href="#structure">{item}</a> : <span>{item}</span>}</li>)}
+            </ul>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-about">
+        <p class="footer-heading">Контент-студия</p>
+        <span class="footer-privacy">Политика конфиденциальности</span>
+      </div>
+    </div>
+
+    <div class="footer-contacts">
+      <a href={contacts.telegram}>Написать в Telegram</a>
+      <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
+    </div>
+
+    <p class="footer-wordmark" aria-hidden="true">Norma Studio</p>
+  </div>
+</footer>

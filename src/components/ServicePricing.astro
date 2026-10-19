@@ -1,0 +1,17 @@
+---
+import { workFormats } from '../data/website-continuation';
+import { contacts } from '../data/contacts';
+---
+<section class="service-pricing container section-space" id="pricing" aria-labelledby="pricing-title">
+  <h2 id="pricing-title">Форматы работы и стоимость</h2>
+  <div class="pricing-grid">
+    {workFormats.map((item, index) => (
+      <article class:list={['pricing-card', { 'pricing-featured': index === 1 }]}>
+        <span class="eyebrow">{item.tag}</span>
+        <h3>{item.title}</h3>
+        <ul>{item.items.map(text => <li>{text}</li>)}</ul>
+        <a class="button" href={contacts.consultation}>{item.action} <span aria-hidden="true">→</span></a>
+      </article>
+    ))}
+  </div>
+</section>

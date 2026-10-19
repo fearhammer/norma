@@ -27,5 +27,8 @@ const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true';
   <body>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
     <slot />
+    <script>
+      import '../scripts/parallax';
+    </script>
   </body>
 </html>

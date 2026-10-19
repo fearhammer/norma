@@ -1,7 +1,10 @@
 ---
 import { websiteService as content } from '../data/website-service';
+import { Image } from 'astro:assets';
+import notebookPhoto from '../assets/photos/notebook-bag.jpg';
 ---
-<section class="site-formats container" id="formats" aria-labelledby="formats-title">
+<section class="site-formats" id="formats" aria-labelledby="formats-title">
+  <div class="container formats-content">
   <div class="section-intro">
     <h2 id="formats-title">Какие сайты делаем</h2>
     <p>{content.formatsIntro}</p>
@@ -15,4 +18,14 @@ import { websiteService as content } from '../data/website-service';
       </li>
     ))}
   </ol>
+  </div>
+  <div class="formats-photo" data-parallax>
+    <Image src={notebookPhoto} alt="Коллега убирает блокнот в сумку, сидя на диване в студии" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" loading="lazy" decoding="async" />
+  </div>
+  <div class="container">
+    <aside class="formats-note">
+      <p class="formats-note-title">Если вы не выпускаете и не распространяете контент — вас просто не существует для множества потенциальных клиентов</p>
+      <p>Вас не добавят в шорт-лист, не обратятся за КП, не пригласят в тендер, не придут за консультацией.</p>
+    </aside>
+  </div>
 </section>

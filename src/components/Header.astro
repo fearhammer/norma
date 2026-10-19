@@ -1,24 +1,60 @@
 ---
 // Адреса существующего сайта сохраняются до подготовки остальных страниц.
+import { contacts } from '../data/contacts';
 const links = [
   { href: '#formats', label: 'Услуги ↓' },
   { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
   { href: 'https://norma-studio.ru/', label: 'О студии' },
-  { href: 'https://norma-studio.ru/', label: 'Блог' },
+  { href: '#blog', label: 'Блог' },
 ];
 ---
-<header class="site-header">
-  <div class="header-inner container">
+<header class="site-header container">
+  <div class="header-inner">
     <a class="brand" href="https://norma-studio.ru/" aria-label="Norma Studio — главная">Norma Studio</a>
     <nav class="desktop-nav" aria-label="Основная навигация">
       {links.map(link => <a href={link.href}>{link.label}</a>)}
     </nav>
-    <a class="header-contact" href="https://norma-studio.ru/">Про контент-маркетинг в Telegram <span aria-hidden="true">→</span></a>
+    <a class="header-contact" href={contacts.telegram}>Про контент-маркетинг в Telegram <span aria-hidden="true">→</span></a>
     <details class="mobile-menu">
-      <summary>Меню <span aria-hidden="true">☰</span></summary>
+      <summary aria-label="Открыть меню"><span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span></summary>
       <nav aria-label="Мобильная навигация">
         {links.map(link => <a href={link.href}>{link.label}</a>)}
       </nav>
     </details>
   </div>
 </header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  const toggle = menu?.querySelector('summary');
+  menu?.addEventListener('toggle', () => {
+    toggle?.setAttribute('aria-label', menu.open ? 'Закрыть меню' : 'Открыть меню');
+  });
+  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu?.open) { menu.open = false; toggle?.focus(); }
+  });
+  document.addEventListener('click', event => {
+    if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+  });
+
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const footer = document.querySelector<HTMLElement>('.site-footer');
+  if (header && footer) {
+    let pending = false;
+    const updateHeaderContrast = () => {
+      pending = false;
+      const headerRect = header.getBoundingClientRect();
+      const footerRect = footer.getBoundingClientRect();
+      header.classList.toggle('site-header-on-dark', footerRect.top <= headerRect.bottom && footerRect.bottom >= headerRect.top);
+    };
+    const scheduleHeaderContrast = () => {
+      if (!pending) {
+        pending = true;
+        requestAnimationFrame(updateHeaderContrast);
+      }
+    };
+    window.addEventListener('scroll', scheduleHeaderContrast, { passive: true });
+    window.addEventListener('resize', scheduleHeaderContrast, { passive: true });
+    updateHeaderContrast();
+  }
+</script>

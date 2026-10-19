@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import image from '../assets/photos/team-collaboration.jpg';
+import { handover } from '../data/website-continuation';
+---
+<section class="service-handover" id="handover" aria-labelledby="handover-title">
+  <div class="container handover-content">
+    <div class="section-intro"><h2 id="handover-title">Что получаете после запуска</h2></div>
+    <ol class="handover-list">
+      {handover.map((item, index) => (
+        <li>
+          <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          {item.paragraphs.map(text => <p>{text}</p>)}
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div class="handover-photo" data-parallax>
+    <Image src={image} alt="Коллеги обсуждают материалы проекта перед ноутбуком" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" loading="lazy" />
+  </div>
+</section>

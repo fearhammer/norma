@@ -3,6 +3,23 @@ import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import structurePhoto from '../../assets/photos/structure-portrait.jpg';
+import designPhoto from '../../assets/photos/design-review.jpg';
+import launchPhoto from '../../assets/photos/launch-laptop.jpg';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ServiceTestimonials from '../../components/ServiceTestimonials.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceTeam from '../../components/ServiceTeam.astro';
+import ServiceHandover from '../../components/ServiceHandover.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import melNotes from '../../assets/photos/mel-notes.jpg';
+import teamDiscussion from '../../assets/photos/team-discussion.jpg';
+import { structureProcess, designProcess, launchProcess } from '../../data/website-service';
 import { websiteService } from '../../data/website-service';
 ---
 <Page title={websiteService.seoTitle} description={websiteService.description} image="/images/hero-layer-3.png">
@@ -10,5 +27,19 @@ import { websiteService } from '../../data/website-service';
   <main id="main">
     <ServiceHero />
     <SiteFormats />
+    <ServiceProcess {...structureProcess} image={structurePhoto} />
+    <ServiceProcess {...designProcess} image={designPhoto} imageFirst />
+    <ServiceProcess {...launchProcess} image={launchPhoto} />
+    <ServiceDeliverables />
+    <ServiceTestimonials />
+    <ExamplesBanner id="examples" image={melNotes} />
+    <ServiceTeam />
+    <ServiceHandover />
+    <ServicePricing />
+    <ExamplesBanner id="project-scope" image={teamDiscussion} planning />
+    <ServiceConsultation />
+    <ServiceFaq />
+    <ServiceBlog />
   </main>
+  <ServiceFooter />
 </Page>

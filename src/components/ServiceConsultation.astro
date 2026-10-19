@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import image from '../assets/photos/consultation.jpg';
+import { contacts } from '../data/contacts';
+---
+<section class="consultation" id="consultation" aria-labelledby="consultation-title">
+  <Image class="consultation-photo" src={image} alt="" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" loading="lazy" />
+  <div class="consultation-content container">
+    <span class="eyebrow">Консультация Norma Studio</span>
+    <h2 id="consultation-title">Расскажем, какими должны быть структура, контент и дизайн вашего сайта</h2>
+    <p class="consultation-intro">Обсудим предложение компании, аудиторию и задачи сайта. Подскажем, какие страницы нужны, что важно раскрыть в текстах и как показать услуги и опыт. Если сайт уже есть, посмотрим, что стоит сохранить и изменить.</p>
+    <ul class="consultation-tags" aria-label="Что обсудим">
+      {['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость'].map(text => <li>{text}</li>)}
+    </ul>
+    <form class="consultation-form" action={`mailto:${contacts.email}`} method="post" enctype="text/plain" data-email={contacts.email}>
+      <div class="form-field">
+        <label for="contact-email">Email <span aria-hidden="true">*</span></label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@company.ru" required maxlength="254" />
+      </div>
+      <div class="form-field">
+        <label for="contact-name">Ваше имя <span aria-hidden="true">*</span></label>
+        <input id="contact-name" name="name" autocomplete="name" placeholder="Анастасия Петрова" required maxlength="120" pattern=".*\S.*" />
+      </div>
+      <div class="form-field">
+        <label for="contact-telegram">Telegram <small>(необязательно)</small></label>
+        <input id="contact-telegram" name="telegram" autocomplete="off" placeholder="@username" maxlength="100" />
+      </div>
+      <div class="form-field">
+        <label for="contact-website">Сайт компании <small>(необязательно)</small></label>
+        <input id="contact-website" name="website" inputmode="url" autocomplete="url" placeholder="company.ru" maxlength="300" />
+      </div>
+      <button class="button form-submit" type="submit">Отправить по почте <span aria-hidden="true">→</span></button>
+      <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>
+      <p class="form-status" role="status" aria-live="polite" hidden>Письмо подготовлено. Если почтовая программа не открылась, <a href={contacts.telegram}>напишите нам в Telegram →</a></p>
+      <a class="form-telegram" href={contacts.telegram}>Написать в Telegram <span aria-hidden="true">→</span></a>
+    </form>
+  </div>
+</section>
+<script>
+  const form = document.querySelector<HTMLFormElement>('.consultation-form');
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const body = [
+      'Здравствуйте! Хочу обсудить разработку сайта.',
+      '',
+      `Имя: ${String(data.get('name') || '').trim()}`,
+      `Email: ${String(data.get('email') || '').trim()}`,
+      `Telegram: ${String(data.get('telegram') || '').trim() || 'не указан'}`,
+      `Сайт компании: ${String(data.get('website') || '').trim() || 'не указан'}`,
+    ].join('\r\n');
+    const recipient = form.dataset.email;
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent('Консультация по разработке сайта')}&body=${encodeURIComponent(body)}`;
+    const status = form.querySelector<HTMLElement>('.form-status');
+    if (status) status.hidden = false;
+  });
+</script>

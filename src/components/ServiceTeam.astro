@@ -1,0 +1,15 @@
+---
+import { teamRequirements } from '../data/website-continuation';
+---
+<section class="service-team container section-space" id="team" aria-labelledby="team-title">
+  <div class="section-intro"><h2 id="team-title">Что потребуется от вашей команды</h2></div>
+  <ol class="format-list">
+    {teamRequirements.map((item, index) => (
+      <li>
+        <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </li>
+    ))}
+  </ol>
+</section>

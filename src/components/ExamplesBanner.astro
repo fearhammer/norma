@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { contacts } from '../data/contacts';
+interface Props { id: string; image: ImageMetadata; planning?: boolean; }
+const { id, image, planning = false } = Astro.props;
+---
+<section class:list={['examples-banner', 'container', { 'examples-planning': planning }]} id={id} aria-labelledby={`${id}-title`}>
+  <Image class="examples-photo" src={image} alt="" widths={[640, 960, 1200, 1800]} sizes="(max-width: 767px) 100vw, (max-width: 1264px) calc(100vw - 64px), (max-width: 2133px) 75vw, 1600px" format="webp" loading="lazy" />
+  <div class="examples-content">
+    <h2 id={`${id}-title`}>{planning ? 'Не знаете, с чего начать? Поможем определить объём работ' : 'Получите примеры реализованных проектов под вашу задачу'}</h2>
+    <p>{planning ? 'Обсудим задачи, аудиторию и предложение компании. Изучим действующий сайт или материалы для нового, подберём примеры структуры и дизайна. Предложим состав проекта и подготовим КП со сроками и стоимостью.' : 'Подберём релевантные кейсы по тематике, формату и задаче. Расскажем, какую задачу решал материал, как выбиралась тема, откуда собиралась фактура и что входило в нашу работу. Отправим подборку в Telegram или на email.'}</p>
+    <div class="banner-actions">
+      <a class="button" href={contacts.consultation}>{planning ? 'Получить консультацию' : 'Получить примеры'} <span aria-hidden="true">→</span></a>
+      <a class="button button-plain" href={contacts.telegram}>Написать в Telegram <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

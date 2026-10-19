@@ -1,0 +1,14 @@
+---
+import { faq } from '../data/website-continuation';
+---
+<section class="service-faq container section-space" id="faq" aria-labelledby="faq-title">
+  <h2 id="faq-title">Частые вопросы</h2>
+  <div class="faq-list">
+    {faq.map(item => (
+      <details class="faq-item">
+        <summary>{item.title}<span class="faq-toggle" aria-hidden="true"></span></summary>
+        <p>{item.text}</p>
+      </details>
+    ))}
+  </div>
+</section>
