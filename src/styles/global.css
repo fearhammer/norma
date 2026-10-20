@@ -144,6 +144,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .hero-content::before { background: linear-gradient(100deg, #ddd0c8 18%, rgb(221 208 200 / .96) 43%, rgb(221 208 200 / .1) 78%); }
   .hero-summary { max-width: 60%; }
 }
+@media (min-width: 768px) and (max-height: 900px) {
+  .hero-content { padding-top: clamp(120px, 15svh, 144px); padding-bottom: clamp(32px, 5svh, 48px); }
+}
 @media (max-width: 767px) {
   .container { width: calc(100% - 40px); }
   .site-header { margin-bottom: -74px; }
