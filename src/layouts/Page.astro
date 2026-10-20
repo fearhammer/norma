@@ -4,13 +4,14 @@ interface Props { title: string; description: string; image: string; }
 const { title, description, image } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true';
+const assetBase = import.meta.env.BASE_URL;
 ---
 <!doctype html>
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="/fonts/suisse-intl-regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href={`${assetBase}fonts/suisse-intl-regular.woff`} as="font" type="font/woff" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

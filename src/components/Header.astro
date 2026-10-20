@@ -3,11 +3,13 @@
 import { contacts } from '../data/contacts';
 interface Props { servicesHref?: string; blogHref?: string; }
 const { servicesHref = '#formats', blogHref = '#blog' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => href.startsWith('/') ? `${base}${href.slice(1)}` : href;
 const links = [
-  { href: servicesHref, label: 'Услуги ↓' },
+  { href: withBase(servicesHref), label: 'Услуги ↓' },
   { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
   { href: 'https://norma-studio.ru/', label: 'О студии' },
-  { href: blogHref, label: 'Блог' },
+  { href: withBase(blogHref), label: 'Блог' },
 ];
 ---
 <header class="site-header container">
