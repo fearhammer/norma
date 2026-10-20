@@ -1,0 +1,17 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import CasesHero from '../../components/CasesHero.astro';
+import hero from '../../assets/photos/cases-hero.png';
+---
+
+<Page
+  title="Кейсы для бизнеса — Norma Studio"
+  description="Соберём фактуру, подготовим текст и дизайн кейса для сайта, презентаций и отдела продаж."
+  image={hero.src}
+>
+  <Header servicesHref="/services/razrabotka-saitov/#formats" blogHref="/services/razrabotka-saitov/#blog" />
+  <main id="main">
+    <CasesHero />
+  </main>
+</Page>

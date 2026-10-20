@@ -1,11 +1,13 @@
 ---
 // Адреса существующего сайта сохраняются до подготовки остальных страниц.
 import { contacts } from '../data/contacts';
+interface Props { servicesHref?: string; blogHref?: string; }
+const { servicesHref = '#formats', blogHref = '#blog' } = Astro.props;
 const links = [
-  { href: '#formats', label: 'Услуги ↓' },
+  { href: servicesHref, label: 'Услуги ↓' },
   { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
   { href: 'https://norma-studio.ru/', label: 'О студии' },
-  { href: '#blog', label: 'Блог' },
+  { href: blogHref, label: 'Блог' },
 ];
 ---
 <header class="site-header container">

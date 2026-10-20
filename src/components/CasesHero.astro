@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/photos/cases-hero.png';
+import { contacts } from '../data/contacts';
+
+const steps = [
+  'Интервью и сбор фактуры',
+  'Проверка фактов и результатов',
+  'Текст и редактура',
+  'Дизайн и адаптация материалов',
+];
+---
+
+<section class="service-hero cases-hero" aria-labelledby="cases-title">
+  <div class="hero-media" data-parallax>
+    <Image
+      src={hero}
+      alt="Специалист обсуждает проект в рабочем пространстве"
+      widths={[640, 960, 1440, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={85}
+      loading="eager"
+      fetchpriority="high"
+      class="hero-photo"
+    />
+  </div>
+  <div class="hero-content container">
+    <div class="hero-copy">
+      <h1 id="cases-title">Кейсы для бизнеса</h1>
+      <p class="hero-intro">Поможем упаковать информацию о проекте в понятный кейс, рассказать о решении проблемы, показать ценность работы, проекта, продукта.</p>
+      <div class="hero-actions">
+        <a class="button" href={contacts.telegram}>Обсудить задачу <span aria-hidden="true">→</span></a>
+        <a class="button button-plain" href={`mailto:${contacts.email}?subject=${encodeURIComponent('Примеры кейсов Norma Studio')}`}>Разобрать примеры кейсов <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="hero-steps" aria-label="Состав работы">
+        {steps.map(step => <li>{step}</li>)}
+      </ul>
+    </div>
+    <p class="hero-summary">Соберём фактуру у участников, напишем и оформим материалы. Согласуем, какие сведения о проекте и заказчике можно раскрыть. Сделаем кейс для сайта, при необходимости — версии для презентаций и отдела продаж.</p>
+  </div>
+</section>

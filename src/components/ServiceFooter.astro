@@ -30,7 +30,7 @@ const services = [
         <div class="footer-service-columns">
           {services.map(column => (
             <ul class="footer-link-list">
-              {column.map(item => <li>{item === 'Тексты и структура сайта' ? <a href="#structure">{item}</a> : <span>{item}</span>}</li>)}
+              {column.map(item => <li>{item === 'Тексты и структура сайта' ? <a href="#structure">{item}</a> : item === 'Кейсы для бизнеса' ? <a href="/services/keisy-dlya-biznesa/">{item}</a> : <span>{item}</span>}</li>)}
             </ul>
           ))}
         </div>
