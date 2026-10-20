@@ -52,7 +52,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid #9d7147; outline-off
 .animated-underline { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: left bottom; background-size: 0 1px; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .35s ease; }
 img { display: block; max-width: 100%; height: auto; }
 .container { width: min(var(--container), calc(100% - 64px)); margin-inline: auto; }
-.site-header { position: sticky; top: 10px; z-index: 10; margin-top: 10px; margin-bottom: -62px; border-radius: 1000px; }
+.site-header { position: sticky; top: 0; z-index: 10; margin: 0 0 -52px; border-radius: 1000px; transform: translateY(10px); }
 .site-header::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: rgb(250 249 246 / .12); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); pointer-events: none; }
 .site-header-on-dark { color: #f6f0ea; }
 .site-header-on-dark::before { background: rgb(37 31 25 / .9); }
@@ -162,7 +162,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 }
 @media (max-width: 767px) {
   .container { width: calc(100% - 40px); }
-  .site-header { margin-bottom: -74px; }
+  .site-header { margin-bottom: -64px; }
   .site-header::before { background: rgb(250 249 246 / .16); }
   .header-inner { min-height: 64px; padding: 10px 14px 10px 18px; }
   .desktop-nav { display: none; }
@@ -257,7 +257,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .handover-list h3 { margin-top: 16px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
 .handover-list p { margin-top: 16px; font-size: 0.875rem; line-height: 1.375rem; }
 .handover-list p + p { margin-top: 22px; }
-.handover-photo { height: 690px; overflow: hidden; }
+.handover-photo { height: 820px; overflow: hidden; }
 .handover-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .service-pricing > h2 { text-align: center; }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; margin-top: 56px; }
@@ -292,7 +292,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .cases-use-list h3 { margin-top: 16px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
 .cases-use-list p { margin-top: 16px; font-size: 0.875rem; line-height: 1.375rem; }
 .cases-use-list p + p { margin-top: 22px; }
-.cases-use-photo { display: block; width: 100%; height: 690px; object-fit: cover; }
+.cases-use-photo { display: block; width: 100%; height: 820px; object-fit: cover; }
 .consultation { position: relative; isolation: isolate; overflow: hidden; min-height: 1080px; padding: 75px 0 90px; color: #f6f0ea; scroll-margin-top: 90px; }
 .consultation-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .consultation::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgb(39 31 25 / .78); }
