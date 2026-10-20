@@ -43,7 +43,8 @@
   overflow-wrap: break-word;
 }
 * { box-sizing: border-box; }
-body { margin: 0; }
+/* Не даём верхнему отступу липкой шапки схлопываться с документом. */
+body { display: flow-root; margin: 0; }
 h1, h2, h3, p { margin: 0; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a, summary { -webkit-tap-highlight-color: transparent; }
