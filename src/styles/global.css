@@ -51,8 +51,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid #9d7147; outline-off
 .animated-underline { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: left bottom; background-size: 0 1px; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .35s ease; }
 img { display: block; max-width: 100%; height: auto; }
 .container { width: min(var(--container), calc(100% - 64px)); margin-inline: auto; }
-.skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; background: white; padding: 12px; }
-.skip-link:focus { top: 12px; }
 .site-header { position: sticky; top: 10px; z-index: 10; margin-top: 10px; margin-bottom: -62px; border-radius: 1000px; }
 .site-header::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: rgb(250 249 246 / .12); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); pointer-events: none; }
 .site-header-on-dark { color: #f6f0ea; }
@@ -88,6 +86,15 @@ h1 { max-width: 36.875rem; font-size: 4.8125rem; line-height: .8; font-weight: 4
 .cases-hero .hero-photo { transform: none; object-position: center; }
 .cases-hero .hero-content::before { background: linear-gradient(103deg, #ddd0c8 26%, rgb(221 208 200 / .89) 43%, rgb(221 208 200 / 0) 62%); }
 .cases-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
+.cases-needs { padding-top: 120px; }
+.cases-needs > .container > h2 { max-width: 35rem; margin-inline: auto; text-align: center; }
+.cases-needs-card { position: relative; z-index: 1; width: min(33.5rem, 100%); margin: 48px auto -92px; padding: 26px 30px; list-style: none; border: 1px solid #e6dcd3; border-radius: 10px; background: #f4ebe2; }
+.cases-needs-card li + li { margin-top: 27px; padding-top: 27px; border-top: 1px solid #ddd5ce; }
+.cases-needs-card h3 { margin-top: 17px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.12; letter-spacing: -.012em; font-weight: 500; }
+.cases-needs-card p { margin-top: 17px; color: #454545; font-size: 0.875rem; line-height: 1.375rem; }
+.cases-needs-card p + p { margin-top: 22px; }
+.cases-needs-photo { height: min(45.3125rem, 54vw); min-height: 38rem; overflow: hidden; }
+.cases-needs-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .site-formats { padding-block: 120px 50px; scroll-margin-top: 80px; }
 .formats-content { position: relative; z-index: 1; }
 .formats-photo { height: 870px; margin-top: -50px; overflow: hidden; }
@@ -147,6 +154,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .hero-content::before { background: linear-gradient(100deg, #ddd0c8 18%, rgb(221 208 200 / .96) 43%, rgb(221 208 200 / .1) 78%); }
   .hero-summary { max-width: 60%; }
   .cases-hero .hero-photo { object-position: 64% center; }
+  .cases-needs-photo { min-height: 32rem; }
 }
 @media (min-width: 768px) and (max-height: 900px) {
   .hero-content { padding-top: clamp(120px, 15svh, 144px); padding-bottom: clamp(32px, 5svh, 48px); }
@@ -180,6 +188,15 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .hero-photo { object-position: center; transform: none; }
   .cases-hero .hero-photo { object-position: 72% center; }
   .cases-hero .hero-steps { display: flex; }
+  .cases-needs { padding-top: 72px; }
+  .cases-needs > .container > h2 { max-width: 20rem; }
+  .cases-needs-card { width: 100%; margin-top: 32px; margin-bottom: -36px; padding: 23px 20px; }
+  .cases-needs-card li + li { margin-top: 24px; padding-top: 24px; }
+  .cases-needs-card h3 { font-size: 1.0625rem; line-height: 1.16; }
+  .cases-needs-card p { margin-top: 14px; font-size: 0.9375rem; line-height: 1.45rem; }
+  .cases-needs-card p + p { margin-top: 18px; }
+  .cases-needs-photo { height: 29rem; min-height: 0; }
+  .cases-needs-photo img { object-position: 66% center; }
   .hero-media::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #ddd0c8, transparent 22%); }
   .site-formats { padding-block: 72px; }
   .formats-photo { height: auto; aspect-ratio: 4 / 3; margin-top: -24px; }

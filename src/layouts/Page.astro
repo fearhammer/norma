@@ -25,7 +25,6 @@ const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true';
     <meta property="og:image" content={new URL(image, Astro.site)} />
   </head>
   <body>
-    <a class="skip-link" href="#main">Перейти к содержимому</a>
     <slot />
     <script>
       import '../scripts/parallax';
