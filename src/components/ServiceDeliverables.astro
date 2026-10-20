@@ -1,17 +1,21 @@
 ---
 import { websiteService } from '../data/website-service';
 import { contacts } from '../data/contacts';
+interface Props {
+  steps?: { title: string; category: string }[];
+}
+const { steps = websiteService.steps.map(title => ({ title, category: 'Аналитика' })) } = Astro.props;
 ---
 <section class="service-deliverables container" id="deliverables" aria-labelledby="deliverables-title">
   <h2 id="deliverables-title">Что вы получаете</h2>
   <ol class="deliverable-list">
-    {websiteService.steps.map((title, index) => (
+    {steps.map(({ title, category }, index) => (
       <li>
         <a class="deliverable-link" href={contacts.consultation} aria-label={`Заказать: ${title}`}>
           <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <div class="deliverable-description">
             <h3><span class="animated-underline">{title}</span></h3>
-            <span class="deliverable-category">Аналитика</span>
+            <span class="deliverable-category">{category}</span>
           </div>
           <span class="deliverable-order" aria-hidden="true"><span class="deliverable-order-label">Заказать</span> <span>→</span></span>
         </a>

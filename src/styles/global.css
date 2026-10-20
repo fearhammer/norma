@@ -263,6 +263,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; margin-top: 56px; }
 .pricing-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 508px; padding: 26px; border: 1px solid #e5d9cd; border-radius: 5px; background: #f4ebe2; color: var(--color-heading); }
 .pricing-featured { min-height: 558px; background: #29231e; color: #f6f0ea; }
+.pricing-card-meta { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; }
+.pricing-price { color: #a57e59; font-size: 0.75rem; font-weight: 500; white-space: nowrap; }
+.pricing-featured .pricing-price { color: #d7c9bb; }
 .eyebrow { display: inline-block; padding: 3px 8px; border-radius: 999px; background: #e9d6c4; color: #9d7147; font-size: 0.625rem; line-height: 1.1; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
 .pricing-featured .eyebrow { background: #f6f0ea; color: #44382c; }
 .pricing-card h3 { margin-top: 34px; font-size: 1.9375rem; line-height: 1; letter-spacing: -.02em; font-weight: 500; }
@@ -274,6 +277,22 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .pricing-featured .button:hover, .pricing-featured .button:focus-visible { background: transparent; color: #f6f0ea; }
 .examples-planning { margin-top: 0; margin-bottom: 120px; }
 .examples-planning::before { background: linear-gradient(90deg, #d3d3d5 0%, #d3d3d5 39%, rgb(211 211 213 / .9) 51%, transparent 78%); }
+.cases-process .section-intro, .cases-use .section-intro { max-width: 48rem; margin-inline: auto; text-align: center; }
+.cases-process .section-intro > p, .cases-use .section-intro > p { text-align: center; }
+.cases-process-card { width: min(33.5rem, 100%); margin: 54px auto 0; padding: 26px; list-style: none; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
+.cases-process-card li { padding: 0 0 28px; }
+.cases-process-card li + li { padding-top: 28px; border-top: 1px solid #ded5ce; }
+.cases-process-card li:last-child { padding-bottom: 0; }
+.cases-process-card h3 { margin-top: 18px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
+.cases-process-card p { margin-top: 16px; font-size: 0.875rem; line-height: 1.45rem; }
+.cases-use { padding-top: 120px; scroll-margin-top: 90px; }
+.cases-use-list { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 54px 0 -18px; padding: 28px 0; list-style: none; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
+.cases-use-list li { padding: 0 40px; }
+.cases-use-list li + li { border-left: 1px solid #ded5ce; }
+.cases-use-list h3 { margin-top: 16px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
+.cases-use-list p { margin-top: 16px; font-size: 0.875rem; line-height: 1.375rem; }
+.cases-use-list p + p { margin-top: 22px; }
+.cases-use-photo { display: block; width: 100%; height: 690px; object-fit: cover; }
 .consultation { position: relative; isolation: isolate; overflow: hidden; min-height: 1080px; padding: 75px 0 90px; color: #f6f0ea; scroll-margin-top: 90px; }
 .consultation-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .consultation::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgb(39 31 25 / .78); }
@@ -281,6 +300,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .consultation .eyebrow { background: #f6f0ea; color: #44382c; }
 .consultation h2 { max-width: 50rem; margin-top: 36px; color: #fff; font-size: clamp(3rem, 5vw, 4.375rem); }
 .consultation-intro { max-width: 40.625rem; margin-top: 35px; font-size: 1rem; line-height: 1.5rem; }
+.consultation-intro + .consultation-intro { margin-top: 18px; }
 .consultation-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 40.625rem; margin: 40px 0 55px; padding: 0; list-style: none; }
 .consultation-tags li { border: 1px solid #eee5de; border-radius: 99px; padding: 4px 12px; font-size: 0.8125rem; }
 .consultation-form { width: min(38.875rem, 100%); padding: 28px; border-radius: 5px; background: white; color: #454545; text-align: left; }
@@ -332,6 +352,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .blog-card-link:hover .button, .blog-card-link:focus-visible .button { background: transparent; color: var(--color-heading); }
 @media (max-width: 1199px) {
   .handover-list li { padding-inline: 24px; }
+  .cases-use-list li { padding-inline: 24px; }
   .pricing-card { padding: 20px; }
   .pricing-card h3 { font-size: 1.6875rem; }
   .blog-feature h3 { font-size: 2.75rem; }
@@ -341,6 +362,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .handover-list li { padding: 24px; }
   .handover-list li + li { border-left: 0; border-top: 1px solid #ded5ce; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .cases-use-list { grid-template-columns: 1fr; padding-block: 0; }
+  .cases-use-list li { padding: 24px; }
+  .cases-use-list li + li { border-top: 1px solid #ded5ce; border-left: 0; }
   .pricing-card, .pricing-featured { min-height: 0; }
   .blog-grid { grid-template-columns: 1fr; }
   .blog-card, .blog-card + .blog-card { min-height: 0; border-left: 0; border-bottom: 1px solid #dcd6d0; }
@@ -406,6 +430,16 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .pricing-card, .pricing-featured { min-height: 0; }
   .pricing-card h3 { margin-top: 24px; }
   .pricing-card ul { margin-block: 22px 114px; }
+  .cases-process-card { margin-top: 34px; padding: 22px; }
+  .cases-process-card li { padding-bottom: 24px; }
+  .cases-process-card li + li { padding-top: 24px; }
+  .cases-process-card p { font-size: 0.9375rem; line-height: 1.4375rem; }
+  .cases-use { padding-top: 65px; }
+  .cases-use-list { display: block; margin-top: 35px; margin-bottom: -12px; padding: 5px 22px; }
+  .cases-use-list li { padding: 22px 0; }
+  .cases-use-list li + li { border-top: 1px solid #ded5ce; border-left: 0; }
+  .cases-use-list p { font-size: 0.9375rem; line-height: 1.4375rem; }
+  .cases-use-photo { height: 420px; }
   .examples-planning { margin-bottom: 65px; }
   .examples-planning::before { background: linear-gradient(180deg, #d3d3d5 0%, rgb(211 211 213 / .96) 42%, transparent 85%); }
   .consultation { min-height: 0; padding-block: 65px; }

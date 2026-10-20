@@ -1,18 +1,35 @@
 ---
 import { Image } from 'astro:assets';
-import image from '../assets/photos/consultation.jpg';
+import defaultImage from '../assets/photos/consultation.jpg';
+import type { ImageMetadata } from 'astro';
 import { contacts } from '../data/contacts';
+interface Props {
+  image?: ImageMetadata;
+  title?: string;
+  intro?: string[];
+  tags?: string[];
+  subject?: string;
+  greeting?: string;
+}
+const {
+  image = defaultImage,
+  title = 'Расскажем, какими должны быть структура, контент и дизайн вашего сайта',
+  intro = ['Обсудим предложение компании, аудиторию и задачи сайта. Подскажем, какие страницы нужны, что важно раскрыть в текстах и как показать услуги и опыт. Если сайт уже есть, посмотрим, что стоит сохранить и изменить.'],
+  tags = ['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость'],
+  subject = 'Консультация по разработке сайта',
+  greeting = 'Здравствуйте! Хочу обсудить разработку сайта.',
+} = Astro.props;
 ---
 <section class="consultation" id="consultation" aria-labelledby="consultation-title">
   <Image class="consultation-photo" src={image} alt="" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" loading="lazy" />
   <div class="consultation-content container">
     <span class="eyebrow">Консультация Norma Studio</span>
-    <h2 id="consultation-title">Расскажем, какими должны быть структура, контент и дизайн вашего сайта</h2>
-    <p class="consultation-intro">Обсудим предложение компании, аудиторию и задачи сайта. Подскажем, какие страницы нужны, что важно раскрыть в текстах и как показать услуги и опыт. Если сайт уже есть, посмотрим, что стоит сохранить и изменить.</p>
+    <h2 id="consultation-title">{title}</h2>
+    {intro.map(paragraph => <p class="consultation-intro">{paragraph}</p>)}
     <ul class="consultation-tags" aria-label="Что обсудим">
-      {['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость'].map(text => <li>{text}</li>)}
+      {tags.map(text => <li>{text}</li>)}
     </ul>
-    <form class="consultation-form" action={`mailto:${contacts.email}`} method="post" enctype="text/plain" data-email={contacts.email}>
+    <form class="consultation-form" action={`mailto:${contacts.email}`} method="post" enctype="text/plain" data-email={contacts.email} data-subject={subject} data-greeting={greeting}>
       <div class="form-field">
         <label for="contact-email">Email <span aria-hidden="true">*</span></label>
         <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@company.ru" required maxlength="254" />
@@ -43,7 +60,7 @@ import { contacts } from '../data/contacts';
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const body = [
-      'Здравствуйте! Хочу обсудить разработку сайта.',
+      form.dataset.greeting || 'Здравствуйте!',
       '',
       `Имя: ${String(data.get('name') || '').trim()}`,
       `Email: ${String(data.get('email') || '').trim()}`,
@@ -51,7 +68,7 @@ import { contacts } from '../data/contacts';
       `Сайт компании: ${String(data.get('website') || '').trim() || 'не указан'}`,
     ].join('\r\n');
     const recipient = form.dataset.email;
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent('Консультация по разработке сайта')}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(form.dataset.subject || 'Консультация')}&body=${encodeURIComponent(body)}`;
     const status = form.querySelector<HTMLElement>('.form-status');
     if (status) status.hidden = false;
   });

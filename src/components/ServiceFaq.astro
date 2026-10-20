@@ -1,10 +1,12 @@
 ---
 import { faq } from '../data/website-continuation';
+interface Props { items?: { title: string; text: string }[]; }
+const { items = faq } = Astro.props;
 ---
 <section class="service-faq container section-space" id="faq" aria-labelledby="faq-title">
   <h2 id="faq-title">Частые вопросы</h2>
   <div class="faq-list">
-    {faq.map(item => (
+    {items.map(item => (
       <details class="faq-item">
         <summary>{item.title}<span class="faq-toggle" aria-hidden="true"></span></summary>
         <p>{item.text}</p>
