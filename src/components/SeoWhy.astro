@@ -34,20 +34,19 @@ const { items } = Astro.props;
   .seo-why-photo { height: clamp(460px, 46vw, 870px); overflow: hidden; }
   .seo-why-photo :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
   .seo-why-content { position: relative; display: flex; justify-content: center; margin-top: -200px; }
-  .seo-why-card { width: min(560px, 100%); padding: 40px 30px 30px; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
-  h2 { margin: 0 0 50px; color: #44382c; font-size: clamp(2rem, 3vw, 3.375rem); font-weight: 450; line-height: .9; letter-spacing: -.03em; text-align: center; }
+  .seo-why-card { width: min(600px, 100%); padding: 30px; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
+  h2 { margin: 0 0 30px; color: #44382c; font-size: clamp(2rem, 3vw, 3.375rem); font-weight: 450; line-height: .95; letter-spacing: -.03em; text-align: center; }
   ol { margin: 0; padding: 0; list-style: none; }
-  li { padding: 0 0 30px; }
-  li + li { padding-top: 30px; border-top: 1px solid #ded5ce; }
+  li { padding: 0 0 26px; }
+  li + li { padding-top: 26px; border-top: 1px solid #ded5ce; }
   li:last-child { padding-bottom: 0; }
-  h3 { margin: 17px 0 17px; color: #44382c; font-size: 1.125rem; font-weight: 500; line-height: 20px; }
-  p { margin: 0; color: #454545; font-size: .875rem; line-height: 22px; }
+  h3 { margin: 17px 0 12px; color: #44382c; font-size: 1.125rem; font-weight: 500; line-height: 1.15; }
+  p { margin: 0; color: #454545; font-size: .875rem; line-height: 1.45rem; }
   @media (max-width: 767px) {
     .seo-why { padding-bottom: 64px; }
     .seo-why-photo { height: 430px; }
     .seo-why-content { margin-top: -90px; }
     .seo-why-card { padding: 22px; }
-    h2 { margin-bottom: 30px; }
     li { padding-bottom: 24px; }
     li + li { padding-top: 24px; }
   }
