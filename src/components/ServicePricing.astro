@@ -3,12 +3,14 @@ import { workFormats } from '../data/website-continuation';
 import { contacts } from '../data/contacts';
 interface Props {
   title?: string;
+  intro?: string;
   formats?: { tag: string; price?: string; title: string; items: string[]; action: string }[];
 }
-const { title = 'Форматы работы и стоимость', formats = workFormats } = Astro.props;
+const { title = 'Форматы работы и стоимость', intro, formats = workFormats } = Astro.props;
 ---
 <section class="service-pricing container section-space" id="pricing" aria-labelledby="pricing-title">
   <h2 id="pricing-title">{title}</h2>
+  {intro && <p class="pricing-intro">{intro}</p>}
   <div class="pricing-grid">
     {formats.map((item, index) => (
       <article class:list={['pricing-card', { 'pricing-featured': index === 1 }]}>

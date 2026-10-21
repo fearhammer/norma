@@ -97,6 +97,7 @@ h1 { max-width: 36.875rem; font-size: 4.8125rem; line-height: .8; font-weight: 4
 .hero-summary { max-width: 40.75rem; padding: 25px 30px; border-radius: 5px; background: rgb(246 241 236 / .4); backdrop-filter: blur(10px); font-size: 1.5rem; font-weight: 500; line-height: 1.1; letter-spacing: -.24px; color: var(--color-heading); }
 .cases-hero .hero-photo { transform: none; object-position: center; }
 .presentations-hero .hero-photo { transform: none; object-position: center; }
+.seo-hero .hero-photo { transform: none; object-position: center; }
 .cases-hero .hero-content::before { background: linear-gradient(103deg, #ddd0c8 26%, rgb(221 208 200 / .89) 43%, rgb(221 208 200 / 0) 62%); }
 .cases-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
 .cases-needs { padding-top: 120px; }
@@ -277,6 +278,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .testimonial-company { align-self: start; font-size: 0.75rem; }
 .examples-banner { position: relative; isolation: isolate; display: flex; min-height: 396px; margin-block: 20px 50px; overflow: hidden; border-radius: 10px; background: #d6c9bb; scroll-margin-top: 90px; }
 .examples-photo { position: absolute; top: 0; bottom: 0; left: 18%; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+#project-examples .examples-photo { transform: scaleX(-1); }
 #case-examples .examples-photo { left: 0; }
 .examples-banner::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f1e9de 0%, #f1e9de 39%, rgb(241 233 222 / .9) 51%, transparent 78%); }
 .examples-image-graded { background: #efe5d7; }
@@ -299,6 +301,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .handover-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .service-pricing > h2 { text-align: center; }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; margin-top: 56px; }
+.pricing-intro { max-width: 42rem; margin: 30px auto 0; text-align: center; font-size: 1rem; line-height: 1.5; }
 .pricing-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 508px; padding: 26px; border: 1px solid #e5d9cd; border-radius: 5px; background: #f4ebe2; color: var(--color-heading); }
 .pricing-featured { min-height: 558px; background: #29231e; color: #f6f0ea; }
 .pricing-card-meta { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; }
