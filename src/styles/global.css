@@ -321,7 +321,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .cases-process-card li:last-child { padding-bottom: 0; }
 .cases-process-card h3 { margin-top: 18px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
 .cases-process-card p { margin-top: 16px; font-size: 0.875rem; line-height: 1.45rem; }
-.cases-process-photo { width: 100vw; height: 870px; margin: 0 0 -80px calc(50% - 50vw); object-fit: cover; object-position: center; }
+.cases-process-photo { width: 100vw; max-width: none; height: 870px; margin: 0 0 -80px calc(50% - 50vw); object-fit: cover; object-position: center; }
 .cases-use { padding-top: 120px; scroll-margin-top: 90px; }
 .cases-use-list { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 54px 0 -18px; padding: 28px 0; list-style: none; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
 .cases-use-list li { padding: 0 40px; }
