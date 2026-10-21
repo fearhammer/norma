@@ -75,20 +75,36 @@ const projects = [{
   href: 'https://soma-hotel.ru/',
   images: [soma01, soma02, soma03, soma04, soma05, soma07, soma08, soma09],
 }];
+
+interface Props {
+  id?: string;
+  title?: string;
+  projects?: { name: string; href: string; images?: typeof hilton01[] }[];
+  linkLabel?: string;
+  external?: boolean;
+}
+
+const {
+  id = 'projects',
+  title = 'Реализованные проекты',
+  projects: showcaseProjects = projects,
+  linkLabel = 'Посмотреть сайт',
+  external = true,
+} = Astro.props;
 ---
 
-<section class="project-showcase container" aria-labelledby="projects-title">
-  <h2 id="projects-title">Реализованные проекты</h2>
+<section class="project-showcase container" id={id} aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`}>{title}</h2>
   <div class="project-showcase-grid">
-    {projects.map(project => (
-      <a class="project-card" href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`Посмотреть сайт ${project.name}`} data-project-card>
+    {showcaseProjects.map(project => (
+      <a class="project-card" href={project.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={`${linkLabel} ${project.name}`} data-project-card>
         <span class="project-preview" aria-hidden="true">
-          {project.images.map((image, index) => (
+          {project.images?.map((image, index) => (
             <Image class:list={['project-preview-image', { 'is-active': index === 0 }]} src={image} alt="" widths={[360, 540, 720]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) / 3), 360px" format="webp" quality={90} loading={index === 0 ? 'eager' : 'lazy'} />
           ))}
         </span>
         <span class="project-name">{project.name}</span>
-        <span class="project-link">Посмотреть сайт <span aria-hidden="true">→</span></span>
+        <span class="project-link">{linkLabel} <span aria-hidden="true">→</span></span>
       </a>
     ))}
   </div>

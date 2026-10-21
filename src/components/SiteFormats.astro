@@ -2,15 +2,38 @@
 import { websiteService as content } from '../data/website-service';
 import { Image } from 'astro:assets';
 import notebookPhoto from '../assets/photos/notebook-bag.jpg';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  id?: string;
+  title?: string;
+  intro?: string;
+  formats?: { title: string; paragraphs: string[] }[];
+  image?: ImageMetadata;
+  imageAlt?: string;
+  noteTitle?: string;
+  note?: string;
+}
+
+const {
+  id = 'formats',
+  title = 'Какие сайты делаем',
+  intro = content.formatsIntro,
+  formats = content.formats,
+  image = notebookPhoto,
+  imageAlt = 'Коллега убирает блокнот в сумку, сидя на диване в студии',
+  noteTitle = 'Если вы не выпускаете и не распространяете контент — вас просто не существует для множества потенциальных клиентов',
+  note = 'Вас не добавят в шорт-лист, не обратятся за КП, не пригласят в тендер, не придут за консультацией.',
+} = Astro.props;
 ---
-<section class="site-formats" id="formats" aria-labelledby="formats-title">
+<section class="site-formats" id={id} aria-labelledby={`${id}-title`}>
   <div class="container formats-content">
   <div class="section-intro">
-    <h2 id="formats-title">Какие сайты делаем</h2>
-    <p>{content.formatsIntro}</p>
+    <h2 id={`${id}-title`}>{title}</h2>
+    {intro && <p>{intro}</p>}
   </div>
   <ol class="format-list">
-    {content.formats.map((format, index) => (
+    {formats.map((format, index) => (
       <li>
         <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
         <h3>{format.title}</h3>
@@ -20,12 +43,12 @@ import notebookPhoto from '../assets/photos/notebook-bag.jpg';
   </ol>
   </div>
   <div class="formats-photo" data-parallax>
-    <Image src={notebookPhoto} alt="Коллега убирает блокнот в сумку, сидя на диване в студии" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" quality={90} loading="lazy" decoding="async" />
+    <Image src={image} alt={imageAlt} widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" quality={90} loading="lazy" decoding="async" />
   </div>
   <div class="container">
     <aside class="formats-note">
-      <p class="formats-note-title">Если вы не выпускаете и не распространяете контент — вас просто не существует для множества потенциальных клиентов</p>
-      <p>Вас не добавят в шорт-лист, не обратятся за КП, не пригласят в тендер, не придут за консультацией.</p>
+      <p class="formats-note-title">{noteTitle}</p>
+      <p>{note}</p>
     </aside>
   </div>
 </section>

@@ -1,11 +1,14 @@
 ---
 import { contacts } from '../data/contacts';
 
+interface Props { servicesHref?: string; blogHref?: string; contactHref?: string; }
+const { servicesHref = '#formats', blogHref = '#blog', contactHref = '#consultation' } = Astro.props;
+
 const navigation = [
   { label: 'Главная', href: 'https://norma-studio.ru/' },
-  { label: 'Услуги', href: '#formats' },
-  { label: 'Блог', href: '#blog' },
-  { label: 'Контакты', href: '#consultation' },
+  { label: 'Услуги', href: servicesHref },
+  { label: 'Блог', href: blogHref },
+  { label: 'Контакты', href: contactHref },
 ];
 const base = import.meta.env.BASE_URL;
 
@@ -31,7 +34,7 @@ const services = [
         <div class="footer-service-columns">
           {services.map(column => (
             <ul class="footer-link-list">
-              {column.map(item => <li>{item === 'Дизайн, контент и разработка сайтов' ? <a href={`${base}services/razrabotka-saitov/`}>{item}</a> : item === 'Кейсы для бизнеса' ? <a href={`${base}services/keisy-dlya-biznesa/`}>{item}</a> : <span>{item}</span>}</li>)}
+              {column.map(item => <li>{item === 'Дизайн, контент и разработка сайтов' ? <a href={`${base}services/razrabotka-saitov/`}>{item}</a> : item === 'Кейсы для бизнеса' ? <a href={`${base}services/keisy-dlya-biznesa/`}>{item}</a> : item === 'Презентации и материалы для продаж' ? <a href={`${base}services/prezentatsii-i-materialy-dlya-prodazh/`}>{item}</a> : <span>{item}</span>}</li>)}
             </ul>
           ))}
         </div>

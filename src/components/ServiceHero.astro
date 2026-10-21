@@ -4,30 +4,54 @@ import hero from '../assets/website-hero.png';
 import heroMobile from '../assets/photos/hero-mobile.jpg';
 import { websiteService as content } from '../data/website-service';
 import { contacts } from '../data/contacts';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  content?: { title: string; intro: string; summary: string; steps: string[] };
+  image?: ImageMetadata;
+  mobileImage?: ImageMetadata;
+  imageAlt?: string;
+  primaryAction?: string;
+  primaryHref?: string;
+  secondaryAction?: string;
+  secondaryHref?: string;
+}
+
+const {
+  content: serviceContent = content,
+  image = hero,
+  mobileImage = heroMobile,
+  imageAlt = 'Женщина и мужчина рассматривают материалы на мониторе за рабочим столом',
+  primaryAction = 'Получить консультацию и примеры',
+  primaryHref = contacts.consultation,
+  secondaryAction = 'Обсудить задачу',
+  secondaryHref = contacts.telegram,
+} = Astro.props;
+
 const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
-  getImage({ src: heroMobile, width, format: 'webp', quality: 90 })
+  getImage({ src: mobileImage, width, format: 'webp', quality: 90 })
 ));
 const mobileSrcset = mobileVariants.map((image, index) => `${image.src} ${[480, 768, 1254][index]}w`).join(', ');
 ---
 <section class="service-hero" aria-labelledby="service-title">
   <div class="hero-media" data-parallax>
     <picture>
-      <source media="(max-width: 767px)" srcset={mobileSrcset} sizes="100vw" width={heroMobile.width} height={heroMobile.height} />
-      <Image src={hero} alt="Женщина и мужчина рассматривают материалы на мониторе за рабочим столом" widths={[960, 1440, 1920]} sizes="100vw" format="webp" quality={90} loading="eager" fetchpriority="high" class="hero-photo" />
+      <source media="(max-width: 767px)" srcset={mobileSrcset} sizes="100vw" width={mobileImage.width} height={mobileImage.height} />
+      <Image src={image} alt={imageAlt} widths={[960, 1440, 1920]} sizes="100vw" format="webp" quality={90} loading="eager" fetchpriority="high" class="hero-photo" />
     </picture>
   </div>
   <div class="hero-content container">
     <div class="hero-copy">
-      <h1 id="service-title">{content.title}</h1>
-      <p class="hero-intro">{content.intro}</p>
+      <h1 id="service-title">{serviceContent.title}</h1>
+      <p class="hero-intro">{serviceContent.intro}</p>
       <div class="hero-actions">
-        <a class="button" href={contacts.consultation}>Получить консультацию и примеры <span aria-hidden="true">→</span></a>
-        <a class="button button-plain" href={contacts.telegram}>Обсудить задачу <span aria-hidden="true">→</span></a>
+        <a class="button" href={primaryHref}>{primaryAction} <span aria-hidden="true">→</span></a>
+        <a class="button button-plain" href={secondaryHref}>{secondaryAction} <span aria-hidden="true">→</span></a>
       </div>
       <ul class="hero-steps" aria-label="Состав работы">
-        {content.steps.map(step => <li>{step}</li>)}
+        {serviceContent.steps.map(step => <li>{step}</li>)}
       </ul>
     </div>
-    <p class="hero-summary">{content.summary}</p>
+    <p class="hero-summary">{serviceContent.summary}</p>
   </div>
 </section>

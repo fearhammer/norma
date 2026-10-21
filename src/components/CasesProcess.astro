@@ -21,19 +21,33 @@ const items = [
     text: 'Передадим готовый материал и дополнительные версии, о которых договорились на старте. Если публикация входит в работу, разместим кейс на сайте или в другом выбранном канале.',
   },
 ];
+
+interface Props {
+  id?: string;
+  title?: string;
+  intro?: string;
+  items?: { title: string; text?: string; paragraphs?: string[] }[];
+}
+
+const {
+  id = 'case-process',
+  title = 'Как проходит работа над кейсом',
+  intro = 'Изучим проект, поговорим с участниками, напишем текст и оформим кейс. С вашей стороны понадобятся информация о проекте, время сотрудников на интервью и проверку итогового материала.',
+  items: processItems = items,
+} = Astro.props;
 ---
 
-<section class="cases-process container section-space" id="case-process" aria-labelledby="case-process-title">
+<section class="cases-process container section-space" id={id} aria-labelledby={`${id}-title`}>
   <div class="section-intro">
-    <h2 id="case-process-title">Как проходит работа над кейсом</h2>
-    <p>Изучим проект, поговорим с участниками, напишем текст и оформим кейс. С вашей стороны понадобятся информация о проекте, время сотрудников на интервью и проверку итогового материала.</p>
+    <h2 id={`${id}-title`}>{title}</h2>
+    <p>{intro}</p>
   </div>
   <ol class="cases-process-card">
-    {items.map((item, index) => (
+    {processItems.map((item, index) => (
       <li>
         <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
         <h3>{item.title}</h3>
-        <p>{item.text}</p>
+        {(item.paragraphs ?? (item.text ? [item.text] : [])).map(paragraph => <p>{paragraph}</p>)}
       </li>
     ))}
   </ol>
