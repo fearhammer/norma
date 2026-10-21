@@ -14,12 +14,12 @@ import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import content from '../../data/media-service.json';
-import hero from '../../assets/photos/media-hero.png';
-import needsPhoto from '../../assets/photos/media-needs.png';
-import materialsPhoto from '../../assets/photos/media-materials.png';
-import selectionPhoto from '../../assets/photos/media-selection.png';
-import workflowPhoto from '../../assets/photos/media-workflow.png';
-import afterPhoto from '../../assets/photos/media-after.png';
+import hero from '../../assets/photos/media-hero.jpg';
+import needsPhoto from '../../assets/photos/media-needs.jpg';
+import materialsPhoto from '../../assets/photos/media-materials.jpg';
+import selectionPhoto from '../../assets/photos/media-selection.jpg';
+import workflowPhoto from '../../assets/photos/media-workflow.jpg';
+import afterPhoto from '../../assets/photos/media-after.jpg';
 import examplesPhoto from '../../assets/photos/media-examples.png';
 import consultationPhoto from '../../assets/photos/media-consultation.png';
 
@@ -77,7 +77,7 @@ const formats = content.pricing.items.map((item, index) => ({
       intro={content.materials.intro[0]}
       items={content.materials.items}
       image={materialsPhoto}
-      imageAlt="Эксперт обсуждает статью у окна"
+      imageAlt="Специалист обсуждает публикации у окна"
       itemAction="Заказать"
     />
 
@@ -103,13 +103,12 @@ const formats = content.pricing.items.map((item, index) => ({
       intro={content.after.intro[0]}
       items={content.after.items}
       image={afterPhoto}
-      imageAlt="Редактор готовит материал к публикации"
+      imageAlt="Редактор работает над публикацией за ноутбуком"
       imageFirst
     />
 
     <ServiceDeliverables steps={deliverables} />
     <ServicePricing title="Формат работы и стоимость" formats={formats} />
-    <p class="media-pricing-note container">{content.pricing.note}</p>
     <ExamplesBanner id="project-examples" image={examplesPhoto} imageHasGradient />
 
     <ServiceConsultation
@@ -131,20 +130,18 @@ const formats = content.pricing.items.map((item, index) => ({
   .media-hero .hero-photo { transform: none; object-position: center; }
   .media-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
   #materials .process-photo, #after .process-photo { position: static; max-height: none; }
-  #materials .process-photo { object-position: 15% center; }
+  #materials .process-photo { object-position: center; }
   #materials .process-action { margin-top: 30px; }
   #media-selection .cases-process-card { width: min(35.125rem, 100%); margin-top: 50px; padding: 30px; }
   #media-selection .cases-process-card li { padding-bottom: 30px; }
   #media-selection .cases-process-card li + li { padding-top: 30px; }
   #media-selection .cases-process-card li:last-child { padding-bottom: 0; }
   #after .process-photo { object-position: 50% center; }
-  .media-pricing-note { margin-top: -40px; margin-bottom: 70px; color: #454545; font-size: .875rem; line-height: 1.375rem; }
   @media (max-width: 767px) {
     .media-hero .hero-steps { display: flex; }
     #media-selection .cases-process-card { margin-top: 34px; padding: 22px; }
     #media-selection .cases-process-card li { padding-bottom: 24px; }
     #media-selection .cases-process-card li + li { padding-top: 24px; }
     #media-selection .cases-process-card li:last-child { padding-bottom: 0; }
-    .media-pricing-note { margin-top: -24px; margin-bottom: 44px; font-size: .9375rem; line-height: 1.4375rem; }
   }
 </style>
