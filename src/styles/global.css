@@ -274,8 +274,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .testimonial-avatar { grid-row: span 2; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #d8c3b1; font-size: 0.875rem; }
 .testimonial-name { align-self: end; font-size: 0.875rem; font-weight: 500; }
 .testimonial-company { align-self: start; font-size: 0.75rem; }
-.examples-banner { position: relative; isolation: isolate; display: flex; min-height: 554px; margin-block: 20px 50px; overflow: hidden; border-radius: 10px; background: #d6c9bb; scroll-margin-top: 90px; }
+.examples-banner { position: relative; isolation: isolate; display: flex; min-height: 396px; margin-block: 20px 50px; overflow: hidden; border-radius: 10px; background: #d6c9bb; scroll-margin-top: 90px; }
 .examples-photo { position: absolute; top: 0; bottom: 0; left: 18%; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+#case-examples .examples-photo { left: 0; }
 .examples-banner::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f1e9de 0%, #f1e9de 39%, rgb(241 233 222 / .9) 51%, transparent 78%); }
 .examples-content { display: flex; flex-direction: column; align-items: flex-start; width: min(43rem, 65%); padding: 27px 30px 25px; }
 .examples-content h2 { font-size: 2.6875rem; line-height: .9; font-weight: 500; letter-spacing: -.03em; }
@@ -445,7 +446,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .testimonial { min-height: 270px; padding: 26px; }
   .testimonial blockquote { font-size: 1.1875rem; line-height: 1.2; }
   .testimonial figcaption { margin-top: 40px; }
-  .examples-banner { min-height: 854px; margin-block: 12px 32px; align-items: flex-start; }
+  .examples-banner { min-height: 610px; margin-block: 12px 32px; align-items: flex-start; }
   .examples-photo { left: 0; object-position: 68% center; }
   .examples-banner::before { background: linear-gradient(180deg, #f1e9de 0%, rgb(241 233 222 / .96) 42%, transparent 85%); }
   .examples-content { width: 100%; min-height: 440px; padding: 25px 20px; }
