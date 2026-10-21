@@ -279,7 +279,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .examples-photo { position: absolute; top: 0; bottom: 0; left: 18%; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 #case-examples .examples-photo { left: 0; }
 .examples-banner::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f1e9de 0%, #f1e9de 39%, rgb(241 233 222 / .9) 51%, transparent 78%); }
-.examples-image-graded::before { display: none; }
+.examples-image-graded { background: #efe5d7; }
+.examples-image-graded .examples-photo { left: 0; right: 0; object-position: right center; }
+.examples-image-graded::before { background: linear-gradient(90deg, #efe5d7 0%, rgb(239 229 215 / .96) 30%, transparent 62%); }
 .examples-content { display: flex; flex-direction: column; align-items: flex-start; width: min(43rem, 65%); padding: 27px 30px 25px; }
 .examples-content h2 { font-size: 2.6875rem; line-height: .9; font-weight: 500; letter-spacing: -.03em; }
 .examples-content p { max-width: 31rem; margin-top: 32px; font-size: 0.9375rem; line-height: 1.375rem; }
@@ -321,7 +323,6 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .cases-process-card li:last-child { padding-bottom: 0; }
 .cases-process-card h3 { margin-top: 18px; color: var(--color-heading); font-size: 1.125rem; line-height: 1.15; font-weight: 500; }
 .cases-process-card p { margin-top: 16px; font-size: 0.875rem; line-height: 1.45rem; }
-.cases-process-photo { width: 100vw; max-width: none; height: 870px; margin: 0 0 -80px calc(50% - 50vw); object-fit: cover; object-position: center; }
 .cases-use { padding-top: 120px; scroll-margin-top: 90px; }
 .cases-use-list { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 54px 0 -18px; padding: 28px 0; list-style: none; border: 1px solid #e5d9cd; border-radius: 10px; background: #f4ebe2; }
 .cases-use-list li { padding: 0 40px; }
@@ -338,6 +339,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .consultation h2 { max-width: 50rem; margin-top: 36px; color: #fff; font-size: clamp(3rem, 5vw, 4.375rem); }
 .consultation-intro { max-width: 40.625rem; margin-top: 35px; font-size: 1rem; line-height: 1.5rem; }
 .consultation-intro + .consultation-intro { margin-top: 18px; }
+.presentations-consultation::before { background: linear-gradient(179.45deg, rgb(52 35 18 / .8) 19.304%, rgb(102 102 102 / 0) 99.407%); }
+.presentations-consultation h2 { max-width: 54.875rem; line-height: .9; }
+.presentations-consultation .consultation-intro { max-width: 37.25rem; }
 .consultation-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 40.625rem; margin: 40px 0 55px; padding: 0; list-style: none; }
 .consultation-tags li { border: 1px solid #eee5de; border-radius: 99px; padding: 4px 12px; font-size: 0.8125rem; }
 .consultation-form { width: min(38.875rem, 100%); padding: 28px; border-radius: 5px; background: white; color: #454545; text-align: left; }
@@ -455,6 +459,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .examples-content { width: 100%; min-height: 440px; padding: 25px 20px; }
   .examples-content h2 { font-size: clamp(2rem, 8vw, 2.6875rem); }
   .examples-content p { margin-top: 22px; font-size: 0.9375rem; line-height: 1.4375rem; }
+  .examples-image-graded .examples-photo { top: auto; height: 280px; object-position: right center; }
+  .examples-image-graded::before { background: linear-gradient(180deg, #efe5d7 0%, #efe5d7 calc(100% - 280px), transparent calc(100% - 220px)); }
+  .examples-image-graded .examples-content { min-height: 0; padding-bottom: 300px; }
   .banner-actions { gap: 6px; padding-top: 25px; }
   .service-team .format-list { margin-top: 34px; }
   .service-handover { padding-top: 65px; }
@@ -471,7 +478,6 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .cases-process-card li { padding-bottom: 24px; }
   .cases-process-card li + li { padding-top: 24px; }
   .cases-process-card p { font-size: 0.9375rem; line-height: 1.4375rem; }
-  .cases-process-photo { height: 420px; margin-bottom: -56px; }
   .cases-use { padding-top: 65px; }
   .cases-use-list { display: block; margin-top: 35px; margin-bottom: -12px; padding: 5px 22px; }
   .cases-use-list li { padding: 22px 0; }

@@ -10,6 +10,8 @@ interface Props {
   tags?: string[];
   subject?: string;
   greeting?: string;
+  note?: string;
+  className?: string;
 }
 const {
   image = defaultImage,
@@ -18,9 +20,11 @@ const {
   tags = ['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость'],
   subject = 'Консультация по разработке сайта',
   greeting = 'Здравствуйте! Хочу обсудить разработку сайта.',
+  note,
+  className = '',
 } = Astro.props;
 ---
-<section class="consultation" id="consultation" aria-labelledby="consultation-title">
+<section class:list={['consultation', className]} id="consultation" aria-labelledby="consultation-title">
   <Image class="consultation-photo" src={image} alt="" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" quality={95} loading="lazy" />
   <div class="consultation-content container">
     <span class="eyebrow">Консультация Norma Studio</span>
@@ -47,6 +51,7 @@ const {
         <input id="contact-website" name="website" inputmode="url" autocomplete="url" placeholder="company.ru" maxlength="300" />
       </div>
       <button class="button form-submit" type="submit">Отправить по почте <span aria-hidden="true">→</span></button>
+      {note && <p class="form-note">{note}</p>}
       <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>
       <p class="form-status" role="status" aria-live="polite" hidden>Письмо подготовлено. Если почтовая программа не открылась, <a href={contacts.telegram}>напишите нам в Telegram →</a></p>
       <a class="form-telegram" href={contacts.telegram}>Написать в Telegram <span aria-hidden="true">→</span></a>

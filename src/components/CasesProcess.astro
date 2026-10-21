@@ -44,7 +44,8 @@ const {
 } = Astro.props;
 ---
 
-<section class="cases-process container section-space" id={id} aria-labelledby={`${id}-title`}>
+<section class="cases-process section-space" id={id} aria-labelledby={`${id}-title`}>
+  <div class="container formats-content">
   <div class="section-intro">
     <h2 id={`${id}-title`}>{title}</h2>
     <p>{intro}</p>
@@ -58,5 +59,6 @@ const {
       </li>
     ))}
   </ol>
-  {image && <Image class="cases-process-photo" src={image} alt={imageAlt} widths={[800, 1200, 1600, 2000]} sizes="100vw" format="webp" quality={95} loading="lazy" decoding="async" />}
+  </div>
+  {image && <div class="formats-photo"><Image src={image} alt={imageAlt} widths={[800, 1200, 1600, 2000]} sizes="100vw" format="webp" quality={95} loading="lazy" decoding="async" /></div>}
 </section>
