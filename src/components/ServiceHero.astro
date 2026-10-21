@@ -15,6 +15,7 @@ interface Props {
   primaryHref?: string;
   secondaryAction?: string;
   secondaryHref?: string;
+  className?: string;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   primaryHref = contacts.consultation,
   secondaryAction = 'Обсудить задачу',
   secondaryHref = contacts.telegram,
+  className = '',
 } = Astro.props;
 
 const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
@@ -33,7 +35,7 @@ const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
 ));
 const mobileSrcset = mobileVariants.map((image, index) => `${image.src} ${[480, 768, 1254][index]}w`).join(', ');
 ---
-<section class="service-hero" aria-labelledby="service-title">
+<section class:list={['service-hero', className]} aria-labelledby="service-title">
   <div class="hero-media" data-parallax>
     <picture>
       <source media="(max-width: 767px)" srcset={mobileSrcset} sizes="100vw" width={mobileImage.width} height={mobileImage.height} />

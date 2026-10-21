@@ -96,6 +96,7 @@ h1 { max-width: 36.875rem; font-size: 4.8125rem; line-height: .8; font-weight: 4
 .hero-steps li { text-decoration: underline; text-underline-offset: 3px; }
 .hero-summary { max-width: 40.75rem; padding: 25px 30px; border-radius: 5px; background: rgb(246 241 236 / .4); backdrop-filter: blur(10px); font-size: 1.5rem; font-weight: 500; line-height: 1.1; letter-spacing: -.24px; color: var(--color-heading); }
 .cases-hero .hero-photo { transform: none; object-position: center; }
+.presentations-hero .hero-photo { transform: none; object-position: center; }
 .cases-hero .hero-content::before { background: linear-gradient(103deg, #ddd0c8 26%, rgb(221 208 200 / .89) 43%, rgb(221 208 200 / 0) 62%); }
 .cases-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
 .cases-needs { padding-top: 120px; }
