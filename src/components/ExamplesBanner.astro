@@ -6,6 +6,7 @@ interface Props {
   id: string;
   image: ImageMetadata;
   planning?: boolean;
+  imageHasGradient?: boolean;
   title?: string;
   text?: string;
   primaryAction?: string;
@@ -15,14 +16,15 @@ const {
   id,
   image,
   planning = false,
+  imageHasGradient = false,
   title = planning ? 'Не знаете, с чего начать? Поможем определить объём работ' : 'Получите примеры реализованных проектов под вашу задачу',
   text = planning ? 'Обсудим задачи, аудиторию и предложение компании. Изучим действующий сайт или материалы для нового, подберём примеры структуры и дизайна. Предложим состав проекта и подготовим КП со сроками и стоимостью.' : 'Подберём релевантные кейсы по тематике, формату и задаче. Расскажем, какую задачу решал материал, как выбиралась тема, откуда собиралась фактура и что входило в нашу работу. Отправим подборку в Telegram или на email.',
   primaryAction = planning ? 'Получить консультацию' : 'Получить примеры',
   secondaryAction = 'Написать в Telegram',
 } = Astro.props;
 ---
-<section class:list={['examples-banner', 'container', { 'examples-planning': planning }]} id={id} aria-labelledby={`${id}-title`}>
-  <Image class="examples-photo" src={image} alt="" widths={[640, 960, 1200, 1800]} sizes="(max-width: 767px) 100vw, (max-width: 1264px) calc(100vw - 64px), (max-width: 2133px) 75vw, 1600px" format="webp" quality={90} loading="lazy" />
+<section class:list={['examples-banner', 'container', { 'examples-planning': planning, 'examples-image-graded': imageHasGradient }]} id={id} aria-labelledby={`${id}-title`}>
+  <Image class="examples-photo" src={image} alt="" widths={[640, 960, 1200, 1800]} sizes="(max-width: 767px) 100vw, (max-width: 1264px) calc(100vw - 64px), (max-width: 2133px) 75vw, 1600px" format="webp" quality={95} loading="lazy" />
   <div class="examples-content">
     <h2 id={`${id}-title`}>{title}</h2>
     <p>{text}</p>

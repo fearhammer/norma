@@ -278,6 +278,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .examples-photo { position: absolute; top: 0; bottom: 0; left: 18%; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 #case-examples .examples-photo { left: 0; }
 .examples-banner::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #f1e9de 0%, #f1e9de 39%, rgb(241 233 222 / .9) 51%, transparent 78%); }
+.examples-image-graded::before { display: none; }
 .examples-content { display: flex; flex-direction: column; align-items: flex-start; width: min(43rem, 65%); padding: 27px 30px 25px; }
 .examples-content h2 { font-size: 2.6875rem; line-height: .9; font-weight: 500; letter-spacing: -.03em; }
 .examples-content p { max-width: 31rem; margin-top: 32px; font-size: 0.9375rem; line-height: 1.375rem; }

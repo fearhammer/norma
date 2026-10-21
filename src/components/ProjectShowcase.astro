@@ -100,7 +100,7 @@ const {
       <a class="project-card" href={project.href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={`${linkLabel} ${project.name}`} data-project-card>
         <span class="project-preview" aria-hidden="true">
           {project.images?.map((image, index) => (
-            <Image class:list={['project-preview-image', { 'is-active': index === 0 }]} src={image} alt="" widths={[360, 540, 720]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) / 3), 360px" format="webp" quality={90} loading={index === 0 ? 'eager' : 'lazy'} />
+            <Image class:list={['project-preview-image', { 'is-active': index === 0 }]} src={image} alt="" widths={[360, 540, 720]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) / 3), 360px" format="webp" quality={95} loading={index === 0 ? 'eager' : 'lazy'} />
           ))}
         </span>
         <span class="project-name">{project.name}</span>
