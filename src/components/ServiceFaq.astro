@@ -1,6 +1,6 @@
 ---
 import { faq } from '../data/website-continuation';
-interface Props { items?: { title: string; text: string }[]; }
+interface Props { items?: { title: string; text: string | string[] }[]; }
 const { items = faq } = Astro.props;
 ---
 <section class="service-faq container section-space" id="faq" aria-labelledby="faq-title">
@@ -9,7 +9,7 @@ const { items = faq } = Astro.props;
     {items.map(item => (
       <details class="faq-item">
         <summary>{item.title}<span class="faq-toggle" aria-hidden="true"></span></summary>
-        <p>{item.text}</p>
+        {(Array.isArray(item.text) ? item.text : [item.text]).map(paragraph => <p>{paragraph}</p>)}
       </details>
     ))}
   </div>
