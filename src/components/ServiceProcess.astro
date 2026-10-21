@@ -26,6 +26,6 @@ const { id, title, intro, items, image, imageAlt, imageFirst = false } = Astro.p
         </div>
       ))}
     </div>
-    <Image class="process-photo" src={image} alt={imageAlt} widths={[400, 600, 900, 1200]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) * .5455), 600px" format="webp" loading="lazy" decoding="async" />
+    <Image class="process-photo" src={image} alt={imageAlt} widths={[400, 600, 900, 1200]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) * .5455), 600px" format="webp" quality={90} loading="lazy" decoding="async" />
   </div>
 </section>

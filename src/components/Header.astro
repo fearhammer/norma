@@ -6,22 +6,42 @@ const { servicesHref = '#formats', blogHref = '#blog' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const withBase = (href: string) => href.startsWith('/') ? `${base}${href.slice(1)}` : href;
 const links = [
-  { href: withBase(servicesHref), label: 'Услуги ↓' },
   { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
   { href: 'https://norma-studio.ru/', label: 'О студии' },
   { href: withBase(blogHref), label: 'Блог' },
+];
+const services = [
+  { href: withBase(servicesHref), label: 'Дизайн, контент и разработка сайтов', note: 'Структура, тексты и дизайн' },
+  { href: withBase('/services/keisy-dlya-biznesa/'), label: 'Кейсы для бизнеса', note: 'Истории проектов и результаты' },
 ];
 ---
 <header class="site-header container">
   <div class="header-inner">
     <a class="brand" href="https://norma-studio.ru/" aria-label="Norma Studio — главная">Norma Studio</a>
     <nav class="desktop-nav" aria-label="Основная навигация">
+      <details class="services-menu">
+        <summary>Услуги <span aria-hidden="true">↓</span></summary>
+        <div class="services-menu-panel">
+          {services.map(service => (
+            <a href={service.href}>
+              <span>{service.label}</span>
+              <small>{service.note}</small>
+            </a>
+          ))}
+        </div>
+      </details>
       {links.map(link => <a href={link.href}>{link.label}</a>)}
     </nav>
     <a class="header-contact" href={contacts.telegram}>Про контент-маркетинг в Telegram <span aria-hidden="true">→</span></a>
     <details class="mobile-menu">
       <summary aria-label="Открыть меню"><span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span></summary>
       <nav aria-label="Мобильная навигация">
+        <details class="mobile-services-menu">
+          <summary>Услуги <span aria-hidden="true">↓</span></summary>
+          <div>
+            {services.map(service => <a href={service.href}>{service.label}</a>)}
+          </div>
+        </details>
         {links.map(link => <a href={link.href}>{link.label}</a>)}
       </nav>
     </details>
@@ -29,6 +49,7 @@ const links = [
 </header>
 <script>
   const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  const servicesMenu = document.querySelector<HTMLDetailsElement>('.services-menu');
   const toggle = menu?.querySelector('summary');
   menu?.addEventListener('toggle', () => {
     toggle?.setAttribute('aria-label', menu.open ? 'Закрыть меню' : 'Открыть меню');
@@ -36,10 +57,13 @@ const links = [
   menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && menu?.open) { menu.open = false; toggle?.focus(); }
+    if (event.key === 'Escape' && servicesMenu?.open) { servicesMenu.open = false; servicesMenu.querySelector('summary')?.focus(); }
   });
   document.addEventListener('click', event => {
     if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+    if (servicesMenu?.open && event.target instanceof Node && !servicesMenu.contains(event.target)) servicesMenu.open = false;
   });
+  servicesMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { servicesMenu.open = false; }));
 
   const header = document.querySelector<HTMLElement>('.site-header');
   const footer = document.querySelector<HTMLElement>('.site-footer');

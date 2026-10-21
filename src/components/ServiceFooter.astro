@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL;
 // Остальные страницы услуг ещё готовятся: их названия остаются текстом до появления адресов.
 const services = [
   ['Контент-маркетинг', 'Ведение корпоративного блога', 'GEO-продвижение', 'Экспертные статьи', 'Кейсы для бизнеса', 'Презентации и материалы для продаж', 'Редакция на аутсорсе'],
-  ['Контент-стратегия', 'SEO-продвижение компании', 'SEO-статьи', 'Email-рассылки', 'Статьи для внешних площадок', 'Тексты и структура сайта'],
+  ['Контент-стратегия', 'SEO-продвижение компании', 'SEO-статьи', 'Email-рассылки', 'Статьи для внешних площадок', 'Дизайн, контент и разработка сайтов'],
 ];
 ---
 
@@ -31,7 +31,7 @@ const services = [
         <div class="footer-service-columns">
           {services.map(column => (
             <ul class="footer-link-list">
-              {column.map(item => <li>{item === 'Тексты и структура сайта' ? <a href="#structure">{item}</a> : item === 'Кейсы для бизнеса' ? <a href={`${base}services/keisy-dlya-biznesa/`}>{item}</a> : <span>{item}</span>}</li>)}
+              {column.map(item => <li>{item === 'Дизайн, контент и разработка сайтов' ? <a href={`${base}services/razrabotka-saitov/`}>{item}</a> : item === 'Кейсы для бизнеса' ? <a href={`${base}services/keisy-dlya-biznesa/`}>{item}</a> : <span>{item}</span>}</li>)}
             </ul>
           ))}
         </div>
