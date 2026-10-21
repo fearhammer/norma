@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  intro: string;
+  items: { title: string; paragraphs: string[] }[];
+  image: ImageMetadata;
+}
+
+const { title, intro, items, image } = Astro.props;
+---
+<section class="media-workflow" id="workflow" aria-labelledby="workflow-title">
+  <div class="container workflow-content">
+    <div class="section-intro">
+      <h2 id="workflow-title">{title}</h2>
+      <p>{intro}</p>
+    </div>
+    <ol class="workflow-grid">
+      {items.map((item, index) => (
+        <li>
+          <span class="format-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          {item.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div class="workflow-photo" data-parallax>
+    <Image src={image} alt="Редакторы обсуждают материал у окна" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" quality={95} loading="lazy" decoding="async" />
+  </div>
+  <div class="container workflow-note-wrap">
+    <aside class="workflow-note">
+      <h3>Экспертам больше не нужно писать самостоятельно. Нам достаточно поговорить с сотрудником, который разбирается в теме, и получить доступ к рабочим материалам. Перед интервью редактор изучает продукт и готовит вопросы, эксперту не нужно объяснять всё с нуля.</h3>
+      <div>
+        <p>Дальше работаем сами: изучаем дополнительные источники, пишем текст, редактируем и оформляем материал. Эксперт проверяет факты и корректность выводов. Маркетолог согласовывает задачу и принимает готовую работу.</p>
+        <p>Одного часового интервью хватает для статьи, нескольких постов, письма и презентации.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .media-workflow { padding-top: 120px; scroll-margin-top: 90px; }
+  .workflow-content { position: relative; z-index: 1; }
+  .workflow-content :global(.section-intro) { max-width: 700px; }
+  .workflow-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 50px 0 -50px; padding: 30px; list-style: none; border: 1px solid #e4dad0; border-radius: 10px; background: #f4ebe2; }
+  .workflow-grid li { min-width: 0; padding: 0 40px 30px; }
+  .workflow-grid li:nth-child(3n + 1) { padding-left: 0; }
+  .workflow-grid li:nth-child(3n + 3) { padding-right: 0; }
+  .workflow-grid li:not(:nth-child(3n + 1)) { border-left: 1px solid #ded5ce; }
+  .workflow-grid li:nth-child(n + 4) { padding-top: 30px; padding-bottom: 0; border-top: 1px solid #ded5ce; }
+  .workflow-grid h3 { margin-top: 18px; color: var(--color-heading); font-size: 1.3125rem; line-height: 1; font-weight: 500; letter-spacing: -.21px; }
+  .workflow-grid p { margin-top: 16px; color: #454545; font-size: .875rem; line-height: 1.375rem; }
+  .workflow-grid p + p { margin-top: 22px; }
+  .workflow-photo { height: 870px; overflow: hidden; }
+  .workflow-photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .workflow-note-wrap { position: relative; z-index: 1; }
+  .workflow-note { width: min(650px, 100%); margin-top: -200px; padding: 25px 30px; border: 1px solid #edc8a4; border-radius: 5px; background: #e9d6c4; }
+  .workflow-note h3 { color: var(--color-heading); font-size: 1.5rem; line-height: 1.1; letter-spacing: -.24px; font-weight: 500; }
+  .workflow-note > div { margin-top: 60px; }
+  .workflow-note p { color: #454545; font-size: .875rem; line-height: 1.375rem; }
+  .workflow-note p + p { margin-top: 22px; }
+  @media (max-width: 900px) {
+    .workflow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .workflow-grid li { padding: 0 24px 30px; }
+    .workflow-grid li:nth-child(3n + 1), .workflow-grid li:nth-child(3n + 3) { padding-inline: 24px; }
+    .workflow-grid li:nth-child(2n + 1) { padding-left: 0; border-left: 0; }
+    .workflow-grid li:nth-child(2n) { padding-right: 0; border-left: 1px solid #ded5ce; }
+    .workflow-grid li:nth-child(n + 3) { padding-top: 30px; border-top: 1px solid #ded5ce; }
+  }
+  @media (max-width: 767px) {
+    .media-workflow { padding-top: 72px; }
+    .workflow-grid { grid-template-columns: 1fr; margin-top: 34px; margin-bottom: -28px; padding: 22px; }
+    .workflow-grid li, .workflow-grid li:nth-child(3n + 1), .workflow-grid li:nth-child(3n + 3) { padding: 0 0 24px; border-left: 0; }
+    .workflow-grid li + li, .workflow-grid li:nth-child(n + 3) { padding-top: 24px; border-top: 1px solid #ded5ce; }
+    .workflow-grid li:last-child { padding-bottom: 0; }
+    .workflow-grid h3 { font-size: 1.125rem; line-height: 1.15; }
+    .workflow-grid p { font-size: .9375rem; line-height: 1.4375rem; }
+    .workflow-photo { height: 540px; }
+    .workflow-note { margin-top: -70px; padding: 22px; }
+    .workflow-note h3 { font-size: 1.3125rem; }
+    .workflow-note > div { margin-top: 32px; }
+    .workflow-note p { font-size: .9375rem; line-height: 1.4375rem; }
+  }
+</style>

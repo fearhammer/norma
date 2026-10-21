@@ -1,0 +1,150 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import MediaWorkflow from '../../components/MediaWorkflow.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import content from '../../data/media-service.json';
+import hero from '../../assets/photos/media-hero.png';
+import needsPhoto from '../../assets/photos/media-needs.png';
+import materialsPhoto from '../../assets/photos/media-materials.png';
+import selectionPhoto from '../../assets/photos/media-selection.png';
+import workflowPhoto from '../../assets/photos/media-workflow.png';
+import afterPhoto from '../../assets/photos/media-after.png';
+import examplesPhoto from '../../assets/photos/media-examples.png';
+import consultationPhoto from '../../assets/photos/media-consultation.png';
+
+const heroContent = {
+  title: 'Статьи для отраслевых медиа',
+  intro: 'Подберём отраслевые медиа и профессиональные платформы с вашей целевой аудиторией. Подготовим и опубликуем материалы на основе экспертизы компании и запросов ЦА для привлечения лидов.',
+  steps: [
+    'Подбор тем и площадок',
+    'Интервью с сотрудниками и сбор фактуры',
+    'Тексты, редактура и оформление',
+    'Согласование и сопровождение публикаций',
+    'Публикация и анализ результатов',
+  ],
+  summary: 'Изучим продукты и аудиторию, выберем темы и площадки, соберём фактуру у сотрудников, напишем и оформим материалы.',
+};
+
+const deliverables = [
+  { title: 'Подбор тем и площадок', category: 'Аналитика' },
+  { title: 'Интервью с сотрудниками и сбор фактуры', category: 'Редакция' },
+  { title: 'Тексты, редактура и оформление', category: 'Редакция' },
+  { title: 'Согласование и сопровождение публикаций', category: 'Менеджмент' },
+  { title: 'Публикация и анализ результатов', category: 'Аналитика' },
+];
+
+const prices = ['от 20 000 рублей', 'от 80 000 рублей', 'от 60 000 рублей'];
+const formats = content.pricing.items.map((item, index) => ({
+  tag: index === 1 ? 'Ежемесячно' : 'Проект',
+  price: prices[index],
+  title: item.title,
+  items: item.bullets,
+  action: 'Обсудить задачу',
+}));
+---
+<Page
+  title="Статьи для внешних площадок: написание и публикация | Norma"
+  description="Подберём темы и площадки, соберём фактуру, напишем и оформим экспертные статьи. Сопроводим публикации и оценим охват, переходы и целевые обращения."
+  image={hero.src}
+>
+  <Header servicesHref="#needs" blogHref="#blog" />
+  <main id="main" class="media-page">
+    <ServiceHero content={heroContent} image={hero} mobileImage={hero} imageAlt="Специалист готовит материал за ноутбуком" className="media-hero" />
+
+    <SiteFormats
+      id="needs"
+      title={content.needs.title}
+      intro={content.needs.intro[0]}
+      formats={content.needs.items}
+      image={needsPhoto}
+      imageAlt="Специалист смотрит на город из окна"
+    />
+
+    <ServiceProcess
+      id="materials"
+      title={content.materials.title}
+      intro={content.materials.intro[0]}
+      items={content.materials.items}
+      image={materialsPhoto}
+      imageAlt="Эксперт обсуждает статью у окна"
+      itemAction="Заказать"
+    />
+
+    <CasesProcess
+      id="media-selection"
+      title={content.selection.title}
+      intro={content.selection.intro[0]}
+      items={content.selection.items}
+      image={selectionPhoto}
+      imageAlt="Коллеги обсуждают публикации"
+    />
+
+    <MediaWorkflow
+      title={content.workflow.title}
+      intro={content.workflow.intro[0]}
+      items={content.workflow.items}
+      image={workflowPhoto}
+    />
+
+    <ServiceProcess
+      id="after"
+      title={content.after.title}
+      intro={content.after.intro[0]}
+      items={content.after.items}
+      image={afterPhoto}
+      imageAlt="Редактор готовит материал к публикации"
+      imageFirst
+    />
+
+    <ServiceDeliverables steps={deliverables} />
+    <ServicePricing title="Формат работы и стоимость" formats={formats} />
+    <p class="media-pricing-note container">{content.pricing.note}</p>
+    <ExamplesBanner id="project-examples" image={examplesPhoto} imageHasGradient />
+
+    <ServiceConsultation
+      image={consultationPhoto}
+      title={content.consultation.title}
+      intro={content.consultation.intro}
+      tags={['Примеры статей', 'Консультация', 'Коммерческое предложение', 'Сроки и стоимость']}
+      note="Даже если вы решите запускать контент самостоятельно, у вас останется понятный план действий."
+      subject="Статьи для отраслевых медиа"
+      greeting="Здравствуйте! Хочу обсудить статьи для отраслевых медиа."
+    />
+    <ServiceFaq items={content.faq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#needs" />
+</Page>
+
+<style is:global>
+  .media-hero .hero-photo { transform: none; object-position: center; }
+  .media-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
+  #materials .process-photo, #after .process-photo { position: static; max-height: none; }
+  #materials .process-photo { object-position: 15% center; }
+  #materials .process-action { margin-top: 30px; }
+  #media-selection .cases-process-card { width: min(35.125rem, 100%); margin-top: 50px; padding: 30px; }
+  #media-selection .cases-process-card li { padding-bottom: 30px; }
+  #media-selection .cases-process-card li + li { padding-top: 30px; }
+  #media-selection .cases-process-card li:last-child { padding-bottom: 0; }
+  #after .process-photo { object-position: 50% center; }
+  .media-pricing-note { margin-top: -40px; margin-bottom: 70px; color: #454545; font-size: .875rem; line-height: 1.375rem; }
+  @media (max-width: 767px) {
+    .media-hero .hero-steps { display: flex; }
+    #media-selection .cases-process-card { margin-top: 34px; padding: 22px; }
+    #media-selection .cases-process-card li { padding-bottom: 24px; }
+    #media-selection .cases-process-card li + li { padding-top: 24px; }
+    #media-selection .cases-process-card li:last-child { padding-bottom: 0; }
+    .media-pricing-note { margin-top: -24px; margin-bottom: 44px; font-size: .9375rem; line-height: 1.4375rem; }
+  }
+</style>
