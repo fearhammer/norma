@@ -1,9 +1,13 @@
 ---
 import { testimonials } from '../data/website-continuation';
+interface Props {
+  items?: typeof testimonials;
+}
+const { items = testimonials } = Astro.props;
 ---
 <section class="testimonials container" aria-label="Отзывы клиентов">
   <div class="testimonial-stack">
-    {testimonials.map(item => (
+    {items.map(item => (
       <figure class="testimonial">
         <blockquote><p>«{item.quote}»</p></blockquote>
         <figcaption>
