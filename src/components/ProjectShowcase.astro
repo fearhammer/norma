@@ -16,6 +16,15 @@ import blaster07 from '../assets/projects/blaster/7.png';
 import blaster08 from '../assets/projects/blaster/8.png';
 import blaster09 from '../assets/projects/blaster/9.png';
 import blaster10 from '../assets/projects/blaster/10.png';
+import agrosoros01 from '../assets/projects/agrosoros/1.png';
+import agrosoros02 from '../assets/projects/agrosoros/2.png';
+import agrosoros03 from '../assets/projects/agrosoros/3.png';
+import agrosoros04 from '../assets/projects/agrosoros/4.png';
+import agrosoros05 from '../assets/projects/agrosoros/5.png';
+import agrosoros06 from '../assets/projects/agrosoros/6.png';
+import agrosoros07 from '../assets/projects/agrosoros/7.png';
+import agrosoros08 from '../assets/projects/agrosoros/8.png';
+import agrosoros09 from '../assets/projects/agrosoros/9.png';
 
 const projects = [{
   name: 'Hilton',
@@ -25,6 +34,10 @@ const projects = [{
   name: 'Blaster',
   href: 'https://www.blstr.ru/',
   images: [blaster01, blaster02, blaster03, blaster04, blaster05, blaster06, blaster07, blaster08, blaster09, blaster10],
+}, {
+  name: 'Агросорос',
+  href: 'https://agrosoros.com/',
+  images: [agrosoros01, agrosoros02, agrosoros03, agrosoros04, agrosoros05, agrosoros06, agrosoros07, agrosoros08, agrosoros09],
 }];
 ---
 
@@ -62,6 +75,7 @@ const projects = [{
     };
     const start = () => {
       if (reduceMotion.matches || frames.length < 2 || timer) return;
+      showFrame((activeIndex + 1) % frames.length);
       timer = window.setInterval(() => showFrame((activeIndex + 1) % frames.length), 800);
     };
     card.addEventListener('pointerenter', start);
