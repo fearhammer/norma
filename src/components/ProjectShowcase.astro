@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import hilton01 from '../assets/projects/hilton/1.png';
+import hilton02 from '../assets/projects/hilton/2.png';
+import hilton03 from '../assets/projects/hilton/3.png';
+import hilton04 from '../assets/projects/hilton/4.png';
+import hilton05 from '../assets/projects/hilton/5.png';
+import hilton06 from '../assets/projects/hilton/6.png';
+
+const projects = [{
+  name: 'Hilton',
+  href: 'https://moscow-leningradskaya.ru/',
+  images: [hilton01, hilton02, hilton03, hilton04, hilton05, hilton06],
+}];
+---
+
+<section class="project-showcase container" aria-labelledby="projects-title">
+  <h2 id="projects-title">Реализованные проекты</h2>
+  <div class="project-showcase-grid">
+    {projects.map(project => (
+      <a class="project-card" href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`Посмотреть сайт ${project.name}`} data-project-card>
+        <span class="project-preview" aria-hidden="true">
+          {project.images.map((image, index) => (
+            <Image class:list={['project-preview-image', { 'is-active': index === 0 }]} src={image} alt="" widths={[360, 540, 720]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) / 3), 360px" format="webp" loading={index === 0 ? 'eager' : 'lazy'} />
+          ))}
+        </span>
+        <span class="project-name">{project.name}</span>
+        <span class="project-link">Посмотреть сайт <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLElement>('[data-project-card]').forEach(card => {
+    const frames = Array.from(card.querySelectorAll<HTMLElement>('.project-preview-image'));
+    let timer: ReturnType<typeof window.setInterval> | undefined;
+    let activeIndex = 0;
+    const showFrame = (index: number) => {
+      activeIndex = index;
+      frames.forEach((frame, frameIndex) => frame.classList.toggle('is-active', frameIndex === index));
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+      showFrame(0);
+    };
+    const start = () => {
+      if (reduceMotion.matches || frames.length < 2 || timer) return;
+      timer = window.setInterval(() => showFrame((activeIndex + 1) % frames.length), 800);
+    };
+    card.addEventListener('pointerenter', start);
+    card.addEventListener('pointerleave', stop);
+    reduceMotion.addEventListener('change', () => { if (reduceMotion.matches) stop(); });
+  });
+</script>

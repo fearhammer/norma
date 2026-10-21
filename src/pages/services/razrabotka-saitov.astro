@@ -3,6 +3,7 @@ import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import SiteFormats from '../../components/SiteFormats.astro';
+import ProjectShowcase from '../../components/ProjectShowcase.astro';
 import ServiceProcess from '../../components/ServiceProcess.astro';
 import structurePhoto from '../../assets/photos/structure-portrait.jpg';
 import designPhoto from '../../assets/photos/design-review.jpg';
@@ -27,6 +28,7 @@ import { websiteService } from '../../data/website-service';
   <main id="main">
     <ServiceHero />
     <SiteFormats />
+    <ProjectShowcase />
     <ServiceProcess {...structureProcess} image={structurePhoto} />
     <ServiceProcess {...designProcess} image={designPhoto} imageFirst />
     <ServiceProcess {...launchProcess} image={launchPhoto} />

@@ -104,6 +104,16 @@ h1 { max-width: 36.875rem; font-size: 4.8125rem; line-height: .8; font-weight: 4
 .formats-note-title { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-spacing: -1.62px; font-weight: 350; }
 .formats-note > p + p { margin-top: 250px; font-size: 0.875rem; line-height: 1.375rem; }
 .service-process { padding-block: 160px 80px; scroll-margin-top: 90px; }
+.project-showcase { padding-block: 120px 80px; }
+.project-showcase > h2 { text-align: center; }
+.project-showcase-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin-top: 48px; }
+.project-card { display: flex; flex-direction: column; align-items: flex-start; color: var(--color-heading); text-decoration: none; }
+.project-preview { position: relative; display: block; width: 100%; aspect-ratio: 1 / 1.025; overflow: hidden; border-radius: 10px; background: #d6d6d6; }
+.project-preview-image { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity .28s ease; }
+.project-preview-image.is-active { opacity: 1; }
+.project-name { margin-top: 18px; font-size: 1.25rem; line-height: 1.15; font-weight: 500; letter-spacing: -.02em; }
+.project-link { display: inline-flex; gap: 10px; margin-top: 8px; font-size: .875rem; line-height: 1.25; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em; transition: text-decoration-color .2s ease; }
+.project-card:hover .project-link, .project-card:focus-visible .project-link { text-decoration-color: currentColor; }
 .process-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 6.25rem; align-items: start; margin-top: 80px; }
 .process-copy { min-width: 0; }
 .process-item + .process-item { border-top: 1px solid #ddd; margin-top: 40px; padding-top: 40px; }
@@ -206,6 +216,9 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .formats-note-title { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1; letter-spacing: -.03em; }
   .formats-note > p + p { margin-top: 64px; font-size: 0.9375rem; line-height: 1.5rem; }
   .service-process { padding-block: 48px 40px; }
+  .project-showcase { padding-block: 72px 42px; }
+  .project-showcase-grid { grid-template-columns: 1fr; gap: 30px; margin-top: 32px; }
+  .project-name { margin-top: 14px; }
   .process-grid, .process-image-first .process-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 36px; }
   .process-image-first .process-copy, .process-image-first .process-photo { grid-column: auto; grid-row: auto; }
   .process-item + .process-item { margin-top: 28px; padding-top: 28px; }
