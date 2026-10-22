@@ -11,12 +11,18 @@ const links = [
   { href: withBase(blogHref), label: 'Блог' },
 ];
 const services = [
-  { href: withBase(servicesHref), label: 'Дизайн, контент и разработка сайтов', note: 'Структура, тексты и дизайн' },
-  { href: withBase('/services/keisy-dlya-biznesa/'), label: 'Кейсы для бизнеса', note: 'Истории проектов и результаты' },
-  { href: withBase('/services/prezentatsii-i-materialy-dlya-prodazh/'), label: 'Презентации и материалы для продаж', note: 'Презентации, КП и материалы для выступлений' },
-  { href: withBase('/services/seo-stati/'), label: 'SEO-статьи', note: 'Статьи для поиска и ИИ-сервисов' },
-  { href: withBase('/services/articles-for-media/'), label: 'Статьи для внешних площадок', note: 'Публикации в отраслевых медиа' },
-  { href: withBase('/services/email-rassylki/'), label: 'Email-рассылки', note: 'Запуск и регулярное ведение' },
+  { label: 'Контент-маркетинг' },
+  { label: 'Контент-стратегия' },
+  { label: 'Ведение корпоративного блога' },
+  { label: 'SEO-продвижение компании' },
+  { label: 'GEO-продвижение' },
+  { label: 'SEO-статьи', href: withBase('/services/seo-stati/') },
+  { label: 'Экспертные статьи' },
+  { label: 'Email-рассылки', href: withBase('/services/email-rassylki/') },
+  { label: 'Кейсы для бизнеса', href: withBase('/services/keisy-dlya-biznesa/') },
+  { label: 'Статьи для внешних площадок', href: withBase('/services/articles-for-media/') },
+  { label: 'Презентации и материалы для продаж', href: withBase('/services/prezentatsii-i-materialy-dlya-prodazh/') },
+  { label: 'Тексты и структура сайта', href: withBase('/services/razrabotka-saitov/') },
 ];
 ---
 <header class="site-header container">
@@ -24,13 +30,10 @@ const services = [
     <a class="brand" href="https://norma-studio.ru/" aria-label="Norma Studio — главная">Norma Studio</a>
     <nav class="desktop-nav" aria-label="Основная навигация">
       <details class="services-menu">
-        <summary>Услуги <span aria-hidden="true">↓</span></summary>
+        <summary><span class="services-menu-label">Услуги</span> <span class="services-menu-arrow" aria-hidden="true">↓</span></summary>
         <div class="services-menu-panel">
           {services.map(service => (
-            <a href={service.href}>
-              <span>{service.label}</span>
-              <small>{service.note}</small>
-            </a>
+            service.href ? <a href={service.href}>{service.label}</a> : <span>{service.label}</span>
           ))}
         </div>
       </details>
@@ -43,7 +46,7 @@ const services = [
         <details class="mobile-services-menu">
           <summary>Услуги <span aria-hidden="true">↓</span></summary>
           <div>
-            {services.map(service => <a href={service.href}>{service.label}</a>)}
+            {services.map(service => service.href ? <a href={service.href}>{service.label}</a> : <span>{service.label}</span>)}
           </div>
         </details>
         {links.map(link => <a href={link.href}>{link.label}</a>)}
@@ -54,6 +57,16 @@ const services = [
 <script>
   const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
   const servicesMenu = document.querySelector<HTMLDetailsElement>('.services-menu');
+  const servicesSummary = servicesMenu?.querySelector('summary');
+  const hoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const closeServicesMenu = () => { if (servicesMenu) servicesMenu.open = false; };
+  servicesMenu?.addEventListener('pointerenter', () => { if (hoverMenu.matches) servicesMenu.open = true; });
+  servicesMenu?.addEventListener('pointerleave', () => { if (hoverMenu.matches) closeServicesMenu(); });
+  servicesMenu?.addEventListener('focusin', () => { if (servicesMenu) servicesMenu.open = true; });
+  servicesMenu?.addEventListener('focusout', event => {
+    if (!(event.relatedTarget instanceof Node) || !servicesMenu?.contains(event.relatedTarget)) closeServicesMenu();
+  });
+  servicesSummary?.addEventListener('click', event => { if (hoverMenu.matches) event.preventDefault(); });
   const toggle = menu?.querySelector('summary');
   menu?.addEventListener('toggle', () => {
     toggle?.setAttribute('aria-label', menu.open ? 'Закрыть меню' : 'Открыть меню');
