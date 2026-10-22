@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import image from '../assets/photos/cases-use.jpg';
+import defaultImage from '../assets/photos/cases-use.jpg';
+import type { ImageMetadata } from 'astro';
 
-const items = [
+const defaultItems = [
   {
     title: 'На сайте',
     paragraphs: ['Подготовим полную версию кейса. Расскажем, как связать её со страницами услуг и продуктов, чтобы посетитель мог изучить всю информацию по своей задаче, а затем обратиться на консультацию.'],
@@ -16,13 +17,33 @@ const items = [
     paragraphs: ['На основе кейса подготовим письмо для рассылки или пост для социальных сетей. Коротко расскажем о проекте и дадим ссылку на полную версию.', 'Если в проекте есть тема для отдельной публикации, раскроем её подробнее: например, с какой трудностью столкнулась команда, как выбирала решение и что получилось.', 'Нужные версии, оформление, размещение и распространение согласуем в составе работ.'],
   },
 ];
+
+interface Props {
+  id?: string;
+  title?: string;
+  intro?: string;
+  items?: { title: string; paragraphs: string[] }[];
+  image?: ImageMetadata;
+  imageAlt?: string;
+  className?: string;
+}
+
+const {
+  id = 'case-use',
+  title = 'Где использовать готовый кейс',
+  intro = 'Про один проект можно рассказать в нескольких форматах.',
+  items = defaultItems,
+  image = defaultImage,
+  imageAlt = 'Команда обсуждает проект',
+  className = '',
+} = Astro.props;
 ---
 
-<section class="cases-use" id="case-use" aria-labelledby="case-use-title">
+<section class:list={['cases-use', className]} id={id} aria-labelledby={`${id}-title`}>
   <div class="container cases-use-content">
     <div class="section-intro">
-      <h2 id="case-use-title">Где использовать готовый кейс</h2>
-      <p>Про один проект можно рассказать в нескольких форматах.</p>
+      <h2 id={`${id}-title`}>{title}</h2>
+      <p>{intro}</p>
     </div>
     <ol class="cases-use-list">
       {items.map((item, index) => (
@@ -34,5 +55,5 @@ const items = [
       ))}
     </ol>
   </div>
-  <Image class="cases-use-photo" src={image} alt="Команда обсуждает проект" widths={[800, 1200, 1600, 2000]} sizes="100vw" format="webp" quality={95} loading="lazy" decoding="async" />
+  <Image class="cases-use-photo" src={image} alt={imageAlt} widths={[800, 1200, 1600, 2000]} sizes="100vw" format="webp" quality={95} loading="lazy" decoding="async" />
 </section>

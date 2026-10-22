@@ -1,9 +1,12 @@
 ---
 import { testimonials } from '../data/website-continuation';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 interface Props {
   items?: typeof testimonials;
+  avatarImage?: ImageMetadata;
 }
-const { items = testimonials } = Astro.props;
+const { items = testimonials, avatarImage } = Astro.props;
 ---
 <section class="testimonials container" aria-label="Отзывы клиентов">
   <div class="testimonial-stack">
@@ -11,7 +14,9 @@ const { items = testimonials } = Astro.props;
       <figure class="testimonial">
         <blockquote><p>«{item.quote}»</p></blockquote>
         <figcaption>
-          <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>
+          <span class="testimonial-avatar" aria-hidden="true">
+            {avatarImage ? <Image src={avatarImage} alt="" width={438} format="webp" quality={90} loading="lazy" /> : item.initials}
+          </span>
           <span class="testimonial-name">{item.name}</span>
           <span class="testimonial-company">{item.company}</span>
         </figcaption>

@@ -1,0 +1,155 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import CasesUseCases from '../../components/CasesUseCases.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ServiceTestimonials from '../../components/ServiceTestimonials.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import content from '../../data/email-service.json';
+import heroPhoto from '../../assets/photos/email-hero.jpg';
+import needsPhoto from '../../assets/photos/email-needs.jpg';
+import formatsPhoto from '../../assets/photos/table-corner.jpg';
+import workflowPhoto from '../../assets/photos/email-workflow.jpg';
+import resultsPhoto from '../../assets/photos/team-discussion.jpg';
+import examplesPhoto from '../../assets/photos/presentations-examples-banner.jpg';
+import moreExamplesPhoto from '../../assets/photos/team-collaboration.jpg';
+import consultationPhoto from '../../assets/photos/media-consultation.png';
+import testimonialAvatar from '../../assets/photos/email-testimonial-avatar.png';
+
+const hero = content['Email-рассылки'];
+const needs = content['Когда нужна email-рассылка'];
+const formats = content['Форматы email-рассылки'];
+const workflow = content['Как запускаем и ведём email-рассылку'];
+const results = content['Как оцениваем результат email-рассылки'];
+const consultation = content['Обсудим запуск или ведение рассылки'];
+
+const heroContent = {
+  title: hero.title,
+  intro: hero.paragraphs[0],
+  steps: hero.bullets,
+  summary: hero.paragraphs[hero.paragraphs.length - 1],
+};
+
+const deliverables = [
+  { title: 'Исследование аудитории, ТЗ и план писем', category: 'Аналитика' },
+  { title: 'Настройка сервиса и отправки', category: 'Техническое' },
+  { title: 'Сбор фактуры и интервью', category: 'Редакция' },
+  { title: 'Тексты, редактура и дизайн', category: 'Редакция, дизайн, техническое' },
+  { title: 'Согласование и выпуск', category: 'Менеджмент' },
+  { title: 'Аналитика и доработка рассылки', category: 'Аналитика' },
+];
+
+const pricing = content['Форматы работы'].items;
+const workFormats = [
+  { tag: 'Старт', price: 'от 40 000 рублей', title: pricing[0].title, items: pricing[0].bullets, action: 'Обсудить запуск' },
+  { tag: 'Ежемесячно', price: 'от 50 000 рублей в месяц', title: pricing[1].title, items: pricing[1].bullets, action: 'Обсудить ведение' },
+  { tag: 'Отдельные задачи', price: 'от 45 000 рублей', title: pricing[2].title, items: pricing[2].bullets, action: 'Обсудить задачу' },
+];
+
+const faq = content['Частые вопросы'].items.map(item => ({ title: item.title, text: item.paragraphs }));
+---
+
+<Page title="Email-рассылки: запуск и ведение — Norma Studio" description={heroContent.intro} image={heroPhoto.src}>
+  <Header servicesHref="#needs" blogHref="#blog" />
+  <main id="main" class="email-page">
+    <ServiceHero
+      className="email-hero"
+      content={heroContent}
+      image={heroPhoto}
+      mobileImage={heroPhoto}
+      imageAlt="Команда обсуждает план рассылки за ноутбуком"
+      primaryAction="Обсудить email-рассылку"
+      primaryHref="#consultation"
+      secondaryAction="Получить КП"
+      secondaryHref="#consultation"
+    />
+
+    <SiteFormats
+      id="needs"
+      title={needs.title}
+      intro={needs.paragraphs[0]}
+      formats={needs.items}
+      image={needsPhoto}
+      imageAlt="Коллеги обсуждают материалы за ноутбуком"
+    />
+
+    <ServiceProcess
+      id="email-formats"
+      title={formats.title}
+      items={formats.items}
+      image={formatsPhoto}
+      imageAlt="Ноутбук и материалы для подготовки писем на столе"
+    />
+
+    <CasesProcess
+      id="email-workflow"
+      title={workflow.title}
+      intro={workflow.paragraphs[0]}
+      items={workflow.items}
+      image={workflowPhoto}
+      imageAlt="Две коллеги обсуждают рассылку у окна"
+    />
+
+    <ServiceDeliverables steps={deliverables} />
+    <ServiceTestimonials avatarImage={testimonialAvatar} />
+    <ExamplesBanner id="email-examples" image={examplesPhoto} imageHasGradient />
+
+    <CasesUseCases
+      id="email-results"
+      className="email-results"
+      title={results.title}
+      intro={results.paragraphs[0]}
+      items={results.items}
+      image={resultsPhoto}
+      imageAlt="Коллеги оценивают результаты рассылки"
+    />
+
+    <ServicePricing title="Форматы сотрудничества" formats={workFormats} />
+    <ExamplesBanner id="email-examples-more" image={moreExamplesPhoto} imageHasGradient />
+
+    <ServiceConsultation
+      image={consultationPhoto}
+      title={consultation.title}
+      intro={consultation.paragraphs.slice(0, 2)}
+      tags={['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость']}
+      note="Даже если вы решите запускать контент самостоятельно, у вас останется понятный план действий."
+      subject="Email-рассылки"
+      greeting="Здравствуйте! Хочу обсудить запуск или ведение email-рассылки."
+    />
+    <ServiceFaq items={faq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#needs" />
+</Page>
+
+<style is:global>
+  .email-hero .hero-photo { transform: none; object-position: center; }
+  .email-hero .hero-steps { display: grid; grid-template-columns: max-content max-content; column-gap: 30px; }
+  #email-formats .section-intro { margin-bottom: 0; }
+  #email-formats .process-photo { position: static; max-height: none; }
+  #email-workflow .cases-process-card { width: min(35.125rem, 100%); margin-top: 50px; padding: 30px; }
+  #email-workflow .cases-process-card li { padding-bottom: 30px; }
+  #email-workflow .cases-process-card li + li { padding-top: 30px; }
+  #email-workflow .cases-process-card li:last-child { padding-bottom: 0; }
+  .email-results .cases-use-photo { height: 870px; }
+  .email-page .testimonial figcaption { grid-template-columns: 60px 1fr; }
+  .email-page .testimonial-avatar { position: relative; width: 60px; height: 60px; overflow: hidden; }
+  .email-page .testimonial-avatar img { position: absolute; width: 729.36%; height: 439.96%; max-width: none; left: -164.36%; top: -117.51%; }
+  @media (max-width: 767px) {
+    .email-hero .hero-steps { display: flex; }
+    #email-workflow .cases-process-card { margin-top: 34px; padding: 22px; }
+    #email-workflow .cases-process-card li { padding-bottom: 24px; }
+    #email-workflow .cases-process-card li + li { padding-top: 24px; }
+    #email-workflow .cases-process-card li:last-child { padding-bottom: 0; }
+    .email-results .cases-use-photo { height: 540px; }
+  }
+</style>
