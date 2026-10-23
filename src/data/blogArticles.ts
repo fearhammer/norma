@@ -92,10 +92,13 @@ const newestFirst = (a: BlogArticleCard, b: BlogArticleCard) =>
   b.dateTime.localeCompare(a.dateTime) || a.slug.localeCompare(b.slug);
 
 export function getRelatedArticles(currentSlug: string, includePreviews = false) {
-  const candidates = blogArticles
-    .filter(article => article.slug !== currentSlug && (article.status === 'published' || (includePreviews && article.status === 'preview')))
+  const published = blogArticles
+    .filter(article => article.slug !== currentSlug && article.status === 'published')
     .sort(newestFirst);
-  const featured = candidates.filter(article => article.featured);
+  const previews = includePreviews
+    ? blogArticles.filter(article => article.slug !== currentSlug && article.status === 'preview').sort(newestFirst)
+    : [];
+  const candidates = [...published, ...previews];
   const selected = new Set<string>();
   const take = (pool: BlogArticleCard[]) => {
     const article = pool.find(item => !selected.has(item.slug));
@@ -103,8 +106,12 @@ export function getRelatedArticles(currentSlug: string, includePreviews = false)
     return article;
   };
 
-  const firstFeature = take(featured) ?? take(candidates);
-  const secondFeature = take(featured) ?? take(candidates);
+  const takeFeature = () => take(published.filter(article => article.featured))
+    ?? take(published)
+    ?? take(previews.filter(article => article.featured))
+    ?? take(previews);
+  const firstFeature = takeFeature();
+  const secondFeature = takeFeature();
   const remaining = candidates.filter(article => !selected.has(article.slug));
 
   return {
