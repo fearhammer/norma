@@ -16,11 +16,6 @@ const contents = [
   { id: 'sravneniya', label: 'Сравнения и гайды по выбору' },
   { id: 'prodvizhenie', label: 'Что помогает статье находить читателей' },
 ];
-const related = [
-  { title: 'Как превратить экспертизу компании в полезный материал', description: 'Показываем путь от интервью с экспертами до статьи, которая отвечает на вопросы читателей и помогает продажам.', date: '12 августа 2026', dateTime: '2026-08-12', readingTime: '7 минут' },
-  { title: 'Как подготовить структуру статьи до начала работы над текстом', description: 'Разбираемся, как собрать фактуру, выбрать главное и выстроить материал вокруг задачи аудитории.', date: '5 августа 2026', dateTime: '2026-08-05', readingTime: '6 минут' },
-  { title: 'Что читать после статьи: проектируем следующий шаг читателя', description: 'Связываем публикации, кейсы и страницы услуг так, чтобы человек мог продолжить изучение темы.', date: '29 июля 2026', dateTime: '2026-07-29', readingTime: '5 минут' },
-];
 ---
 <BlogArticle title={title} description={description} category="Обзоры" date="28 августа 2026" dateTime="2026-08-28" readingTime="8 минут на чтение" cover={cover} coverAlt="Редактор работает за ноутбуком" contents={contents}>
   <Fragment slot="intro">
@@ -69,5 +64,5 @@ const related = [
     <p>Ни один приём сам по себе не заменит точного ответа на вопрос читателя. Но вместе эти решения дают статье шанс работать дольше одной публикации в ленте.</p>
   </section>
 
-  <ArticleRelated slot="related" items={related} />
+  <ArticleRelated slot="related" currentSlug="kak-prodvigat-stati" includePreviews />
 </BlogArticle>

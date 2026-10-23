@@ -1,26 +1,59 @@
 ---
-interface Item { title: string; description: string; date: string; dateTime: string; readingTime: string; href?: string; }
-interface Props { items: Item[]; allHref?: string; }
-const { items, allHref } = Astro.props;
+import { blogArticleDate, blogArticleHref, getRelatedArticles } from '../data/blogArticles';
+import type { BlogArticleCard } from '../data/blogArticles';
+
+interface Props { currentSlug: string; includePreviews?: boolean; }
+const { currentSlug, includePreviews = false } = Astro.props;
+const { firstFeature, firstRow, secondFeature, secondRow } = getRelatedArticles(currentSlug, includePreviews);
 ---
 <section id="related" class="article-related container" aria-labelledby="article-related-title">
   <div class="article-related-heading">
     <h2 id="article-related-title">Другие материалы</h2>
-    {allHref && <a href={allHref}>Смотреть все <span aria-hidden="true">↗</span></a>}
   </div>
-  <div class="blog-grid">
-    {items.map(item => <article class="blog-card article-related-card">
-      {item.href ? <a class="blog-card-link" href={item.href} aria-label={`Читать: ${item.title}`}>
-        <div class="article-meta"><span>{item.readingTime}</span><time datetime={item.dateTime}>{item.date}</time></div>
+
+  {firstFeature && <article class="blog-feature article-related-feature">
+    <a class="blog-feature-link" href={blogArticleHref(firstFeature.slug)} aria-label={`Читать: ${firstFeature.title}`}>
+      <div class="blog-feature-copy">
+        <div class="article-meta"><span>{firstFeature.readingTime}</span><time datetime={firstFeature.dateTime}>{blogArticleDate(firstFeature.dateTime)}</time></div>
+        <h3><span class="animated-underline">{firstFeature.title}</span></h3>
+        <p>{firstFeature.description}</p>
+        <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
+      </div>
+      <div class="blog-cover" aria-hidden="true"></div>
+    </a>
+  </article>}
+
+  {firstRow.length > 0 && <div class="blog-grid">
+    {firstRow.map((item: BlogArticleCard) => <article class="blog-card">
+      <a class="blog-card-link" href={blogArticleHref(item.slug)} aria-label={`Читать: ${item.title}`}>
+        <div class="article-meta"><span>{item.readingTime}</span><time datetime={item.dateTime}>{blogArticleDate(item.dateTime)}</time></div>
         <h3><span class="animated-underline">{item.title}</span></h3>
         <p>{item.description}</p>
         <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
-      </a> : <div class="blog-card-link">
-        <div class="article-meta"><span>{item.readingTime}</span><time datetime={item.dateTime}>{item.date}</time></div>
-        <h3>{item.title}</h3>
+      </a>
+    </article>)}
+  </div>}
+
+  {secondFeature && <article class="blog-feature article-related-feature article-related-feature--reversed">
+    <a class="blog-feature-link" href={blogArticleHref(secondFeature.slug)} aria-label={`Читать: ${secondFeature.title}`}>
+      <div class="blog-feature-copy">
+        <div class="article-meta"><span>{secondFeature.readingTime}</span><time datetime={secondFeature.dateTime}>{blogArticleDate(secondFeature.dateTime)}</time></div>
+        <h3><span class="animated-underline">{secondFeature.title}</span></h3>
+        <p>{secondFeature.description}</p>
+        <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
+      </div>
+      <div class="blog-cover" aria-hidden="true"></div>
+    </a>
+  </article>}
+
+  {secondRow.length > 0 && <div class="blog-grid">
+    {secondRow.map((item: BlogArticleCard) => <article class="blog-card">
+      <a class="blog-card-link" href={blogArticleHref(item.slug)} aria-label={`Читать: ${item.title}`}>
+        <div class="article-meta"><span>{item.readingTime}</span><time datetime={item.dateTime}>{blogArticleDate(item.dateTime)}</time></div>
+        <h3><span class="animated-underline">{item.title}</span></h3>
         <p>{item.description}</p>
         <span class="button" aria-hidden="true">Открыть блог <span>→</span></span>
-      </div>}
+      </a>
     </article>)}
-  </div>
+  </div>}
 </section>

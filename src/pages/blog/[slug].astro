@@ -1,0 +1,33 @@
+---
+import BlogArticle from '../../layouts/BlogArticle.astro';
+import ArticleRelated from '../../components/ArticleRelated.astro';
+import { blogArticleDate, blogArticles } from '../../data/blogArticles';
+import type { BlogArticleCard } from '../../data/blogArticles';
+import cover from '../../assets/photos/team-discussion.jpg';
+
+export function getStaticPaths() {
+  return blogArticles
+    .filter(article => article.status === 'preview')
+    .map(article => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+const { article } = Astro.props as { article: BlogArticleCard };
+---
+<BlogArticle
+  title={article.title}
+  description={article.description}
+  category="Демонстрационный материал"
+  date={blogArticleDate(article.dateTime)}
+  dateTime={article.dateTime}
+  readingTime={article.readingTime}
+  cover={cover}
+  coverAlt="Команда обсуждает материал"
+  contents={[]}
+  preview
+>
+  <Fragment slot="intro">
+    <p class="article-standfirst">Этот материал готовится к публикации.</p>
+    <p>Сейчас страница показывает, как работает переход из блока «Другие материалы». Дата, описание и обложка здесь демонстрационные. Когда статья будет готова, её можно добавить в этот шаблон и отметить как опубликованную в списке материалов.</p>
+  </Fragment>
+  <ArticleRelated slot="related" currentSlug={article.slug} includePreviews />
+</BlogArticle>

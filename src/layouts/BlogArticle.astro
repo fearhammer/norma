@@ -16,12 +16,13 @@ interface Props {
   coverAlt: string;
   contents: { id: string; label: string }[];
   readingTime?: string;
+  preview?: boolean;
 }
 
-const { title, description, category, date, dateTime, cover, coverAlt, contents, readingTime } = Astro.props;
+const { title, description, category, date, dateTime, cover, coverAlt, contents, readingTime, preview = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
-<Page title={`${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={dateTime}>
+<Page title={`${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={preview ? undefined : dateTime} noindex={preview}>
   <Header blogHref="/services/seo-stati/#blog" />
   <main id="main-content" class="article-page">
     <article>
