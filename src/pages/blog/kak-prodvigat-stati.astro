@@ -5,9 +5,6 @@ import ArticlePullQuote from '../../components/ArticlePullQuote.astro';
 import ArticleRelated from '../../components/ArticleRelated.astro';
 import cover from '../../assets/photos/seo-hero.png';
 import portrait from '../../assets/photos/structure-portrait.jpg';
-import relatedOne from '../../assets/photos/team-discussion.jpg';
-import relatedTwo from '../../assets/photos/design-review.jpg';
-import relatedThree from '../../assets/photos/email-needs.jpg';
 const base = import.meta.env.BASE_URL;
 
 const title = 'Как продвигать статьи: подробное руководство по привлечению трафика и клиентов';
@@ -20,9 +17,9 @@ const contents = [
   { id: 'prodvizhenie', label: 'Что помогает статье находить читателей' },
 ];
 const related = [
-  { title: 'Как превратить экспертизу компании в полезный материал', image: relatedOne, imageAlt: 'Команда обсуждает материал', category: 'Контент', date: '12 августа 2026', dateTime: '2026-08-12', readingTime: '7 минут' },
-  { title: 'Как подготовить структуру статьи до начала работы над текстом', image: relatedTwo, imageAlt: 'Редактор работает над структурой', category: 'Редактура', date: '5 августа 2026', dateTime: '2026-08-05', readingTime: '6 минут' },
-  { title: 'Что читать после статьи: проектируем следующий шаг читателя', image: relatedThree, imageAlt: 'Команда планирует коммуникацию', category: 'Стратегия', date: '29 июля 2026', dateTime: '2026-07-29', readingTime: '5 минут' },
+  { title: 'Как превратить экспертизу компании в полезный материал', description: 'Показываем путь от интервью с экспертами до статьи, которая отвечает на вопросы читателей и помогает продажам.', date: '12 августа 2026', dateTime: '2026-08-12', readingTime: '7 минут' },
+  { title: 'Как подготовить структуру статьи до начала работы над текстом', description: 'Разбираемся, как собрать фактуру, выбрать главное и выстроить материал вокруг задачи аудитории.', date: '5 августа 2026', dateTime: '2026-08-05', readingTime: '6 минут' },
+  { title: 'Что читать после статьи: проектируем следующий шаг читателя', description: 'Связываем публикации, кейсы и страницы услуг так, чтобы человек мог продолжить изучение темы.', date: '29 июля 2026', dateTime: '2026-07-29', readingTime: '5 минут' },
 ];
 ---
 <BlogArticle title={title} description={description} category="Обзоры" date="28 августа 2026" dateTime="2026-08-28" readingTime="8 минут на чтение" cover={cover} coverAlt="Редактор работает за ноутбуком" contents={contents}>
