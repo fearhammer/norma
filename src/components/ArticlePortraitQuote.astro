@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { image: ImageMetadata; imageAlt: string; quote: string; name: string; role: string; eyebrow?: string; }
+const { image, imageAlt, quote, name, role, eyebrow = 'Комментарий' } = Astro.props;
+---
+<figure class="article-portrait-quote">
+  <Image src={image} alt={imageAlt} widths={[400, 700, 1000]} sizes="(max-width: 767px) calc(100vw - 40px), 24rem" loading="lazy" />
+  <figcaption>
+    <span class="article-quote-eyebrow">{eyebrow}</span>
+    <blockquote>{quote}</blockquote>
+    <span class="article-quote-person">{name}</span>
+    <span class="article-quote-role">{role}</span>
+  </figcaption>
+</figure>

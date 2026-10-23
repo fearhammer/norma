@@ -1,0 +1,55 @@
+---
+import Page from './Page.astro';
+import Header from '../components/Header.astro';
+import ServiceFooter from '../components/ServiceFooter.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import '../styles/blog-article.css';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  dateTime: string;
+  cover: ImageMetadata;
+  coverAlt: string;
+  contents: { id: string; label: string }[];
+  readingTime?: string;
+}
+
+const { title, description, category, date, dateTime, cover, coverAlt, contents, readingTime } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<Page title={`${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={dateTime}>
+  <Header blogHref="/services/seo-stati/#blog" />
+  <main id="main-content" class="article-page">
+    <article>
+      <header class="article-hero">
+        <div class="article-meta">
+          <span>{category}</span>
+          <time datetime={dateTime}>{date}</time>
+          {readingTime && <small>{readingTime}</small>}
+        </div>
+        <h1>{title}</h1>
+        <p class="article-dek">{description}</p>
+        <figure class="article-cover">
+          <Image src={cover} alt={coverAlt} widths={[480, 800, 1200, 1600]} sizes="(max-width: 767px) calc(100vw - 40px), min(61.25rem, 100vw - 64px)" loading="eager" />
+        </figure>
+      </header>
+
+      <div class="article-main">
+        <div class="article-prose">
+          <slot name="intro" />
+          {contents.length > 0 && <nav class="article-toc" aria-label="Содержание статьи">
+            <h2>Содержание</h2>
+            <ol>{contents.map(({ id, label }) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
+          </nav>}
+        </div>
+        <slot />
+      </div>
+    </article>
+    <slot name="related" />
+  </main>
+  <ServiceFooter servicesHref={`${base}services/razrabotka-saitov/#formats`} blogHref={`${base}services/seo-stati/#blog`} contactHref={`${base}services/seo-stati/#consultation`} />
+</Page>
