@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { title: string; intro: string; items: { title: string; text: string }[]; avatar: ImageMetadata; }
+const { title, intro, items, avatar } = Astro.props;
+---
+<section class="service-experts container" id="team" aria-labelledby="experts-title">
+  <div class="section-intro"><h2 id="experts-title">{title}</h2><p>{intro}</p></div>
+  <ul class="experts-grid">
+    {items.map(item => <li>
+      <Image src={avatar} alt="" widths={[50, 100]} sizes="50px" format="webp" quality={95} loading="lazy" />
+      <h3>{item.title}</h3><p>{item.text}</p>
+    </li>)}
+  </ul>
+</section>
+<style>
+  .service-experts { padding-block: 160px 100px; }
+  .experts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 50px 0 0; padding: 30px; list-style: none; border: 1px solid #e4dad0; border-radius: 10px; background: var(--color-card); }
+  .experts-grid li { padding: 0 30px 30px; border-left: 1px solid #ddd; }
+  .experts-grid li:nth-child(4n + 1) { padding-left: 0; border-left: 0; }
+  .experts-grid li:nth-child(4n) { padding-right: 0; }
+  .experts-grid li:nth-child(n + 5) { padding-top: 30px; padding-bottom: 0; border-top: 1px solid #ddd; }
+  .experts-grid img { width: 50px; height: 50px; border-radius: 50%; }
+  .experts-grid h3 { margin-top: 30px; color: var(--color-heading); font-size: 1.3125rem; line-height: 1; font-weight: 500; }
+  .experts-grid p { margin-top: 15px; font-size: .875rem; line-height: 1.6; color: #454545; }
+  @media(max-width: 1000px) {
+    .experts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .experts-grid li:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+    .experts-grid li:nth-child(2n) { padding-right: 0; }
+    .experts-grid li:nth-child(n + 3) { padding-top: 30px; border-top: 1px solid #ddd; }
+  }
+  @media(max-width: 600px) {
+    .service-experts { padding-block: 72px 64px; }
+    .experts-grid { grid-template-columns: 1fr; padding: 24px; margin-top: 34px; }
+    .experts-grid li, .experts-grid li:nth-child(n) { padding: 24px 0; border-left: 0; border-top: 1px solid #ddd; }
+    .experts-grid li:first-child { padding-top: 0; border-top: 0; }
+    .experts-grid li:last-child { padding-bottom: 0; }
+    .experts-grid h3 { margin-top: 20px; }
+    .experts-grid p { font-size: .9375rem; }
+  }
+</style>

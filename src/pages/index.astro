@@ -1,3 +1,41 @@
 ---
-return Astro.redirect('/services/razrabotka-saitov/');
+import Page from '../layouts/Page.astro';
+import Header from '../components/Header.astro';
+import ServiceHero from '../components/ServiceHero.astro';
+import ServiceProcess from '../components/ServiceProcess.astro';
+import SiteFormats from '../components/SiteFormats.astro';
+import MediaWorkflow from '../components/MediaWorkflow.astro';
+import ServiceExperts from '../components/ServiceExperts.astro';
+import ChannelBanner from '../components/ChannelBanner.astro';
+import ServiceConsultation from '../components/ServiceConsultation.astro';
+import ServiceBlog from '../components/ServiceBlog.astro';
+import ServiceFooter from '../components/ServiceFooter.astro';
+import { home } from '../data/home';
+import hero from '../assets/photos/home-hero.png';
+import firstPhoto from '../assets/photos/home-services-first.png';
+import secondPhoto from '../assets/photos/home-services-second.png';
+import tasksPhoto from '../assets/photos/home-tasks.png';
+import workflowPhoto from '../assets/photos/home-process.png';
+import avatar from '../assets/photos/home-team.png';
+import consultationPhoto from '../assets/photos/seo-67081.png';
+import blogCover from '../assets/photos/home-blog.png';
+import '../styles/home.css';
+const base = import.meta.env.BASE_URL;
+const resolveHref = (href: string) => href.startsWith('#') ? href : `${base}${href}`;
+const services = home.services.map(item => ({ ...item, href: resolveHref(item.href) }));
 ---
+<Page title="Norma Studio — экспертный контент для бизнеса" description={home.hero.intro} image={hero.src}>
+  <Header servicesHref="#services" blogHref="#blog" />
+  <main class="home-page" id="main">
+    <ServiceHero content={home.hero} image={hero} mobileImage={hero} imageAlt="Команда Norma обсуждает материалы за общим столом" className="home-hero" primaryAction="Получить контент-стратегию" secondaryAction="Обсудить задачи" features={home.features} stepLinks={home.heroLinks.map(resolveHref)} />
+    <ServiceProcess id="services" title={home.servicesTitle} intro={home.servicesIntro} items={services.slice(0, 6)} image={firstPhoto} imageAlt="Редактор работает за ноутбуком" className="home-services home-services-first" imageWidths={[960, 1440, 1920]} imageSizes="(max-width: 767px) 250vw, 110vw" />
+    <ServiceProcess id="more-services" title="Другие услуги Norma Studio" hideHeading items={services.slice(6)} image={secondPhoto} imageAlt="Специалист изучает рабочие материалы" imageFirst className="home-services home-services-second" imageWidths={[960, 1440, 1920]} imageSizes="(max-width: 767px) 250vw, 110vw" />
+    <ChannelBanner />
+    <SiteFormats id="client-tasks" title={home.tasksTitle} intro="" formats={home.tasks} image={tasksPhoto} imageAlt="Команда обсуждает схему проекта у доски" noteTitle={home.noteTitle} note={home.note} />
+    <MediaWorkflow title={home.workflowTitle} intro={home.workflowIntro} items={home.workflow} image={workflowPhoto} />
+    <ServiceExperts title={home.teamTitle} intro={home.teamIntro} items={home.team} avatar={avatar} />
+    <ServiceConsultation image={consultationPhoto} title={home.consultationTitle} intro={home.consultationIntro} tags={home.consultationTags} note={home.consultationNote} subject="Контент-маркетинг для компании" greeting="Здравствуйте! Хочу обсудить контент-маркетинг для компании." className="home-consultation" />
+    <ServiceBlog cover={blogCover} />
+  </main>
+  <ServiceFooter servicesHref="#services" />
+</Page>

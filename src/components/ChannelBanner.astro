@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/photos/home-channel.png';
+import circle from '../assets/photos/home-channel-circle.svg';
+import { contacts } from '../data/contacts';
+---
+<aside class="channel-banner container" aria-labelledby="channel-title">
+  <div class="channel-background"><img class="channel-circle" src={circle.src} alt="" width="482" height="482" /></div>
+  <div class="channel-copy">
+    <span class="eyebrow">Контент за деньги</span>
+    <h2 id="channel-title">Как продавать сложные продукты и услуги через экспертный контент — читайте в Telegram-канале</h2>
+    <p>Как доносить ценность, формировать экспертную позицию и привлекать потенциальных клиентов с помощью статей, кейсов и других материалов — читайте в Telegram-канале «Контент за деньги».</p>
+    <a class="button" href={contacts.telegramChannel}>Подписаться на канал <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="channel-portrait"><Image src={portrait} alt="Автор Telegram-канала «Контент за деньги»" widths={[486, 728, 972]} sizes="(max-width: 767px) 90vw, 41vw" format="webp" quality={95} loading="lazy" /></div>
+</aside>
+<style>
+  .channel-banner { position: relative; isolation: isolate; min-height: 452px; padding-top: 46px; }
+  .channel-background { position: absolute; inset: 46px 0 0; overflow: hidden; z-index: -1; background: #252525; border-radius: 10px; }
+  .channel-circle { position: absolute; left: 54.58%; top: 11px; max-width: none; }
+  .channel-copy { position: relative; z-index: 1; width: 56%; padding: 35px 44px; color: var(--color-bg); }
+  .channel-copy .eyebrow { background: var(--color-bg); color: var(--color-heading); }
+  .channel-copy h2 { margin-top: 25px; color: var(--color-bg); font-size: 2.5rem; line-height: .9; font-weight: 600; letter-spacing: -.025rem; }
+  .channel-copy p { margin-top: 20px; max-width: 30rem; font-size: .875rem; line-height: 1.6; }
+  .channel-copy .button { margin-top: 30px; background: var(--color-card); color: #454545; }
+  .channel-copy .button:hover { background: white; }
+  .channel-portrait { position: absolute; left: 54%; right: 5.5%; bottom: 0; aspect-ratio: 486 / 452; overflow: hidden; }
+  .channel-portrait img { width: 100%; height: 107.52%; object-fit: cover; object-position: top; }
+  @media(max-width: 1000px) { .channel-copy { width: 64%; padding: 30px; } .channel-copy h2 { font-size: 2rem; } }
+  @media(max-width: 767px) {
+    .channel-banner { padding-top: 0; }
+    .channel-background { inset: 0; }
+    .channel-copy { width: 100%; padding: 28px 24px; }
+    .channel-copy h2 { font-size: 2rem; line-height: 1; }
+    .channel-portrait { position: relative; left: auto; right: auto; width: 90%; max-width: 486px; margin-inline: auto; }
+    .channel-circle { left: 50%; top: auto; bottom: -70px; transform: translateX(-50%); }
+  }
+</style>

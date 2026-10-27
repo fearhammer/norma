@@ -16,6 +16,8 @@ interface Props {
   secondaryAction?: string;
   secondaryHref?: string;
   className?: string;
+  features?: { title: string; text: string }[];
+  stepLinks?: string[];
 }
 
 const {
@@ -28,6 +30,8 @@ const {
   secondaryAction = 'Обсудить задачу',
   secondaryHref = contacts.telegram,
   className = '',
+  features = [],
+  stepLinks = [],
 } = Astro.props;
 
 const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
@@ -51,9 +55,10 @@ const mobileSrcset = mobileVariants.map((image, index) => `${image.src} ${[480, 
         <a class="button button-plain" href={secondaryHref}>{secondaryAction} <span aria-hidden="true">→</span></a>
       </div>
       <ul class="hero-steps" aria-label="Состав работы">
-        {serviceContent.steps.map(step => <li>{step}</li>)}
+        {serviceContent.steps.map((step, index) => <li>{stepLinks[index] ? <a href={stepLinks[index]}>{step}</a> : step}</li>)}
       </ul>
     </div>
-    <p class="hero-summary">{serviceContent.summary}</p>
+    {serviceContent.summary && <p class="hero-summary">{serviceContent.summary}</p>}
+    {features.length > 0 && <div class="hero-features">{features.map(feature => <div><h3>{feature.title}</h3><p>{feature.text}</p></div>)}</div>}
   </div>
 </section>

@@ -5,7 +5,7 @@ interface Props { servicesHref?: string; blogHref?: string; contactHref?: string
 const { servicesHref = '#formats', blogHref = '#blog', contactHref = '#consultation' } = Astro.props;
 
 const navigation = [
-  { label: 'Главная', href: 'https://norma-studio.ru/' },
+  { label: 'Главная', href: import.meta.env.BASE_URL },
   { label: 'Услуги', href: servicesHref },
   { label: 'Блог', href: blogHref },
   { label: 'Контакты', href: contactHref },

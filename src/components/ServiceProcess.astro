@@ -6,16 +6,20 @@ interface Props {
   id: string;
   title: string;
   intro?: string;
-  items: { title: string; paragraphs: string[] }[];
+  items: { title: string; paragraphs: string[]; action?: string; href?: string }[];
   image: ImageMetadata;
   imageAlt: string;
   imageFirst?: boolean;
   itemAction?: string;
+  hideHeading?: boolean;
+  className?: string;
+  imageWidths?: number[];
+  imageSizes?: string;
 }
-const { id, title, intro, items, image, imageAlt, imageFirst = false, itemAction } = Astro.props;
+const { id, title, intro, items, image, imageAlt, imageFirst = false, itemAction, hideHeading = false, className = '', imageWidths = [400, 600, 900, 1200], imageSizes = '(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) * .5455), 600px' } = Astro.props;
 ---
-<section class:list={['service-process', 'container', { 'process-image-first': imageFirst }]} id={id} aria-labelledby={`${id}-title`}>
-  <div class="section-intro">
+<section class:list={['service-process', 'container', className, { 'process-image-first': imageFirst }]} id={id} aria-labelledby={`${id}-title`}>
+  <div class="section-intro" hidden={hideHeading}>
     <h2 id={`${id}-title`}>{title}</h2>
     {intro && <p>{intro}</p>}
   </div>
@@ -26,9 +30,10 @@ const { id, title, intro, items, image, imageAlt, imageFirst = false, itemAction
           <h3>{item.title}</h3>
           {item.paragraphs.map(paragraph => <p>{paragraph}</p>)}
           {itemAction && <a class="button process-action" href={contacts.consultation}>{itemAction} <span aria-hidden="true">→</span></a>}
+          {item.action && item.href && <a class="button process-service-link" href={item.href}>{item.action} <span aria-hidden="true">→</span></a>}
         </div>
       ))}
     </div>
-    <Image class="process-photo" src={image} alt={imageAlt} widths={[400, 600, 900, 1200]} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1264px) calc((100vw - 104px) * .5455), 600px" format="webp" quality={95} loading="lazy" decoding="async" />
+    <Image class="process-photo" src={image} alt={imageAlt} widths={imageWidths} sizes={imageSizes} format="webp" quality={95} loading="lazy" decoding="async" />
   </div>
 </section>
