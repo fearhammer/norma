@@ -13,6 +13,8 @@ import CasesUseCases from '../../components/CasesUseCases.astro';
 import ServiceConsultation from '../../components/ServiceConsultation.astro';
 import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import hero from '../../assets/photos/cases-hero.png';
 import benefitsImage from '../../assets/photos/cases-benefits.jpg';
@@ -93,10 +95,12 @@ const faq = [
     <ServiceDeliverables steps={deliverables} />
     <ExamplesBanner id="case-examples" image={examplesImage} />
     <CasesUseCases />
+    <ServiceExperts id="experts" />
     <ServicePricing title="Форматы сотрудничества" formats={formats} />
     <ExamplesBanner id="case-examples-more" image={teamCollaboration} />
     <ServiceConsultation image={consultationImage} title="Какие проекты можно упаковать в кейсы — разберём на встрече" intro={['Обсудим, каким сегментам потенциальных клиентов вы хотите рассказать про свой опыт и как планируете использовать материалы. Разберём примеры кейсов, которые подойдут для вашей задачи.', 'Подготовим предложение на один кейс, серию или доработку существующих материалов с составом работ, сроками и стоимостью.']} subject="Консультация по кейсам для бизнеса" greeting="Здравствуйте! Хочу обсудить кейсы для компании." />
     <ServiceFaq items={faq} />
+    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter />

@@ -1,14 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-interface Props { title: string; intro: string; items: { title: string; text: string }[]; avatar: ImageMetadata; }
-const { title, intro, items, avatar } = Astro.props;
+import { team } from '../data/team';
+interface Props { id?: string; title?: string; intro?: string; items?: { title: string; text: string; image: ImageMetadata }[]; }
+const { id = 'team', title = team.title, intro = team.intro, items = team.items } = Astro.props;
 ---
-<section class="service-experts container" id="team" aria-labelledby="experts-title">
-  <div class="section-intro"><h2 id="experts-title">{title}</h2><p>{intro}</p></div>
+<section class="service-experts container" id={id} aria-labelledby={`${id}-title`}>
+  <div class="section-intro"><h2 id={`${id}-title`}>{title}</h2><p>{intro}</p></div>
   <ul class="experts-grid">
     {items.map(item => <li>
-      <Image src={avatar} alt="" widths={[50, 100]} sizes="50px" format="webp" quality={95} loading="lazy" />
+      <Image src={item.image} alt="" widths={[50, 100]} sizes="50px" format="webp" quality={95} loading="lazy" />
       <h3>{item.title}</h3><p>{item.text}</p>
     </li>)}
   </ul>

@@ -17,6 +17,8 @@ import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceConsultation from '../../components/ServiceConsultation.astro';
 import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import melNotes from '../../assets/photos/mel-notes.jpg';
 import teamDiscussion from '../../assets/photos/team-discussion.jpg';
@@ -37,10 +39,12 @@ import { websiteService } from '../../data/website-service';
     <ExamplesBanner id="examples" image={melNotes} />
     <ServiceTeam />
     <ServiceHandover />
+    <ServiceExperts id="experts" />
     <ServicePricing />
     <ExamplesBanner id="project-scope" image={teamDiscussion} planning />
     <ServiceConsultation />
     <ServiceFaq />
+    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter />

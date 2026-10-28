@@ -13,6 +13,8 @@ import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceConsultation from '../../components/ServiceConsultation.astro';
 import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import hero from '../../assets/photos/presentations-hero.jpg';
 import formatsPhoto from '../../assets/photos/presentations-formats.jpg';
@@ -104,10 +106,12 @@ const faq = [
     <ServiceTestimonials items={presentationTestimonials} />
     <CasesProcess id="presentation-workflow" title="Как проходит работа" intro="Начинаем с изучения имеющихся документов, черновиков и обсуждения концепции презентации. Организуем интервью, подготовку и согласования. С вашей стороны — приоритеты, фактура и проверка профессиональных деталей." items={workflow} image={workflowPhoto} imageAlt="Коллеги обсуждают презентацию" />
     <ServiceDeliverables steps={deliverables} />
+    <ServiceExperts id="experts" />
     <ServicePricing title="Формат работы и стоимость" formats={presentationFormats} />
     <ExamplesBanner id="presentation-examples-more" image={teamCollaboration} />
     <ServiceConsultation className="presentations-consultation" image={consultationPhoto} title="Расскажем, какими должны быть структура, контент и дизайн вашей презентации, и подберём примеры" intro={['На встрече разберём, кому адресован материал, какую задачу он должен решить и как вы будете его использовать. Обсудим, с чего начать презентацию, какие вопросы и барьеры аудитории учесть, чем подкрепить основные аргументы.', 'Предложим подход к структуре, текстам и дизайну вашего материала. По итогам предложим состав проекта и подготовим КП со сроками и стоимостью.']} note="Даже если вы решите запускать контент самостоятельно, у вас останется понятный план действий." subject="Консультация по презентациям и материалам для продаж" greeting="Здравствуйте! Хочу обсудить презентацию или коммерческое предложение." />
     <ServiceFaq items={faq} />
+    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter servicesHref="#presentation-formats" />

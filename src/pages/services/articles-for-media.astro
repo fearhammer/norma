@@ -12,6 +12,8 @@ import ExamplesBanner from '../../components/ExamplesBanner.astro';
 import ServiceConsultation from '../../components/ServiceConsultation.astro';
 import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import content from '../../data/media-service.json';
 import hero from '../../assets/photos/media-hero.jpg';
@@ -108,6 +110,7 @@ const formats = content.pricing.items.map((item, index) => ({
     />
 
     <ServiceDeliverables steps={deliverables} />
+    <ServiceExperts id="experts" />
     <ServicePricing title="Формат работы и стоимость" formats={formats} />
     <ExamplesBanner id="project-examples" image={examplesPhoto} imageHasGradient />
 
@@ -121,6 +124,7 @@ const formats = content.pricing.items.map((item, index) => ({
       greeting="Здравствуйте! Хочу обсудить статьи для отраслевых медиа."
     />
     <ServiceFaq items={content.faq} />
+    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter servicesHref="#needs" />

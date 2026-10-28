@@ -1,13 +1,4 @@
 ---
-import { contacts } from '../data/contacts';
+import ChannelBanner from './ChannelBanner.astro';
 ---
-<aside class="article-telegram" aria-labelledby="article-telegram-title">
-  <div class="article-telegram-card">
-    <div class="article-telegram-heading">
-      <span class="article-telegram-symbol" aria-hidden="true">N</span>
-      <h2 id="article-telegram-title">Контент за деньги</h2>
-    </div>
-    <p>Как экспертный контент помогает продавать сложные продукты и услуги? Как доносить ценность, формировать экспертную позицию и привлекать потенциальных клиентов с помощью статей, кейсов и других материалов — читайте в нашем Telegram-канале.</p>
-    <a class="article-telegram-action" href={contacts.telegramChannel} target="_blank" rel="noopener noreferrer">Подписаться на канал <span aria-hidden="true">↗</span></a>
-  </div>
-</aside>
+<ChannelBanner spaced />

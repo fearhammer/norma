@@ -13,6 +13,8 @@ import ServicePricing from '../../components/ServicePricing.astro';
 import ServiceConsultation from '../../components/ServiceConsultation.astro';
 import ServiceFaq from '../../components/ServiceFaq.astro';
 import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import content from '../../data/email-service.json';
 import heroPhoto from '../../assets/photos/email-hero.jpg';
@@ -113,6 +115,7 @@ const faq = content['Частые вопросы'].items.map(item => ({ title: i
       imageAlt="Коллеги оценивают результаты рассылки"
     />
 
+    <ServiceExperts id="experts" />
     <ServicePricing title="Форматы сотрудничества" formats={workFormats} />
     <ExamplesBanner id="email-examples-more" image={moreExamplesPhoto} imageHasGradient />
 
@@ -126,6 +129,7 @@ const faq = content['Частые вопросы'].items.map(item => ({ title: i
       greeting="Здравствуйте! Хочу обсудить запуск или ведение email-рассылки."
     />
     <ServiceFaq items={faq} />
+    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter servicesHref="#needs" />
