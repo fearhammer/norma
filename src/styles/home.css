@@ -2,9 +2,9 @@
 .home-hero { min-height: max(1541px, 96.3125rem); background: #e7d6c5; }
 .home-hero .hero-media { background: #e7d6c5; }
 .home-hero .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.3deg, #c6b2a3 4.5421%, rgb(198 178 163 / .482) 15.688%, transparent 39.122%); }
-.home-hero .hero-photo { inset: auto 0 0; width: 100%; height: 100%; transform: none; object-fit: cover; object-position: center bottom; }
-.home-hero .hero-media[data-parallax] img { top: auto; bottom: 0; translate: none; }
-.home-hero .hero-content { justify-content: flex-start; align-items: center; padding-top: 8.75rem; padding-bottom: 38rem; gap: 5rem; }
+.home-hero .hero-photo { inset: 0 0 auto; width: 100%; height: 100%; transform: none; object-fit: cover; object-position: center top; }
+.home-hero .hero-media[data-parallax] img { top: 0; bottom: auto; translate: none; }
+.home-hero .hero-content { justify-content: flex-start; align-items: center; padding-top: calc(8.75rem + 50px); padding-bottom: 38rem; gap: 5rem; }
 .home-hero .hero-content::before { display: none; }
 .home-hero .hero-copy { width: 100%; text-align: center; }
 .home-hero h1 { max-width: 70.6875rem; margin-inline: auto; font-size: 4.375rem; line-height: .8; letter-spacing: -.03em; }
@@ -20,11 +20,20 @@
 .home-hero .hero-features p { margin-top: 17px; font-size: .875rem; line-height: 1.375rem; }
 .home-services .process-photo { position: static; max-height: none; }
 .home-services-first .process-photo { object-position: 84.77% center; }
+.home-services-first { padding-bottom: 120px; }
 .home-services-second { padding-top: 0; }
 .home-services-second .process-grid { margin-top: 0; }
 .home-services-second .process-photo { object-position: 86.55% center; }
 .home-services .process-service-link { margin-top: 20px; padding-block: 5px; min-height: 0; background: transparent; color: var(--color-heading); }
-.home-services .process-service-link:hover { background: var(--color-heading); color: var(--color-bg); }
+.home-services .process-item { position: relative; }
+.home-services .process-service-link::after { content: ''; position: absolute; inset: 0; }
+.home-services .process-item:hover .process-service-link,
+.home-services .process-item:focus-within .process-service-link { background: var(--color-heading); color: var(--color-bg); }
+.home-services .process-service-link:focus-visible { outline: none; }
+.home-services .process-service-link:focus-visible::after { outline: 2px solid var(--color-heading); outline-offset: 5px; border-radius: 4px; }
+.home-page .home-blog { margin-top: 160px; scroll-margin-top: 100px; }
+.home-blog .article-related-heading { justify-content: center; text-align: center; padding-bottom: 40px; }
+.home-blog .article-related-heading h2 { max-width: 58rem; }
 .home-page #client-tasks .formats-photo img { top: 0; translate: none; height: 186.21%; max-width: none; object-fit: cover; transform: translateY(-45.98%); }
 .home-page .workflow-photo img { top: 0; translate: none; height: 124.14%; transform: translateY(-3.238%); }
 .home-consultation::before { background: linear-gradient(179.44deg, rgb(52 35 18 / .8) 19.304%, rgb(102 102 102 / 0) 99.407%); }
@@ -32,7 +41,7 @@
 .home-consultation .consultation-intro { max-width: 37.25rem; }
 .home-consultation .consultation-tags { max-width: 44.625rem; }
 @media(max-width: 1264px) {
-  .home-hero .hero-content { padding-top: 140px; }
+  .home-hero .hero-content { padding-top: 190px; }
   .home-hero h1 { font-size: 4rem; }
   .home-hero .hero-features > div { padding-inline: 25px; }
 }
@@ -40,8 +49,8 @@
   .home-hero { min-height: 0; }
   .home-hero .hero-media { position: absolute; inset: auto 0 0; height: 360px; aspect-ratio: auto; }
   .home-hero .hero-media::after { background: linear-gradient(#e7d6c5, transparent 25%); }
-  .home-hero .hero-photo { height: 100%; object-fit: cover; object-position: center bottom; }
-  .home-hero .hero-content { padding-top: 110px; padding-bottom: 380px; gap: 40px; }
+  .home-hero .hero-photo { height: 100%; object-fit: cover; object-position: center top; }
+  .home-hero .hero-content { padding-top: 130px; padding-bottom: 380px; gap: 40px; }
   .home-hero h1 { font-size: clamp(2.25rem, 7.8vw, 3.5rem); line-height: .98; }
   .home-hero .hero-intro { margin-top: 28px; }
   .home-hero .hero-actions { margin-top: 28px; }
@@ -50,6 +59,8 @@
   .home-hero .hero-features > div { padding: 0; }
   .home-hero .hero-features > div + div { margin-top: 24px; padding-top: 24px; border-left: 0; border-top: 1px solid #ddd; }
   .home-services-second { padding-top: 0; }
+  .home-services-first { padding-bottom: 72px; }
+  .home-page .home-blog { margin-top: 80px; }
   .home-services .process-photo { max-height: 640px; }
   .home-page #client-tasks .formats-photo img { height: 100%; transform: none; object-fit: cover; object-position: center bottom; }
   .home-page .workflow-photo img { height: 100%; transform: none; object-position: center; }

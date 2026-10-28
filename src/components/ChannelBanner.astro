@@ -15,10 +15,10 @@ import { contacts } from '../data/contacts';
   <div class="channel-portrait"><Image src={portrait} alt="Автор Telegram-канала «Контент за деньги»" widths={[486, 728, 972]} sizes="(max-width: 767px) 90vw, 41vw" format="webp" quality={95} loading="lazy" /></div>
 </aside>
 <style>
-  .channel-banner { position: relative; isolation: isolate; min-height: 452px; padding-top: 46px; }
-  .channel-background { position: absolute; inset: 46px 0 0; overflow: hidden; z-index: -1; background: #252525; border-radius: 10px; }
-  .channel-circle { position: absolute; left: 54.58%; top: 11px; max-width: none; }
-  .channel-copy { position: relative; z-index: 1; width: 56%; padding: 35px 44px; color: var(--color-bg); }
+  .channel-banner { position: relative; isolation: isolate; container-type: inline-size; min-height: 452px; }
+  .channel-background { position: absolute; inset: 10.18% 0 0; overflow: hidden; z-index: -1; background: #252525; border-radius: 10px; }
+  .channel-circle { position: absolute; left: 74.67%; bottom: -7.25cqw; width: 40.167%; height: auto; max-width: none; transform: translateX(-50%); }
+  .channel-copy { position: relative; z-index: 1; width: 56%; min-height: 37.667cqw; padding: 6.75cqw 3.667cqw 2.917cqw; color: var(--color-bg); }
   .channel-copy .eyebrow { background: var(--color-bg); color: var(--color-heading); }
   .channel-copy h2 { margin-top: 25px; color: var(--color-bg); font-size: 2.5rem; line-height: .9; font-weight: 600; letter-spacing: -.025rem; }
   .channel-copy p { margin-top: 20px; max-width: 30rem; font-size: .875rem; line-height: 1.6; }
@@ -26,13 +26,14 @@ import { contacts } from '../data/contacts';
   .channel-copy .button:hover { background: white; }
   .channel-portrait { position: absolute; left: 54%; right: 5.5%; bottom: 0; aspect-ratio: 486 / 452; overflow: hidden; }
   .channel-portrait img { width: 100%; height: 107.52%; object-fit: cover; object-position: top; }
-  @media(max-width: 1000px) { .channel-copy { width: 64%; padding: 30px; } .channel-copy h2 { font-size: 2rem; } }
+  @media(max-width: 1264px) { .channel-copy h2 { font-size: 2rem; } }
+  @media(max-width: 1000px) { .channel-copy { width: 64%; padding: 70px 30px 30px; } }
   @media(max-width: 767px) {
-    .channel-banner { padding-top: 0; }
+    .channel-banner { min-height: 0; }
     .channel-background { inset: 0; }
-    .channel-copy { width: 100%; padding: 28px 24px; }
+    .channel-copy { width: 100%; min-height: 0; padding: 28px 24px; }
     .channel-copy h2 { font-size: 2rem; line-height: 1; }
     .channel-portrait { position: relative; left: auto; right: auto; width: 90%; max-width: 486px; margin-inline: auto; }
-    .channel-circle { left: 50%; top: auto; bottom: -70px; transform: translateX(-50%); }
+    .channel-circle { left: 50%; top: auto; bottom: -70px; width: 105%; transform: translateX(-50%); }
   }
 </style>

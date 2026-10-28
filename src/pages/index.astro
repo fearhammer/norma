@@ -8,7 +8,7 @@ import MediaWorkflow from '../components/MediaWorkflow.astro';
 import ServiceExperts from '../components/ServiceExperts.astro';
 import ChannelBanner from '../components/ChannelBanner.astro';
 import ServiceConsultation from '../components/ServiceConsultation.astro';
-import ServiceBlog from '../components/ServiceBlog.astro';
+import ArticleRelated from '../components/ArticleRelated.astro';
 import ServiceFooter from '../components/ServiceFooter.astro';
 import { home } from '../data/home';
 import hero from '../assets/photos/home-hero.png';
@@ -18,7 +18,6 @@ import tasksPhoto from '../assets/photos/home-tasks.png';
 import workflowPhoto from '../assets/photos/home-process.png';
 import avatar from '../assets/photos/home-team.png';
 import consultationPhoto from '../assets/photos/seo-67081.png';
-import blogCover from '../assets/photos/home-blog.png';
 import '../styles/home.css';
 const base = import.meta.env.BASE_URL;
 const resolveHref = (href: string) => href.startsWith('#') ? href : `${base}${href}`;
@@ -35,7 +34,7 @@ const services = home.services.map(item => ({ ...item, href: resolveHref(item.hr
     <MediaWorkflow title={home.workflowTitle} intro={home.workflowIntro} items={home.workflow} image={workflowPhoto} />
     <ServiceExperts title={home.teamTitle} intro={home.teamIntro} items={home.team} avatar={avatar} />
     <ServiceConsultation image={consultationPhoto} title={home.consultationTitle} intro={home.consultationIntro} tags={home.consultationTags} note={home.consultationNote} subject="Контент-маркетинг для компании" greeting="Здравствуйте! Хочу обсудить контент-маркетинг для компании." className="home-consultation" />
-    <ServiceBlog cover={blogCover} />
+    <ArticleRelated id="blog" className="home-blog" title="Читайте про контент-маркетинг в блоге Norma Studio" includePreviews />
   </main>
   <ServiceFooter servicesHref="#services" />
 </Page>
