@@ -8,7 +8,10 @@ function update() {
   // Read geometry together before writing transforms to avoid layout thrashing.
   const positions = [...visible].map(frame => {
     const rect = frame.getBoundingClientRect();
-    const offset = (window.innerHeight / 2 - rect.top - rect.height / 2) * .14;
+    // Top-aligned heroes start without an offset and move gently upward.
+    const offset = frame.dataset.parallax === 'up'
+      ? Math.min(0, rect.top) * .08
+      : (window.innerHeight / 2 - rect.top - rect.height / 2) * .14;
     return { frame, offset: Math.max(-84, Math.min(84, offset)) };
   });
   for (const { frame, offset } of positions) {

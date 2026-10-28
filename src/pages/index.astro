@@ -26,7 +26,7 @@ const services = home.services.map(item => ({ ...item, href: resolveHref(item.hr
 <Page title="Norma Studio — экспертный контент для бизнеса" description={home.hero.intro} image={hero.src}>
   <Header servicesHref="#services" blogHref="#blog" />
   <main class="home-page" id="main">
-    <ServiceHero content={home.hero} image={hero} mobileImage={hero} imageAlt="Команда Norma обсуждает материалы за общим столом" className="home-hero" primaryAction="Получить контент-стратегию" secondaryAction="Обсудить задачи" features={home.features} stepLinks={home.heroLinks.map(resolveHref)} />
+    <ServiceHero content={home.hero} image={hero} mobileImage={hero} imageAlt="Команда Norma обсуждает материалы за общим столом" className="home-hero" parallax="up" primaryAction="Получить контент-стратегию" secondaryAction="Обсудить задачи" features={home.features} stepLinks={home.heroLinks.map(resolveHref)} />
     <ServiceProcess id="services" title={home.servicesTitle} intro={home.servicesIntro} items={services.slice(0, 6)} image={firstPhoto} imageAlt="Редактор работает за ноутбуком" className="home-services home-services-first" imageWidths={[960, 1440, 1920]} imageSizes="(max-width: 767px) 250vw, 110vw" />
     <ServiceProcess id="more-services" title="Другие услуги Norma Studio" hideHeading items={services.slice(6)} image={secondPhoto} imageAlt="Специалист изучает рабочие материалы" imageFirst className="home-services home-services-second" imageWidths={[960, 1440, 1920]} imageSizes="(max-width: 767px) 250vw, 110vw" />
     <ChannelBanner />
