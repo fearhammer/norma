@@ -1,7 +1,7 @@
 /* Варианты существующих блоков для главной страницы, Figma 728:9965. */
 .home-hero { min-height: max(1541px, 96.3125rem); background: #e7d6c5; }
 .home-hero .hero-media { background: #e7d6c5; }
-.home-hero .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.3deg, #c6b2a3 4.5421%, rgb(198 178 163 / .482) 15.688%, transparent 39.122%); }
+.home-hero .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.29664989467273deg, rgb(244 216 196 / .9) 4.5421%, rgb(244 216 196 / .434) 19.006%, rgb(244 216 196 / 0) 39.122%); }
 .home-hero .hero-photo { inset: 0 0 auto; width: 100%; height: 100%; transform: none; object-fit: cover; object-position: center top; }
 .home-hero .hero-media[data-parallax] img { top: 0; bottom: auto; translate: none; }
 @media (prefers-reduced-motion: no-preference) {
@@ -38,7 +38,7 @@
 .home-blog .article-related-heading { justify-content: center; text-align: center; padding-bottom: 40px; }
 .home-page .home-blog .article-related-heading h2 { max-width: 58rem; font-weight: 350; }
 .home-page .home-blog .blog-feature h3 { font-weight: 350; }
-.home-page .home-blog .blog-card h3 { font-weight: 400; }
+.home-page .home-blog .blog-card h3 { font-weight: 500; }
 .home-page #client-tasks .formats-photo img { top: 0; translate: none; height: 186.21%; max-width: none; object-fit: cover; transform: translateY(-45.98%); }
 .home-page .workflow-photo img { top: 0; translate: none; height: 124.14%; transform: translateY(-3.238%); }
 .home-consultation::before { background: linear-gradient(179.44deg, rgb(52 35 18 / .8) 19.304%, rgb(102 102 102 / 0) 99.407%); }
