@@ -4,7 +4,7 @@ import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import SiteFormats from '../../components/SiteFormats.astro';
 import ServiceProcess from '../../components/ServiceProcess.astro';
-import ProjectShowcase from '../../components/ProjectShowcase.astro';
+import PresentationProjects from '../../components/PresentationProjects.astro';
 import ExamplesBanner from '../../components/ExamplesBanner.astro';
 import CasesProcess from '../../components/CasesProcess.astro';
 import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
@@ -101,7 +101,7 @@ const faq = [
     <SiteFormats id="presentation-formats" title="Какие презентации и материалы делаем" intro="" formats={formats} image={formatsPhoto} imageAlt="Коллеги обсуждают материалы за ноутбуком" noteTitle="Если вы не выпускаете и не распространяете контент — вас просто не существует для множества потенциальных клиентов" note="Вас не добавят в шорт-лист, не обратятся за КП, не пригласят в тендер, не придут за консультацией." />
     <ServiceProcess id="presentation-structure" title="Как выстраиваем структуру и готовим контент" intro="Определим, что важно донести до аудитории и какие вопросы нужно раскрыть. Выбираем подход, выстраиваем структуру и готовим тексты." items={structure} image={structurePhoto} imageAlt="Коллеги рассматривают материалы на экране" />
     <ServiceProcess id="presentation-design" title="Как создаём дизайн и визуальную подачу" intro="Создадим современный дизайн под вашу компанию и аудиторию. Оформим презентацию так, чтобы она выглядела профессионально и была удобна для просмотра." items={design} image={designPhoto} imageAlt="Специалистка работает с материалами в студии" imageFirst />
-    <ProjectShowcase id="presentation-projects" title="Примеры наших презентаций" linkLabel="Посмотреть презентацию" external={false} projects={[{ name: 'Яндекс', href: '#consultation' }, { name: 'Росатом', href: '#consultation' }, { name: 'Эконива', href: '#consultation' }, { name: 'INT', href: '#consultation' }, { name: 'ITScan', href: '#consultation' }, { name: 'Log Capital', href: '#consultation' }]} />
+    <PresentationProjects />
     <ExamplesBanner id="presentation-examples" image={examplesBannerPhoto} imageHasGradient title="Получите примеры презентаций или КП под вашу задачу" text="На консультации подберём примеры под вашу задачу и обсудим, какие структура, контент и дизайн подойдут для вашей презентации или КП." primaryAction="Получить примеры" />
     <ServiceTestimonials items={presentationTestimonials} />
     <CasesProcess id="presentation-workflow" title="Как проходит работа" intro="Начинаем с изучения имеющихся документов, черновиков и обсуждения концепции презентации. Организуем интервью, подготовку и согласования. С вашей стороны — приоритеты, фактура и проверка профессиональных деталей." items={workflow} image={workflowPhoto} imageAlt="Коллеги обсуждают презентацию" />
