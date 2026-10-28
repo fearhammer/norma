@@ -102,6 +102,7 @@ const faq = content['Частые вопросы'].items.map(item => ({ title: i
     />
 
     <ServiceDeliverables steps={deliverables} />
+    <ChannelBanner spaced />
     <ServiceTestimonials avatarImage={testimonialAvatar} />
     <ExamplesBanner id="email-examples" image={examplesPhoto} imageHasGradient />
 
@@ -129,7 +130,6 @@ const faq = content['Частые вопросы'].items.map(item => ({ title: i
       greeting="Здравствуйте! Хочу обсудить запуск или ведение email-рассылки."
     />
     <ServiceFaq items={faq} />
-    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter servicesHref="#needs" />

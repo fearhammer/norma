@@ -110,6 +110,7 @@ const formats = content.pricing.items.map((item, index) => ({
     />
 
     <ServiceDeliverables steps={deliverables} />
+    <ChannelBanner spaced />
     <ServiceExperts id="experts" />
     <ServicePricing title="Формат работы и стоимость" formats={formats} />
     <ExamplesBanner id="project-examples" image={examplesPhoto} imageHasGradient />
@@ -124,7 +125,6 @@ const formats = content.pricing.items.map((item, index) => ({
       greeting="Здравствуйте! Хочу обсудить статьи для отраслевых медиа."
     />
     <ServiceFaq items={content.faq} />
-    <ChannelBanner spaced />
     <ServiceBlog />
   </main>
   <ServiceFooter servicesHref="#needs" />
