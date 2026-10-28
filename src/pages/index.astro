@@ -8,7 +8,7 @@ import MediaWorkflow from '../components/MediaWorkflow.astro';
 import ServiceExperts from '../components/ServiceExperts.astro';
 import ChannelBanner from '../components/ChannelBanner.astro';
 import ServiceConsultation from '../components/ServiceConsultation.astro';
-import ArticleRelated from '../components/ArticleRelated.astro';
+import ServiceBlog from '../components/ServiceBlog.astro';
 import ServiceFooter from '../components/ServiceFooter.astro';
 import { home } from '../data/home';
 import hero from '../assets/photos/home-hero.png';
@@ -33,7 +33,7 @@ const services = home.services.map(item => ({ ...item, href: resolveHref(item.hr
     <MediaWorkflow title={home.workflowTitle} intro={home.workflowIntro} items={home.workflow} image={workflowPhoto} />
     <ServiceExperts />
     <ServiceConsultation image={consultationPhoto} title={home.consultationTitle} intro={home.consultationIntro} tags={home.consultationTags} note={home.consultationNote} subject="Контент-маркетинг для компании" greeting="Здравствуйте! Хочу обсудить контент-маркетинг для компании." className="home-consultation" />
-    <ArticleRelated id="blog" className="home-blog" title="Читайте про контент-маркетинг в блоге Norma Studio" includePreviews />
+    <ServiceBlog className="home-blog" />
   </main>
   <ServiceFooter servicesHref="#services" />
 </Page>

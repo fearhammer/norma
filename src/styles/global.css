@@ -525,3 +525,21 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .blog-card p { margin-bottom: 0; }
   .blog-card .button { margin-top: 22px; }
 }
+
+/* Compact service-banner spacing includes the adjacent sections' padding. */
+.service-deliverables:has(+ .channel-banner--compact),
+.service-team:has(+ .channel-banner--compact) { padding-bottom: 40px; }
+.channel-banner.channel-banner--compact + .service-experts { padding-top: 112px; }
+.channel-banner--compact + .cases-use,
+.channel-banner--compact + .service-handover { padding-top: 84px; }
+.channel-banner--compact + .testimonials { padding-top: 31.5px; }
+@media (max-width: 767px) {
+  .service-deliverables:has(+ .channel-banner--compact) { padding-bottom: 28px; }
+  .service-team:has(+ .channel-banner--compact) { padding-bottom: 20px; }
+  .channel-banner--compact + .cases-use,
+  .channel-banner--compact + .service-handover { padding-top: 45.5px; }
+  .channel-banner--compact + .testimonials { padding-top: 14px; }
+}
+@media (max-width: 600px) {
+  .channel-banner.channel-banner--compact + .service-experts { padding-top: 50.4px; }
+}

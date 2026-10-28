@@ -3,10 +3,10 @@ import { Image } from 'astro:assets';
 import portrait from '../assets/photos/home-channel.png';
 import circle from '../assets/photos/home-channel-circle.svg';
 import { contacts } from '../data/contacts';
-interface Props { spaced?: boolean; }
-const { spaced = false } = Astro.props;
+interface Props { spaced?: boolean; compact?: boolean; }
+const { spaced = false, compact = false } = Astro.props;
 ---
-<aside class:list={['channel-banner', 'container', { 'channel-banner--spaced': spaced }]} aria-labelledby="channel-title">
+<aside class:list={['channel-banner', 'container', { 'channel-banner--spaced': spaced, 'channel-banner--compact': compact }]} aria-labelledby="channel-title">
   <div class="channel-background"><img class="channel-circle" src={circle.src} alt="" width="482" height="482" /></div>
   <div class="channel-copy">
     <span class="eyebrow">Контент за деньги</span>
@@ -19,6 +19,7 @@ const { spaced = false } = Astro.props;
 <style>
   .channel-banner { position: relative; isolation: isolate; container-type: inline-size; min-height: 452px; }
   .channel-banner--spaced { margin-block: 80px; }
+  .channel-banner--compact { margin-block: 40px 56px; }
   .channel-background { position: absolute; inset: 10.18% 0 0; overflow: hidden; z-index: -1; background: #252525; border-radius: 10px; }
   .channel-circle { position: absolute; left: 74.67%; bottom: -7.25cqw; width: 40.167%; height: auto; max-width: none; transform: translateX(-50%); }
   .channel-copy { position: relative; z-index: 1; display: grid; grid-template-rows: auto minmax(28px, 1fr) auto 18px auto minmax(28px, 1fr) auto; justify-items: start; width: 56%; min-height: max(452px, 37.667cqw); padding: 6.75cqw 3.667cqw 2.917cqw; color: var(--color-bg); }
@@ -34,6 +35,7 @@ const { spaced = false } = Astro.props;
   @media(max-width: 767px) {
     .channel-banner { min-height: 0; }
     .channel-banner--spaced { margin-block: 64px; }
+    .channel-banner--compact { margin-block: 32px 44.8px; }
     .channel-background { inset: 0; }
     .channel-copy { width: 100%; min-height: 0; padding: 28px 24px; }
     .channel-copy h2 { font-size: 2rem; line-height: 1; }

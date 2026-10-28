@@ -13,3 +13,13 @@
   .article-related-feature--reversed .blog-feature-copy { order: 1; }
   .article-related-feature--reversed .blog-cover { order: 2; }
 }
+
+/* Shared marketing blog block on the home and service pages. */
+.article-related.marketing-blog { margin-top: 0; margin-bottom: 5.6rem; scroll-margin-top: 100px; }
+.marketing-blog .article-related-heading { justify-content: center; text-align: center; padding-bottom: 40px; }
+.marketing-blog .article-related-heading h2 { max-width: 58rem; font-weight: 350; }
+.article-related.marketing-blog .blog-feature h3 { font-weight: 350; }
+.marketing-blog .blog-card h3 { font-weight: 500; }
+@media (max-width: 767px) {
+  .article-related.marketing-blog { margin-bottom: 3.5rem; }
+}

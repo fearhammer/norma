@@ -34,11 +34,7 @@
 .home-services .process-item:focus-within .process-service-link { background: var(--color-heading); color: var(--color-bg); }
 .home-services .process-service-link:focus-visible { outline: none; }
 .home-services .process-service-link:focus-visible::after { outline: 2px solid var(--color-heading); outline-offset: 5px; border-radius: 4px; }
-.home-page .home-blog { margin-top: 160px; scroll-margin-top: 100px; }
-.home-blog .article-related-heading { justify-content: center; text-align: center; padding-bottom: 40px; }
-.home-page .home-blog .article-related-heading h2 { max-width: 58rem; font-weight: 350; }
-.home-page .home-blog .blog-feature h3 { font-weight: 350; }
-.home-page .home-blog .blog-card h3 { font-weight: 500; }
+.home-page .article-related.home-blog { margin-top: 160px; scroll-margin-top: 100px; }
 .home-page #client-tasks .formats-photo img { top: 0; translate: none; height: 186.21%; max-width: none; object-fit: cover; transform: translateY(-45.98%); }
 .home-page .workflow-photo img { top: 0; translate: none; height: 124.14%; transform: translateY(-3.238%); }
 .home-consultation::before { background: linear-gradient(179.44deg, rgb(52 35 18 / .8) 19.304%, rgb(102 102 102 / 0) 99.407%); }
@@ -65,7 +61,7 @@
   .home-hero .hero-features > div + div { margin-top: 24px; padding-top: 24px; border-left: 0; border-top: 1px solid #ddd; }
   .home-services-second { padding-top: 0; }
   .home-services-first { padding-bottom: 72px; }
-  .home-page .home-blog { margin-top: 80px; }
+  .home-page .article-related.home-blog { margin-top: 80px; }
   .home-services .process-photo { max-height: 640px; }
   .home-page #client-tasks .formats-photo img { height: 100%; transform: none; object-fit: cover; object-position: center bottom; }
   .home-page .workflow-photo img { height: 100%; transform: none; object-position: center; }
