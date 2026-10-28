@@ -33,7 +33,7 @@ export const home = {
   "heroLinks": [
     "#workflow",
     "#workflow",
-    "#services",
+    "services/vedenie-korporativnogo-bloga/",
     "#consultation",
     "#consultation",
     "#services",
@@ -66,7 +66,7 @@ export const home = {
         "Наладим регулярный выпуск статей, которые привлекают нужную аудиторию, отвечают на её вопросы и помогают разобраться в продукте."
       ],
       "action": "Подробнее про блог",
-      "href": "#workflow"
+      "href": "services/vedenie-korporativnogo-bloga/"
     },
     {
       "title": "Статьи для отраслевых медиа",

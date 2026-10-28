@@ -1,0 +1,81 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import MediaWorkflow from '../../components/MediaWorkflow.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import ServiceTestimonials from '../../components/ServiceTestimonials.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { corporateBlog as content } from '../../data/corporate-blog';
+import { corporateBlogFaq } from '../../data/corporate-blog-faq';
+import { testimonials } from '../../data/website-continuation';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/corporate-blog/hero.png';
+import benefitsPhoto from '../../assets/photos/corporate-blog/benefits.png';
+import situationsPhoto from '../../assets/photos/corporate-blog/situations.png';
+import strategyPhoto from '../../assets/photos/corporate-blog/strategy.png';
+import workflowPhoto from '../../assets/photos/corporate-blog/workflow.png';
+import resultsPhoto from '../../assets/photos/corporate-blog/results.png';
+import consultationPhoto from '../../assets/photos/corporate-blog/consultation.png';
+import examplesPhoto from '../../assets/photos/presentations-examples-banner.jpg';
+import projectsPhoto from '../../assets/photos/team-collaboration.jpg';
+import testimonialAvatar from '../../assets/photos/email-testimonial-avatar.png';
+
+const experts = content.team.items.map((item, index) => ({ ...item, image: team.items[index].image }));
+const reviews = [...testimonials, testimonials[1]];
+---
+
+<Page title="Ведение корпоративного блога — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#blog-benefits" blogHref="#blog" />
+  <main id="main" class="corporate-blog-page">
+    <ServiceHero className="corporate-blog-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Редактор изучает материалы компании за рабочим столом" imageSizes="(min-width: 768px) 1920px, 100vw" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#blog-strategy', '#blog-strategy', '#blog-workflow', '#blog-workflow', '#deliverables', '#blog-workflow', '#blog-strategy', '#blog-results']} />
+    <SiteFormats id="blog-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefitsPhoto} imageAlt="Два специалиста обсуждают материалы за ноутбуком" />
+    <ServiceProcess id="blog-situations" {...content.situations} image={situationsPhoto} imageAlt="Редактор работает с ноутбуком и документами" />
+    <MediaWorkflow id="blog-strategy" {...content.strategy} image={strategyPhoto} imageAlt="Команда обсуждает стратегию за общим столом" />
+    <CasesProcess id="blog-workflow" {...content.workflow} image={workflowPhoto} imageAlt="Коллеги обсуждают материал у окна" />
+    <ServiceTestimonials items={reviews} avatarImage={testimonialAvatar} />
+    <ExamplesBanner id="blog-examples" image={examplesPhoto} imageHasGradient {...content.examples} />
+    <ServiceDeliverables steps={content.deliverables} note={content.deliverablesNote} />
+    <ChannelBanner spaced compact />
+    <ServicePricing title="Форматы сотрудничества" formats={content.pricing} />
+    <ExamplesBanner id="blog-projects" image={projectsPhoto} />
+    <MediaWorkflow id="blog-results" {...content.results} image={resultsPhoto} imageAlt="Редактор работает над статьёй на ноутбуке" showNote={false} />
+    <ServiceExperts id="experts" title={content.team.title} intro={content.team.intro} items={experts} />
+    <ServiceConsultation className="corporate-blog-consultation" image={consultationPhoto} {...content.consultation} subject="Консультация по ведению корпоративного блога" greeting="Здравствуйте! Хочу обсудить ведение корпоративного блога." />
+    <ServiceFaq items={corporateBlogFaq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#blog-benefits" />
+</Page>
+
+<style is:global>
+  .corporate-blog-hero { background: #e6dfd9; }
+  .corporate-blog-hero .hero-photo { transform: none; object-position: center top; }
+  .corporate-blog-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .corporate-blog-hero .hero-content { padding-block: 170px 60px; }
+  .corporate-blog-hero .hero-content::before { background: linear-gradient(81.9146deg, #e6dfd9 22.811%, rgb(230 223 217 / .8) 41.608%, rgb(230 223 217 / 0) 58.034%); }
+  #blog-situations .process-photo { object-position: 82% top; }
+  #blog-strategy .workflow-photo img { object-position: center bottom; }
+  #blog-results .workflow-photo img { object-position: center top; }
+  .corporate-blog-page .testimonial figcaption { grid-template-columns: 60px 1fr; }
+  .corporate-blog-page .testimonial-avatar { position: relative; width: 60px; height: 60px; overflow: hidden; }
+  .corporate-blog-page .testimonial-avatar img { position: absolute; width: 729.36%; height: 439.96%; max-width: none; left: -164.36%; top: -117.51%; }
+  .corporate-blog-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  @media (max-width: 767px) {
+    .corporate-blog-hero .hero-content { padding-block: 118px 28px; }
+    .corporate-blog-hero .hero-content::before { background: #e6dfd9; }
+    .corporate-blog-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .corporate-blog-hero .hero-photo { object-position: 80% top; }
+    .corporate-blog-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+  }
+</style>

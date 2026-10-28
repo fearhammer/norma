@@ -19,6 +19,7 @@ interface Props {
   parallax?: 'center' | 'up';
   features?: { title: string; text: string }[];
   stepLinks?: string[];
+  imageSizes?: string;
 }
 
 const {
@@ -34,6 +35,7 @@ const {
   parallax = 'center',
   features = [],
   stepLinks = [],
+  imageSizes = '100vw',
 } = Astro.props;
 
 const mobileVariants = await Promise.all([480, 768, 1254].map(width =>
@@ -45,7 +47,7 @@ const mobileSrcset = mobileVariants.map((image, index) => `${image.src} ${[480, 
   <div class="hero-media" data-parallax={parallax}>
     <picture>
       <source media="(max-width: 767px)" srcset={mobileSrcset} sizes="100vw" width={mobileImage.width} height={mobileImage.height} />
-      <Image src={image} alt={imageAlt} widths={[960, 1440, 1920]} sizes="100vw" format="webp" quality={95} loading="eager" fetchpriority="high" class="hero-photo" />
+      <Image src={image} alt={imageAlt} widths={[960, 1440, 1920]} sizes={imageSizes} format="webp" quality={95} loading="eager" fetchpriority="high" class="hero-photo" />
     </picture>
   </div>
   <div class="hero-content container">

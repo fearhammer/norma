@@ -3,8 +3,9 @@ import { websiteService } from '../data/website-service';
 import { contacts } from '../data/contacts';
 interface Props {
   steps?: { title: string; category: string }[];
+  note?: string;
 }
-const { steps = websiteService.steps.map(title => ({ title, category: 'Аналитика' })) } = Astro.props;
+const { steps = websiteService.steps.map(title => ({ title, category: 'Аналитика' })), note } = Astro.props;
 ---
 <section class="service-deliverables container" id="deliverables" aria-labelledby="deliverables-title">
   <h2 id="deliverables-title">Что вы получаете</h2>
@@ -22,4 +23,8 @@ const { steps = websiteService.steps.map(title => ({ title, category: 'Анал�
       </li>
     ))}
   </ol>
+  {note && <p class="deliverable-note">{note}</p>}
 </section>
+<style>
+  .deliverable-note { max-width: 700px; margin-top: 30px; color: #454545; font-size: 1rem; line-height: 1.625; }
+</style>
