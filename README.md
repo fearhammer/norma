@@ -23,6 +23,10 @@ https://www.figma.com/design/63CcwaOBtXtMmvfNIzHfEU/Norma?node-id=645-9892
 
 ## Репозиторий
 
+### Формы заявок
+
+Подготовлен PHP-обработчик для хостинга REG.RU: `server/forms/README.md`. Получатель — `mail@norma-studio.ru`, тема — «Заявка с сайта Norma». Серверная отправка включается переменной `PUBLIC_FORM_ENDPOINT` после установки обработчика и проверки доставки. Пока переменная пуста, используется явно обозначенная отправка через почтовую программу; GitHub Pages самостоятельно PHP не выполняет.
+
 https://github.com/fearhammer/norma
 
 Локальный origin настроен, авторизация Git проверена.

@@ -23,6 +23,8 @@ const {
   note,
   className = '',
 } = Astro.props;
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('PUBLIC_FORM_ENDPOINT must be an HTTPS URL');
 ---
 <section class:list={['consultation', className]} id="consultation" aria-labelledby="consultation-title">
   <Image class="consultation-photo" src={image} alt="" widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" quality={95} loading="lazy" />
@@ -33,7 +35,10 @@ const {
     <ul class="consultation-tags" aria-label="Что обсудим">
       {tags.map(text => <li>{text}</li>)}
     </ul>
-    <form class="consultation-form" action={`mailto:${contacts.email}`} method="post" enctype="text/plain" data-email={contacts.email} data-subject={subject} data-greeting={greeting}>
+    <form class="consultation-form" action={`mailto:${contacts.email}?subject=${encodeURIComponent('Заявка с сайта Norma')}`} method="post" enctype="text/plain" data-email={contacts.email} data-subject={subject} data-greeting={greeting} data-endpoint={formEndpoint}>
+      <div class="form-trap" aria-hidden="true" inert>
+        <label>Company fax <input name="company_fax" tabindex="-1" autocomplete="off" /></label>
+      </div>
       <div class="form-field">
         <label for="contact-email">Email <span aria-hidden="true">*</span></label>
         <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@company.ru" required maxlength="254" />
@@ -50,31 +55,20 @@ const {
         <label for="contact-website">Сайт компании <small>(необязательно)</small></label>
         <input id="contact-website" name="website" inputmode="url" autocomplete="url" placeholder="company.ru" maxlength="300" />
       </div>
-      <button class="button form-submit" type="submit">Отправить по почте <span aria-hidden="true">→</span></button>
+      <button class="button form-submit" type="submit">{formEndpoint ? 'Отправить заявку' : 'Отправить по почте'} <span aria-hidden="true">→</span></button>
       {note && <p class="form-note">{note}</p>}
-      <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>
-      <p class="form-status" role="status" aria-live="polite" hidden>Письмо подготовлено. Если почтовая программа не открылась, <a href={contacts.telegram}>напишите нам в Telegram →</a></p>
+      {!formEndpoint && <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>}
+      <noscript><p class="form-note">Для отправки заявки включите JavaScript или напишите на <a href={`mailto:${contacts.email}`}>{contacts.email}</a>.</p></noscript>
+      <p class="form-status" role="status" aria-live="polite" hidden></p>
       <a class="form-telegram" href={contacts.telegram}>Написать в Telegram <span aria-hidden="true">→</span></a>
     </form>
   </div>
 </section>
 <script>
-  const form = document.querySelector<HTMLFormElement>('.consultation-form');
-  form?.addEventListener('submit', event => {
-    event.preventDefault();
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const body = [
-      form.dataset.greeting || 'Здравствуйте!',
-      '',
-      `Имя: ${String(data.get('name') || '').trim()}`,
-      `Email: ${String(data.get('email') || '').trim()}`,
-      `Telegram: ${String(data.get('telegram') || '').trim() || 'не указан'}`,
-      `Сайт компании: ${String(data.get('website') || '').trim() || 'не указан'}`,
-    ].join('\r\n');
-    const recipient = form.dataset.email;
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(form.dataset.subject || 'Консультация')}&body=${encodeURIComponent(body)}`;
-    const status = form.querySelector<HTMLElement>('.form-status');
-    if (status) status.hidden = false;
-  });
+  import '../scripts/consultation-form';
 </script>
+<style>
+  .form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); pointer-events: none; }
+  .form-submit:disabled { opacity: .65; cursor: wait; }
+  .form-status[data-error="true"] { color: #9e3025; }
+</style>
