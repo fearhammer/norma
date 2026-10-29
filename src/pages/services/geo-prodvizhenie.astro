@@ -28,7 +28,7 @@ const experts = content.team.items.map((item, index) => ({ ...item, image: team.
 <Page title="GEO-продвижение — Norma Studio" description={content.hero.intro} image={hero.src}>
   <Header servicesHref="#geo-benefits" blogHref="#blog" />
   <main id="main" class="geo-page">
-    <ServiceHero className="geo-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Редактор изучает материалы за ноутбуком" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#geo-research', '#geo-research', '#geo-included', '#geo-included', '#geo-included', '#geo-results']} />
+    <ServiceHero className="geo-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Мужчина изучает документы за столом с ноутбуком" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#geo-research', '#geo-research', '#geo-included', '#geo-included', '#geo-included', '#geo-results']} />
     <SiteFormats id="geo-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefits} imageAlt="Коллеги обсуждают документы и материалы на ноутбуке" />
     <ServiceProcess id="geo-research" {...content.research} image={research} imageAlt="Редактор работает с материалами компании" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
     <ServiceProcess id="geo-included" {...content.included} image={included} imageAlt="Команда обсуждает экспертные материалы" imageFirst imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
@@ -46,7 +46,7 @@ const experts = content.team.items.map((item, index) => ({ ...item, image: team.
 </Page>
 <style is:global>
   .geo-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
-  .geo-hero .hero-photo { transform: none; object-position: right top; }
+  .geo-hero .hero-photo { transform: translateX(2.6%); object-position: center top; }
   .geo-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
   .geo-hero .hero-content { padding-block: 170px 60px; }
   .geo-hero .hero-content::before { background: linear-gradient(86.2728deg, #e6dfd9 21.899%, rgb(230 223 217 / .8) 48.322%, rgb(230 223 217 / 0) 65.368%); }
@@ -65,7 +65,7 @@ const experts = content.team.items.map((item, index) => ({ ...item, image: team.
     .geo-hero .hero-content { padding-block: 118px 28px; }
     .geo-hero .hero-content::before { background: #e6dfd9; }
     .geo-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
-    .geo-hero .hero-photo { object-position: 80% top; }
+    .geo-hero .hero-photo { transform: none; object-position: 80% top; }
     .geo-page .process-photo { max-height: 640px; }
     #geo-projects .examples-photo { left: 0; width: 100%; }
     #geo-projects::before { background: linear-gradient(180deg, #d3d4d7 0%, rgb(211 212 215 / .96) 42%, transparent 85%); }

@@ -11,7 +11,7 @@
 
 | Файл | Секция | Слой Figma |
 | --- | --- | --- |
-| hero.png | Первый экран | Frame174 |
+| hero.png | Первый экран | Frame175 — обновлённый портрет из 772:11689 |
 | benefits.png | Когда нужно GEO | Frame183 |
 | research.png | Исследование | Frame178 |
 | included.png | Состав работ | Rectangle4035 |
