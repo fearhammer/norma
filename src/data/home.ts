@@ -35,7 +35,7 @@ export const home = {
     "#workflow",
     "services/vedenie-korporativnogo-bloga/",
     "#consultation",
-    "#consultation",
+    "services/geo-prodvizhenie/",
     "#services",
     "services/seo-stati/",
     "services/keisy-dlya-biznesa/",
@@ -106,7 +106,7 @@ export const home = {
         "Поработаем с сайтом и публикациями, чтобы информация о компании и её экспертизе чаще появлялась в ответах ИИ-сервисов."
       ],
       "action": "Подробнее про GEO",
-      "href": "#consultation"
+      "href": "services/geo-prodvizhenie/"
     },
     {
       "title": "Кейсы",

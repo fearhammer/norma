@@ -1,0 +1,75 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { geo as content } from '../../data/geo';
+import { geoFaq } from '../../data/geo-faq';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/geo/hero.png';
+import benefits from '../../assets/photos/geo/benefits.png';
+import research from '../../assets/photos/geo/research.png';
+import included from '../../assets/photos/geo/included.png';
+import results from '../../assets/photos/geo/results.png';
+import consultation from '../../assets/photos/geo/consultation.png';
+import examples from '../../assets/photos/geo/examples.png';
+const experts = content.team.items.map((item, index) => ({ ...item, image: team.items[index].image }));
+---
+<Page title="GEO-продвижение — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#geo-benefits" blogHref="#blog" />
+  <main id="main" class="geo-page">
+    <ServiceHero className="geo-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Редактор изучает материалы за ноутбуком" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#geo-research', '#geo-research', '#geo-included', '#geo-included', '#geo-included', '#geo-results']} />
+    <SiteFormats id="geo-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefits} imageAlt="Коллеги обсуждают документы и материалы на ноутбуке" />
+    <ServiceProcess id="geo-research" {...content.research} image={research} imageAlt="Редактор работает с материалами компании" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <ServiceProcess id="geo-included" {...content.included} image={included} imageAlt="Команда обсуждает экспертные материалы" imageFirst imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <ServiceProcess id="geo-results" {...content.results} image={results} imageAlt="Специалист изучает данные на ноутбуке и делает заметки" />
+    <ServiceDeliverables steps={content.deliverables} />
+    <ChannelBanner spaced compact />
+    <ServicePricing formats={content.pricing} />
+    <ExamplesBanner id="geo-projects" image={examples} />
+    <ServiceExperts id="experts" title={content.team.title} intro={content.team.intro} items={experts} />
+    <ServiceConsultation image={consultation} {...content.consultation} subject="Консультация по GEO-продвижению" greeting="Здравствуйте! Хочу обсудить GEO-продвижение." />
+    <ServiceFaq items={geoFaq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#geo-benefits" />
+</Page>
+<style is:global>
+  .geo-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
+  .geo-hero .hero-photo { transform: none; object-position: right top; }
+  .geo-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .geo-hero .hero-content { padding-block: 170px 60px; }
+  .geo-hero .hero-content::before { background: linear-gradient(86.2728deg, #e6dfd9 21.899%, rgb(230 223 217 / .8) 48.322%, rgb(230 223 217 / 0) 65.368%); }
+  #geo-benefits .formats-photo img { object-position: center top; }
+  #geo-research .process-photo { object-position: 86.55% top; }
+  #geo-included .process-photo { object-position: 85.41% top; }
+  .geo-page .process-photo { max-height: none; position: static; }
+  .geo-page .pricing-card { min-width: 0; }
+  .geo-page .pricing-card-meta { flex-wrap: wrap; gap: 8px 16px; }
+  .geo-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  #geo-projects { background: #d3d4d7; }
+  #geo-projects .examples-photo { left: 40%; width: 60%; transform: scaleX(-1); object-position: left center; }
+  #geo-projects::before { background: linear-gradient(90deg, #d3d4d7 32%, rgb(211 212 215 / .95) 42%, rgb(211 212 215 / 0) 70%); }
+  @media (max-width: 767px) {
+    .geo-hero { min-height: auto; }
+    .geo-hero .hero-content { padding-block: 118px 28px; }
+    .geo-hero .hero-content::before { background: #e6dfd9; }
+    .geo-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .geo-hero .hero-photo { object-position: 80% top; }
+    .geo-page .process-photo { max-height: 640px; }
+    #geo-projects .examples-photo { left: 0; width: 100%; }
+    #geo-projects::before { background: linear-gradient(180deg, #d3d4d7 0%, rgb(211 212 215 / .96) 42%, transparent 85%); }
+    .geo-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+  }
+</style>
+
