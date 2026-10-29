@@ -1,0 +1,86 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import MediaWorkflow from '../../components/MediaWorkflow.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { seoPromotion as content } from '../../data/seo-promotion';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/seo-promotion/hero.png';
+import benefits from '../../assets/photos/seo-promotion/benefits.png';
+import strategy from '../../assets/photos/seo-promotion/strategy.png';
+import included from '../../assets/photos/seo-promotion/included.png';
+import workflow from '../../assets/photos/seo-promotion/workflow.png';
+import geo from '../../assets/photos/seo-promotion/geo.png';
+import results from '../../assets/photos/seo-promotion/results.png';
+import consultation from '../../assets/photos/seo-promotion/consultation.png';
+import examples from '../../assets/photos/team-collaboration.jpg';
+const experts = content.team.items.map((item, index) => ({ ...item, image: team.items[index].image }));
+const faq = content.faq.map(({ question, answer }) => ({ title: question, text: answer }));
+const geoItems = content.geo.items.map((item, index) => index === 1 ? {
+  ...item, action: 'GEO-продвижение', href: `${import.meta.env.BASE_URL}services/geo-prodvizhenie/`,
+} : item);
+---
+<Page title="SEO-продвижение — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#seo-benefits" blogHref="#blog" />
+  <main id="main" class="seo-promotion-page">
+    <ServiceHero className="seo-promotion-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Специалист работает за компьютером у окна" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#seo-strategy', '#seo-strategy', '#seo-content', '#seo-included', '#seo-included', '#seo-results']} />
+    <SiteFormats id="seo-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} noteTitle={content.benefits.noteTitle} note={content.benefits.note} image={benefits} imageAlt="Коллеги изучают материалы за ноутбуком" />
+    <ServiceProcess id="seo-strategy" {...content.strategy} image={strategy} imageAlt="Редактор работает над материалом на ноутбуке" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <ServiceProcess id="seo-included" {...content.included} image={included} imageAlt="Команда обсуждает документы и страницы сайта" imageFirst imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <CasesProcess id="seo-content" {...content.workflow} image={workflow} imageAlt="Коллеги обсуждают работу у окна" />
+    <ServiceProcess id="seo-and-geo" title={content.geo.title} intro={content.geo.intro} items={geoItems} image={geo} imageAlt="Специалист изучает документы, сидя на диване" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <MediaWorkflow id="seo-results" {...content.results} image={results} imageAlt="Два специалиста обсуждают результаты за столом" showNote={false} />
+    <ServiceDeliverables steps={content.deliverables} />
+    <ChannelBanner spaced compact />
+    <ServicePricing formats={content.pricing} />
+    <ExamplesBanner id="seo-projects" image={examples} />
+    <ServiceExperts id="experts" title={content.team.title} intro={content.team.intro} items={experts} />
+    <ServiceConsultation image={consultation} {...content.consultation} subject="Консультация по SEO-продвижению" greeting="Здравствуйте! Хочу обсудить SEO-продвижение." />
+    <ServiceFaq items={faq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#seo-benefits" />
+</Page>
+<style is:global>
+  .seo-promotion-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
+  .seo-promotion-hero .hero-photo { transform: translateX(1.56%); object-position: center top; }
+  .seo-promotion-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .seo-promotion-hero .hero-content { padding-block: 170px 60px; }
+  .seo-promotion-hero .hero-content::before { background: linear-gradient(86.2728deg, #e6dfd9 21.899%, rgb(230 223 217 / .8) 48.322%, rgb(230 223 217 / 0) 65.368%); }
+  #seo-benefits .formats-photo img { object-position: center top; }
+  #seo-strategy .process-photo { object-position: 86.55% top; }
+  #seo-included .process-photo { object-position: 85.4% top; }
+  #seo-and-geo .process-photo { object-position: 70.55% top; }
+  .seo-promotion-page .process-photo { max-height: none; position: static; }
+  #seo-content .formats-photo img { object-position: center top; }
+  #seo-results .workflow-photo img { object-position: center 11.5%; }
+  .seo-promotion-page .pricing-card { min-width: 0; }
+  .seo-promotion-page .pricing-card-meta { flex-wrap: wrap; gap: 8px 16px; }
+  .seo-promotion-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  #seo-projects { background: #d3d4d7; }
+  #seo-projects .examples-photo { left: auto; right: 0; width: 65%; object-position: right center; }
+  #seo-projects::before { background: linear-gradient(90deg, #d3d4d7 15%, rgb(211 212 215 / .85) 35%, rgb(211 212 215 / 0) 70%); }
+  @media (max-width: 767px) {
+    .seo-promotion-hero { min-height: auto; }
+    .seo-promotion-hero .hero-content { padding-block: 118px 28px; }
+    .seo-promotion-hero .hero-content::before { background: #e6dfd9; }
+    .seo-promotion-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .seo-promotion-hero .hero-photo { transform: none; object-position: 80% top; }
+    .seo-promotion-page .process-photo { max-height: 640px; }
+    #seo-projects .examples-photo { width: 100%; }
+    #seo-projects::before { background: linear-gradient(180deg, #d3d4d7 0%, rgb(211 212 215 / .96) 42%, transparent 85%); }
+    .seo-promotion-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+  }
+</style>

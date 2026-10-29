@@ -34,7 +34,7 @@ export const home = {
     "#workflow",
     "#workflow",
     "services/vedenie-korporativnogo-bloga/",
-    "#consultation",
+    "services/seo-prodvizhenie/",
     "services/geo-prodvizhenie/",
     "#services",
     "services/seo-stati/",
@@ -98,7 +98,7 @@ export const home = {
         "Проработаем структуру и содержание сайта, чтобы потенциальные клиенты находили компанию по запросам, связанным с её продуктами и опытом."
       ],
       "action": "Подробнее про SEO",
-      "href": "#consultation"
+      "href": "services/seo-prodvizhenie/"
     },
     {
       "title": "GEO-продвижение",
