@@ -28,9 +28,6 @@ import consultation from '../../assets/photos/seo-promotion/consultation.png';
 import examples from '../../assets/photos/team-collaboration.jpg';
 const experts = content.team.items.map((item, index) => ({ ...item, image: team.items[index].image }));
 const faq = content.faq.map(({ question, answer }) => ({ title: question, text: answer }));
-const geoItems = content.geo.items.map((item, index) => index === 1 ? {
-  ...item, action: 'GEO-продвижение', href: `${import.meta.env.BASE_URL}services/geo-prodvizhenie/`,
-} : item);
 ---
 <Page title="SEO-продвижение — Norma Studio" description={content.hero.intro} image={hero.src}>
   <Header servicesHref="#seo-benefits" blogHref="#blog" />
@@ -40,7 +37,7 @@ const geoItems = content.geo.items.map((item, index) => index === 1 ? {
     <ServiceProcess id="seo-strategy" {...content.strategy} image={strategy} imageAlt="Редактор работает над материалом на ноутбуке" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
     <ServiceProcess id="seo-included" {...content.included} image={included} imageAlt="Команда обсуждает документы и страницы сайта" imageFirst imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
     <CasesProcess id="seo-content" {...content.workflow} image={workflow} imageAlt="Коллеги обсуждают работу у окна" />
-    <ServiceProcess id="seo-and-geo" title={content.geo.title} intro={content.geo.intro} items={geoItems} image={geo} imageAlt="Специалист изучает документы, сидя на диване" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
+    <ServiceProcess id="seo-and-geo" title={content.geo.title} intro={content.geo.intro} items={content.geo.items} image={geo} imageAlt="Специалист изучает документы, сидя на диване" imageWidths={[800, 1200, 1600, 1920]} imageSizes="(max-width: 767px) 250vw, 1800px" />
     <MediaWorkflow id="seo-results" {...content.results} image={results} imageAlt="Два специалиста обсуждают результаты за столом" showNote={false} />
     <ServiceDeliverables steps={content.deliverables} />
     <ChannelBanner spaced compact />
