@@ -31,7 +31,7 @@ export const home = {
     }
   ],
   "heroLinks": [
-    "#workflow",
+    "services/kontent-marketing/",
     "#workflow",
     "services/vedenie-korporativnogo-bloga/",
     "services/seo-prodvizhenie/",
@@ -50,7 +50,7 @@ export const home = {
         "Определим, какой контент нужен компании, возьмём на себя регулярное производство, распространение и оценку результата."
       ],
       "action": "Подробнее про контент-маркетинг",
-      "href": "#workflow"
+      "href": "services/kontent-marketing/"
     },
     {
       "title": "Контент-стратегия",

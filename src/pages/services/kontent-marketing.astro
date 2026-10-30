@@ -1,0 +1,76 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import MediaWorkflow from '../../components/MediaWorkflow.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { contentMarketing as content } from '../../data/content-marketing';
+import { contentMarketingFaq } from '../../data/content-marketing-faq';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/content-marketing/hero.jpg';
+import benefits from '../../assets/photos/content-marketing/benefits.jpg';
+import needs from '../../assets/photos/content-marketing/needs.jpg';
+import strategy from '../../assets/photos/content-marketing/strategy.jpg';
+import included from '../../assets/photos/content-marketing/included.jpg';
+import channels from '../../assets/photos/content-marketing/channels.jpg';
+import results from '../../assets/photos/content-marketing/results.jpg';
+import examples from '../../assets/photos/team-collaboration.jpg';
+import consultation from '../../assets/photos/seo-promotion/consultation.png';
+---
+<Page title="Контент-маркетинг — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#marketing-benefits" blogHref="#blog" />
+  <main id="main" class="content-marketing-page">
+    <ServiceHero className="content-marketing-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Редактор изучает материалы у окна" primaryAction="Получить консультацию" primaryHref="#consultation" secondaryAction="Обсудить задачу" secondaryHref="#consultation" parallax="up" stepLinks={['#marketing-strategy', '#marketing-included', '#marketing-included', '#marketing-included', '#marketing-channels', '#marketing-channels', '#marketing-results']} />
+    <SiteFormats id="marketing-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefits} imageAlt="Две коллеги работают над материалами за общим столом" />
+    <ServiceProcess id="marketing-needs" {...content.needs} image={needs} imageAlt="Редактор работает с ноутбуком" />
+    <ServiceProcess id="marketing-strategy" {...content.strategy} image={strategy} imageAlt="Команда обсуждает материалы за ноутбуком" imageFirst />
+    <CasesProcess id="marketing-included" {...content.included} image={included} imageAlt="Сотрудники студии собирают рабочие материалы" />
+    <MediaWorkflow id="marketing-channels" {...content.channels} image={channels} imageAlt="Редактор пишет материал за ноутбуком" showNote={false} />
+    <CasesProcess id="marketing-results" {...content.results} image={results} imageAlt="Редактор обдумывает материал, сидя на диване" />
+    <ServiceDeliverables steps={content.deliverables} />
+    <ChannelBanner spaced compact />
+    <ServicePricing formats={content.pricing} />
+    <ExamplesBanner id="marketing-projects" image={examples} />
+    <ServiceExperts id="experts" {...content.team} items={team.items} />
+    <ServiceConsultation image={consultation} {...content.consultation} subject="Консультация по контент-маркетингу" greeting="Здравствуйте! Хочу обсудить контент-маркетинг для компании." />
+    <ServiceFaq items={contentMarketingFaq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#marketing-benefits" />
+</Page>
+<style is:global>
+  .content-marketing-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
+  .content-marketing-hero .hero-photo { object-position: center top; }
+  .content-marketing-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .content-marketing-hero .hero-content { padding-block: 170px 60px; }
+  .content-marketing-hero .hero-content::before { background: linear-gradient(90deg, #e6dfd9 12%, rgb(230 223 217 / .94) 30%, rgb(230 223 217 / .7) 43%, transparent 65%); }
+  .content-marketing-hero h1 { max-width: 550px; }
+  .content-marketing-page .process-photo { position: static; height: auto; max-height: none; aspect-ratio: auto; }
+  .content-marketing-page .pricing-card { min-width: 0; }
+  .content-marketing-page .pricing-card-meta { flex-wrap: wrap; gap: 8px 16px; }
+  .content-marketing-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  #marketing-projects { background: #d3d4d7; }
+  #marketing-projects .examples-photo { left: auto; right: 0; width: 65%; object-position: right center; }
+  #marketing-projects::before { background: linear-gradient(90deg, #d3d4d7 15%, rgb(211 212 215 / .85) 35%, transparent 70%); }
+  @media (max-width: 767px) {
+    .content-marketing-hero { min-height: auto; }
+    .content-marketing-hero .hero-content { padding-block: 118px 28px; }
+    .content-marketing-hero .hero-content::before { background: #e6dfd9; }
+    .content-marketing-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .content-marketing-hero .hero-photo { object-position: 70% top; }
+    .content-marketing-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+    #marketing-projects .examples-photo { width: 100%; }
+    #marketing-projects::before { background: linear-gradient(180deg, #d3d4d7, rgb(211 212 215 / .96) 42%, transparent 85%); }
+  }
+</style>
