@@ -143,7 +143,7 @@ h1 { max-width: 36.875rem; font-size: 4.8125rem; line-height: .8; font-weight: 4
 .deliverable-list > li { border-bottom: 1px solid #ddd; }
 .deliverable-list > li + li { margin-top: 25px; }
 .deliverable-link { display: flex; align-items: center; gap: 50px; padding-bottom: 20px; text-decoration: none; }
-.deliverable-list .format-number { width: 21px; height: 21px; flex-shrink: 0; }
+
 .deliverable-description { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 25px; min-width: 0; }
 .deliverable-description h3 { color: var(--color-heading); font-size: 1.125rem; line-height: 1.2; font-weight: 500; letter-spacing: -.18px; }
 .deliverable-category { color: #454545; font-size: 0.875rem; line-height: 1.4; }
@@ -162,7 +162,7 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
 .section-intro > p { margin-top: 35px; font-size: 1rem; line-height: 1.625rem; text-wrap: pretty; }
 .format-list { list-style: none; max-width: 35.125rem; margin: 50px auto 0; padding: 30px; border: 1px solid #e4dad0; border-radius: 10px; background: var(--color-card); }
 .format-list li + li { border-top: 1px solid #ddd; padding-top: 30px; margin-top: 30px; }
-.format-number { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #e9d6c4; color: #9d7147; font-size: 0.625rem; }
+.format-number { display: grid; place-items: center; width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: #e9d6c4; color: #9d7147; font-size: 0.59375rem; font-weight: 500; line-height: 1; letter-spacing: 0; }
 .format-list h3 { margin-top: 17px; font-size: 1.125rem; line-height: 1.25rem; letter-spacing: -.18px; font-weight: 500; color: var(--color-heading); }
 .format-list p { margin-top: 17px; font-size: 0.875rem; line-height: 1.375rem; color: #454545; }
 @media (min-width: 768px) and (max-width: 1600px) {
