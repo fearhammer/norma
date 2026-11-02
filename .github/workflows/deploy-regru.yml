@@ -1,0 +1,48 @@
+name: Publish to REG.RU
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: regru-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || vars.REGRU_AUTO_DEPLOY == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+        env:
+          DEPLOY_TARGET: regru
+          PUBLIC_INDEXABLE: ${{ vars.REGRU_INDEXABLE }}
+          PUBLIC_FORM_ENDPOINT: ${{ vars.REGRU_FORM_ENDPOINT }}
+      - name: Configure verified SSH connection
+        env:
+          DEPLOY_KEY: ${{ secrets.REGRU_DEPLOY_KEY }}
+          KNOWN_HOSTS: ${{ secrets.REGRU_KNOWN_HOSTS }}
+        run: |
+          test -n "$DEPLOY_KEY" && test -n "$KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/regru
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/regru ~/.ssh/known_hosts
+      - name: Upload compiled site
+        run: |
+          printf 'ErrorDocument 404 /404.html\n' > dist/.htaccess
+          test -s dist/index.html && test -s dist/404.html
+          rsync -az --delay-updates --chmod=D755,F644 -e "ssh -i ~/.ssh/regru -o BatchMode=yes -o StrictHostKeyChecking=yes" dist/ u3706210@server84.hosting.reg.ru:./
+      - name: Remove runner key
+        if: always()
+        run: rm -f ~/.ssh/regru
