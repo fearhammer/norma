@@ -1,0 +1,74 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import MediaWorkflow from '../../components/MediaWorkflow.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { contentStrategy as content } from '../../data/content-strategy';
+import { contentStrategyFaq } from '../../data/content-strategy-faq';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/content-strategy/hero.jpg';
+import benefits from '../../assets/photos/content-strategy/benefits.jpg';
+import needs from '../../assets/photos/content-marketing/needs.jpg';
+import strategy from '../../assets/photos/content-marketing/strategy.jpg';
+import workflow from '../../assets/photos/content-marketing/included.jpg';
+import why from '../../assets/photos/content-strategy/why.jpg';
+import examples from '../../assets/photos/team-collaboration.jpg';
+import consultation from '../../assets/photos/seo-promotion/consultation.png';
+---
+<Page title="Контент-стратегия — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#strategy-benefits" blogHref="#blog" />
+  <main id="main" class="content-strategy-page">
+    <ServiceHero className="content-strategy-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Специалист изучает документы на диване" primaryAction="Получить консультацию" primaryHref="#consultation" secondaryAction="Обсудить задачу" secondaryHref="#consultation" parallax="up" stepLinks={Array(6).fill('#strategy-included')} />
+    <SiteFormats id="strategy-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefits} imageAlt="Две коллеги работают над материалами за общим столом" />
+    <ServiceProcess id="strategy-needs" {...content.needs} image={needs} imageAlt="Редактор работает с ноутбуком" />
+    <ServiceProcess id="strategy-included" {...content.included} image={strategy} imageAlt="Команда обсуждает материалы за ноутбуком" imageFirst />
+    <ServiceDeliverables steps={content.deliverables} />
+    <ChannelBanner spaced compact />
+    <MediaWorkflow id="strategy-workflow" {...content.workflow} image={workflow} imageAlt="Сотрудники студии собирают рабочие материалы" showNote={false} />
+    <CasesProcess id="strategy-why" {...content.why} image={why} imageAlt="Специалист записывает выводы в блокнот" />
+    <ServicePricing formats={content.pricing} title="Форматы работы и стоимость" />
+    <ExamplesBanner id="strategy-projects" image={examples} />
+    <ServiceExperts id="experts" {...content.team} items={team.items} />
+    <ServiceConsultation image={consultation} {...content.consultation} subject="Консультация по контент-стратегии" greeting="Здравствуйте! Хочу обсудить контент-стратегию для компании." />
+    <ServiceFaq items={contentStrategyFaq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#strategy-benefits" />
+</Page>
+<style is:global>
+  .content-strategy-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
+  .content-strategy-hero .hero-photo { object-position: center top; }
+  .content-strategy-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .content-strategy-hero .hero-content { padding-block: 170px 60px; }
+  .content-strategy-hero .hero-content::before { background: linear-gradient(90deg, #e6dfd9 12%, rgb(230 223 217 / .94) 30%, rgb(230 223 217 / .7) 43%, transparent 65%); }
+  .content-strategy-hero h1 { max-width: 550px; }
+  .content-strategy-page .process-photo { position: static; height: auto; max-height: none; aspect-ratio: auto; }
+  .content-strategy-page .pricing-card { min-width: 0; }
+  .content-strategy-page .pricing-card-meta { flex-wrap: wrap; gap: 8px 16px; }
+  .content-strategy-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  #strategy-projects { background: #d3d4d7; }
+  #strategy-projects .examples-photo { left: auto; right: 0; width: 65%; object-position: right center; }
+  #strategy-projects::before { background: linear-gradient(90deg, #d3d4d7 15%, rgb(211 212 215 / .85) 35%, transparent 70%); }
+  @media (max-width: 767px) {
+    .content-strategy-hero { min-height: auto; }
+    .content-strategy-hero .hero-content { padding-block: 118px 28px; }
+    .content-strategy-hero .hero-content::before { background: #e6dfd9; }
+    .content-strategy-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .content-strategy-hero .hero-photo { object-position: 70% top; }
+    .content-strategy-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+    #strategy-projects .examples-photo { width: 100%; }
+    #strategy-projects::before { background: linear-gradient(180deg, #d3d4d7, rgb(211 212 215 / .96) 42%, transparent 85%); }
+  }
+</style>
