@@ -42,7 +42,7 @@ jobs:
         run: |
           printf 'ErrorDocument 404 /404.html\n' > dist/.htaccess
           test -s dist/index.html && test -s dist/404.html
-          rsync -az --delay-updates --chmod=D755,F644 -e "ssh -i ~/.ssh/regru -o BatchMode=yes -o StrictHostKeyChecking=yes" dist/ u3706210@server84.hosting.reg.ru:./
+          rsync -az --delay-updates --chmod=D755,F644 -e "ssh -i ~/.ssh/regru -o BatchMode=yes -o StrictHostKeyChecking=yes" dist/ u3706210@server84.hosting.reg.ru:.
       - name: Remove runner key
         if: always()
         run: rm -f ~/.ssh/regru
