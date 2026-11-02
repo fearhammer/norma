@@ -26,7 +26,7 @@ jobs:
       - run: pnpm build
         env:
           DEPLOY_TARGET: regru
-          PUBLIC_INDEXABLE: ${{ vars.REGRU_INDEXABLE }}
+          PUBLIC_INDEXABLE: 'true'
           PUBLIC_FORM_ENDPOINT: ${{ vars.REGRU_FORM_ENDPOINT }}
       - name: Configure verified SSH connection
         env:
