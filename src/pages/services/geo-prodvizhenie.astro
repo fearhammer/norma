@@ -1,4 +1,6 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
+import ServiceTestimonials from "../../components/ServiceTestimonials.astro";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -35,6 +37,7 @@ const experts = content.team.items.map((item, index) => ({ ...item, image: team.
     <ServiceProcess id="geo-results" {...content.results} image={results} imageAlt="Специалист изучает данные на ноутбуке и делает заметки" />
     <ServiceDeliverables steps={content.deliverables} />
     <ChannelBanner spaced compact />
+    <ServiceTestimonials items={clientQuotes['GEO-продвижение']} />
     <ServicePricing formats={content.pricing} />
     <ExamplesBanner id="geo-projects" image={examples} />
     <ServiceExperts id="experts" title={content.team.title} intro={content.team.intro} items={experts} />

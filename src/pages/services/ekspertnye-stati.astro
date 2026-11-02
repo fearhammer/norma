@@ -1,4 +1,6 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
+import ServiceTestimonials from "../../components/ServiceTestimonials.astro";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -35,6 +37,7 @@ import consultation from '../../assets/photos/seo-promotion/consultation.png';
     <CasesProcess id="expert-workflow" {...content.workflow} image={workflow} imageAlt="Редактор обсуждает материалы с экспертом" />
     <ServiceDeliverables steps={content.deliverables} />
     <ChannelBanner spaced compact />
+    <ServiceTestimonials items={clientQuotes['Экспертные статьи']} />
     <ServicePricing formats={content.pricing} title="Форматы работы и стоимость" />
     <ExamplesBanner id="expert-projects" image={examples} />
     <ServiceExperts id="experts" {...content.team} items={team.items} />

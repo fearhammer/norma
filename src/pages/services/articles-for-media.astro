@@ -1,4 +1,6 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
+import ServiceTestimonials from "../../components/ServiceTestimonials.astro";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -112,6 +114,7 @@ const formats = content.pricing.items.map((item, index) => ({
     <ServiceDeliverables steps={deliverables} />
     <ChannelBanner spaced compact />
     <ServiceExperts id="experts" />
+    <ServiceTestimonials items={clientQuotes['Статьи для отраслевых медиа']} />
     <ServicePricing title="Формат работы и стоимость" formats={formats} />
     <ExamplesBanner id="project-examples" image={examplesPhoto} imageHasGradient />
 

@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -18,7 +19,6 @@ import ServiceBlog from '../../components/ServiceBlog.astro';
 import ServiceFooter from '../../components/ServiceFooter.astro';
 import { corporateBlog as content } from '../../data/corporate-blog';
 import { corporateBlogFaq } from '../../data/corporate-blog-faq';
-import { testimonials } from '../../data/website-continuation';
 import { team } from '../../data/team';
 import hero from '../../assets/photos/corporate-blog/hero.png';
 import benefitsPhoto from '../../assets/photos/corporate-blog/benefits.png';
@@ -29,10 +29,8 @@ import resultsPhoto from '../../assets/photos/corporate-blog/results.png';
 import consultationPhoto from '../../assets/photos/corporate-blog/consultation.png';
 import examplesPhoto from '../../assets/photos/presentations-examples-banner.jpg';
 import projectsPhoto from '../../assets/photos/team-collaboration.jpg';
-import testimonialAvatar from '../../assets/photos/email-testimonial-avatar.png';
 
 const experts = content.team.items.map((item, index) => ({ ...item, image: team.items[index].image }));
-const reviews = [...testimonials, testimonials[1]];
 ---
 
 <Page title="Ведение корпоративного блога — Norma Studio" description={content.hero.intro} image={hero.src}>
@@ -43,7 +41,7 @@ const reviews = [...testimonials, testimonials[1]];
     <ServiceProcess id="blog-situations" {...content.situations} image={situationsPhoto} imageAlt="Редактор работает с ноутбуком и документами" />
     <MediaWorkflow id="blog-strategy" {...content.strategy} image={strategyPhoto} imageAlt="Команда обсуждает стратегию за общим столом" />
     <CasesProcess id="blog-workflow" {...content.workflow} image={workflowPhoto} imageAlt="Коллеги обсуждают материал у окна" />
-    <ServiceTestimonials items={reviews} avatarImage={testimonialAvatar} />
+    <ServiceTestimonials items={clientQuotes['Ведение корпоративного блога']} />
     <ExamplesBanner id="blog-examples" image={examplesPhoto} imageHasGradient {...content.examples} />
     <ServiceDeliverables steps={content.deliverables} note={content.deliverablesNote} />
     <ChannelBanner spaced compact />

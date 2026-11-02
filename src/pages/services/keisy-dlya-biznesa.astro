@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import CasesHero from '../../components/CasesHero.astro';
@@ -89,7 +90,7 @@ const faq = [
     <CasesHero />
     <CasesNeeds />
     <ServiceProcess id="case-benefits" title="Как кейсы помогают выбрать подрядчика" intro="Изучив кейс, потенциальный клиент может оценить опыт компании до встречи. Он видит, с какими задачами работала команда, как принимала решения и чего достигла. Эти сведения помогают сравнить исполнителей и обсудить выбор с коллегами." items={benefits} image={benefitsImage} imageAlt="Специалист работает за ноутбуком" />
-    <ServiceTestimonials />
+    <ServiceTestimonials items={clientQuotes['Кейсы для бизнеса']} />
     <CasesProcess />
     <ServiceDeliverables steps={deliverables} />
     <ChannelBanner spaced compact />

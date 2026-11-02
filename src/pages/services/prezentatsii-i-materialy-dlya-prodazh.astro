@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -103,7 +104,7 @@ const faq = [
     <ServiceProcess id="presentation-design" title="Как создаём дизайн и визуальную подачу" intro="Создадим современный дизайн под вашу компанию и аудиторию. Оформим презентацию так, чтобы она выглядела профессионально и была удобна для просмотра." items={design} image={designPhoto} imageAlt="Специалистка работает с материалами в студии" imageFirst />
     <PresentationProjects />
     <ExamplesBanner id="presentation-examples" image={examplesBannerPhoto} imageHasGradient title="Получите примеры презентаций или КП под вашу задачу" text="На консультации подберём примеры под вашу задачу и обсудим, какие структура, контент и дизайн подойдут для вашей презентации или КП." primaryAction="Получить примеры" />
-    <ServiceTestimonials items={presentationTestimonials} />
+    <ServiceTestimonials items={clientQuotes['Презентации и материалы для продаж']} />
     <CasesProcess id="presentation-workflow" title="Как проходит работа" intro="Начинаем с изучения имеющихся документов, черновиков и обсуждения концепции презентации. Организуем интервью, подготовку и согласования. С вашей стороны — приоритеты, фактура и проверка профессиональных деталей." items={workflow} image={workflowPhoto} imageAlt="Коллеги обсуждают презентацию" />
     <ServiceDeliverables steps={deliverables} />
     <ChannelBanner spaced compact />

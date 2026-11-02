@@ -1,0 +1,41 @@
+---
+import Page from '../layouts/Page.astro';
+import Header from '../components/Header.astro';
+import ServiceFooter from '../components/ServiceFooter.astro';
+import { contacts } from '../data/contacts';
+const base = import.meta.env.BASE_URL;
+const links = [
+  { label: 'Email', text: contacts.email, href: `mailto:${contacts.email}` },
+  { label: 'Telegram', text: 'Написать в Telegram', href: contacts.telegram },
+  { label: 'Телефон', text: contacts.phone, href: contacts.phoneHref },
+  { label: 'Наш Telegram-канал', text: 'Контент за деньги', href: contacts.telegramChannel },
+];
+---
+<Page title="Контакты — Norma Studio" description="Свяжитесь с Norma Studio по почте, в Telegram или по телефону." image={`${base}favicon.svg`}>
+  <Header servicesHref="/#services" blogHref="/#blog" />
+  <main id="main" class="contacts-page container">
+    <h1>Контакты</h1>
+    <div class="contact-grid">
+      {links.map(link => <div class="contact-item">
+        <p>{link.label}</p>
+        <a href={link.href}>{link.text}<span aria-hidden="true">↗</span></a>
+      </div>)}
+    </div>
+  </main>
+  <ServiceFooter blogHref={`${base}#blog`} />
+</Page>
+<style>
+  .contacts-page { padding-block: 180px 140px; min-height: 75svh; }
+  h1 { margin: 0 0 80px; color: var(--color-heading); font-size: clamp(3rem, 5vw, 4.875rem); line-height: 1; font-weight: 350; letter-spacing: -.04em; }
+  .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px 80px; }
+  .contact-item { border-top: 1px solid #d8cbbf; padding-top: 24px; }
+  .contact-item p { margin: 0 0 18px; font-size: .875rem; color: #786b5f; }
+  .contact-item a { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; color: var(--color-heading); font-size: clamp(1.25rem, 2.2vw, 2rem); text-decoration: none; line-height: 1.2; }
+  .contact-item a:hover { text-decoration: underline; text-underline-offset: 6px; }
+  .contact-item a span { flex: none; }
+  @media(max-width: 767px) {
+    .contacts-page { padding-block: 130px 80px; }
+    h1 { margin-bottom: 50px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+  }
+</style>

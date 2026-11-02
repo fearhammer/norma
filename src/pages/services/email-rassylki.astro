@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -25,7 +26,6 @@ import resultsPhoto from '../../assets/photos/team-discussion.jpg';
 import examplesPhoto from '../../assets/photos/presentations-examples-banner.jpg';
 import moreExamplesPhoto from '../../assets/photos/team-collaboration.jpg';
 import consultationPhoto from '../../assets/photos/media-consultation.png';
-import testimonialAvatar from '../../assets/photos/email-testimonial-avatar.png';
 
 const hero = content['Email-рассылки'];
 const needs = content['Когда нужна email-рассылка'];
@@ -103,7 +103,7 @@ const faq = content['Частые вопросы'].items.map(item => ({ title: i
 
     <ServiceDeliverables steps={deliverables} />
     <ChannelBanner spaced compact />
-    <ServiceTestimonials avatarImage={testimonialAvatar} />
+    <ServiceTestimonials items={clientQuotes['Email-рассылка']} />
     <ExamplesBanner id="email-examples" image={examplesPhoto} imageHasGradient />
 
     <CasesUseCases

@@ -1,4 +1,6 @@
 ---
+import ServiceTestimonials from "../components/ServiceTestimonials.astro";
+import { clientQuotes } from "../data/client-quotes";
 import Page from '../layouts/Page.astro';
 import Header from '../components/Header.astro';
 import ServiceHero from '../components/ServiceHero.astro';
@@ -31,6 +33,7 @@ const services = home.services.map(item => ({ ...item, href: resolveHref(item.hr
     <ChannelBanner />
     <SiteFormats id="client-tasks" title={home.tasksTitle} intro="" formats={home.tasks} image={tasksPhoto} imageAlt="Команда обсуждает схему проекта у доски" noteTitle={home.noteTitle} note={home.note} />
     <MediaWorkflow title={home.workflowTitle} intro={home.workflowIntro} items={home.workflow} image={workflowPhoto} />
+    <ServiceTestimonials items={clientQuotes["Главная страница"]} />
     <ServiceExperts />
     <ServiceConsultation image={consultationPhoto} title={home.consultationTitle} intro={home.consultationIntro} tags={home.consultationTags} note={home.consultationNote} subject="Контент-маркетинг для компании" greeting="Здравствуйте! Хочу обсудить контент-маркетинг для компании." className="home-consultation" />
     <ServiceBlog className="home-blog" />

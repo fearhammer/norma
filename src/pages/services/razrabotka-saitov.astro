@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -35,7 +36,7 @@ import { websiteService } from '../../data/website-service';
     <ServiceProcess {...designProcess} image={designPhoto} imageFirst />
     <ServiceProcess {...launchProcess} image={launchPhoto} />
     <ServiceDeliverables />
-    <ServiceTestimonials />
+    <ServiceTestimonials items={clientQuotes['Контент, дизайн, разработка сайтов']} />
     <ExamplesBanner id="examples" image={melNotes} />
     <ServiceTeam />
     <ChannelBanner spaced compact />

@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL;
 const withBase = (href: string) => href.startsWith('/') ? `${base}${href.slice(1)}` : href;
 const links = [
   { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
-  { href: 'https://norma-studio.ru/', label: 'О студии' },
+  { href: `${base}#team`, label: 'О студии' },
   { href: withBase(blogHref), label: 'Блог' },
 ];
 const services = [

@@ -1,4 +1,6 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
+import ServiceTestimonials from "../../components/ServiceTestimonials.astro";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -41,6 +43,7 @@ const faq = content.faq.map(({ question, answer }) => ({ title: question, text: 
     <MediaWorkflow id="seo-results" {...content.results} image={results} imageAlt="Два специалиста обсуждают результаты за столом" showNote={false} />
     <ServiceDeliverables steps={content.deliverables} />
     <ChannelBanner spaced compact />
+    <ServiceTestimonials items={clientQuotes['SEO-продвижение']} />
     <ServicePricing formats={content.pricing} />
     <ExamplesBanner id="seo-projects" image={examples} />
     <ServiceExperts id="experts" title={content.team.title} intro={content.team.intro} items={experts} />

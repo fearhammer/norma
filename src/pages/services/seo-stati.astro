@@ -1,4 +1,5 @@
 ---
+import { clientQuotes } from "../../data/client-quotes";
 import Page from '../../layouts/Page.astro';
 import Header from '../../components/Header.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
@@ -149,7 +150,7 @@ const faq = [
     <ServiceProcess id="needs" title="Когда компании нужны SEO-статьи" intro="Подключимся, если компании нужно получать целевой трафик из поиска, рассказывать про продукты и регулярно выпускать материалы, а собственной команде не хватает времени или редакционных ресурсов." items={needs} image={needsPhoto} imageAlt="Рука закрывает ноутбук на столе" />
     <ServiceProcess id="types" title="Какие SEO-статьи делаем" intro="Посмотрим, что люди ищут по вашей теме и какие вопросы им нужно раскрыть. Подберём формат: пошаговую инструкцию, сравнение вариантов, разбор проблемы или статью о применении продукта." items={types} image={typesPhoto} imageAlt="Рабочее место с компьютером, чашкой кофе и очками" imageFirst />
     <ExamplesBanner id="presentation-examples" image={firstBannerPhoto} title="Получите примеры презентаций или КП под вашу задачу" text="На консультации подберём примеры под вашу задачу и обсудим, какие структура, контент и дизайн подойдут для вашей презентации или КП." />
-    <ServiceTestimonials items={testimonials} />
+    <ServiceTestimonials items={clientQuotes['SEO-статьи']} />
     <CasesProcess id="seo-process" title="Как мы готовим SEO-статьи" intro="Выберем тему, изучим продукт, поговорим со специалистами, напишем и опубликуем статью. С вашей стороны понадобятся материалы компании, участие экспертов и проверка текста. Организацию работы берём на себя." items={process} image={processPhoto} imageAlt="Специалист печатает за ноутбуком" />
     <ServiceDeliverables steps={deliverables} />
     <ChannelBanner spaced compact />
