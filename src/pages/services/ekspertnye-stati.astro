@@ -1,0 +1,72 @@
+---
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import SiteFormats from '../../components/SiteFormats.astro';
+import ServiceProcess from '../../components/ServiceProcess.astro';
+import CasesProcess from '../../components/CasesProcess.astro';
+import ServiceDeliverables from '../../components/ServiceDeliverables.astro';
+import ChannelBanner from '../../components/ChannelBanner.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import ExamplesBanner from '../../components/ExamplesBanner.astro';
+import ServiceExperts from '../../components/ServiceExperts.astro';
+import ServiceConsultation from '../../components/ServiceConsultation.astro';
+import ServiceFaq from '../../components/ServiceFaq.astro';
+import ServiceBlog from '../../components/ServiceBlog.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { expertArticles as content } from '../../data/expert-articles';
+import { expertArticlesFaq } from '../../data/expert-articles-faq';
+import { team } from '../../data/team';
+import hero from '../../assets/photos/expert-articles/hero.jpg';
+import benefits from '../../assets/photos/content-strategy/benefits.jpg';
+import topics from '../../assets/photos/expert-articles/topics.jpg';
+import writing from '../../assets/photos/expert-articles/writing.jpg';
+import workflow from '../../assets/photos/expert-articles/workflow.jpg';
+import examples from '../../assets/photos/team-collaboration.jpg';
+import consultation from '../../assets/photos/seo-promotion/consultation.png';
+---
+<Page title="Экспертные статьи — Norma Studio" description={content.hero.intro} image={hero.src}>
+  <Header servicesHref="#expert-benefits" blogHref="#blog" />
+  <main id="main" class="expert-articles-page">
+    <ServiceHero className="expert-articles-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Эксперт изучает материалы и делает заметки" primaryAction="Получить консультацию" primaryHref="#consultation" secondaryAction="Обсудить задачу" secondaryHref="#consultation" parallax="up" stepLinks={['#expert-topics', '#expert-topics', '#expert-topics', '#expert-writing', '#pricing', '#expert-workflow']} />
+    <SiteFormats id="expert-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} image={benefits} imageAlt="Две коллеги работают над материалами за общим столом" />
+    <ServiceProcess id="expert-topics" {...content.topics} image={topics} imageAlt="Работа над статьёй с ноутбуком и блокнотом" />
+    <ServiceProcess id="expert-writing" {...content.writing} image={writing} imageAlt="Редактор готовит материал за ноутбуком" imageFirst />
+    <CasesProcess id="expert-workflow" {...content.workflow} image={workflow} imageAlt="Редактор обсуждает материалы с экспертом" />
+    <ServiceDeliverables steps={content.deliverables} />
+    <ChannelBanner spaced compact />
+    <ServicePricing formats={content.pricing} title="Форматы работы и стоимость" />
+    <ExamplesBanner id="expert-projects" image={examples} />
+    <ServiceExperts id="experts" {...content.team} items={team.items} />
+    <ServiceConsultation image={consultation} {...content.consultation} subject="Консультация по экспертным статьям" greeting="Здравствуйте! Хочу обсудить экспертные статьи для компании." />
+    <ServiceFaq items={expertArticlesFaq} />
+    <ServiceBlog />
+  </main>
+  <ServiceFooter servicesHref="#expert-benefits" />
+</Page>
+<style is:global>
+  .expert-articles-hero { background: #e6dfd9; min-height: max(100svh, 1042px); }
+  .expert-articles-hero .hero-photo { object-position: center top; }
+  .expert-articles-hero .hero-media[data-parallax] img { top: 0; height: calc(100% + 84px); }
+  .expert-articles-hero .hero-content { padding-block: 170px 60px; }
+  .expert-articles-hero .hero-content::before { background: linear-gradient(90deg, #e6dfd9 12%, rgb(230 223 217 / .94) 30%, rgb(230 223 217 / .7) 43%, transparent 65%); }
+  .expert-articles-hero h1 { max-width: 550px; }
+  .expert-articles-page .process-photo { position: static; max-height: none; }
+  .expert-articles-page .pricing-card { min-width: 0; }
+  .expert-articles-page .pricing-card-meta { flex-wrap: wrap; gap: 8px 16px; }
+  .expert-articles-page .channel-banner--compact + .service-pricing { padding-top: 84px; }
+  #expert-projects { background: #d3d4d7; }
+  #expert-projects .examples-photo { left: auto; right: 0; width: 65%; object-position: right center; }
+  #expert-projects::before { background: linear-gradient(90deg, #d3d4d7 15%, rgb(211 212 215 / .85) 35%, transparent 70%); }
+  @media (max-width: 767px) {
+    .expert-articles-hero { min-height: auto; }
+    .expert-articles-hero .hero-content { padding-block: 118px 28px; }
+    .expert-articles-hero .hero-content::before { background: #e6dfd9; }
+    .expert-articles-hero .hero-media::after { background: linear-gradient(180deg, #e6dfd9, transparent 22%); }
+    .expert-articles-hero .hero-photo { object-position: 70% top; }
+    .expert-articles-page .channel-banner--compact + .service-pricing { padding-top: 45.5px; }
+    #expert-projects .examples-photo { width: 100%; }
+    #expert-projects::before { background: linear-gradient(180deg, #d3d4d7, rgb(211 212 215 / .96) 42%, transparent 85%); }
+  }
+</style>
+

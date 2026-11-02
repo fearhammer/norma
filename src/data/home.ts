@@ -36,7 +36,7 @@ export const home = {
     "services/vedenie-korporativnogo-bloga/",
     "services/seo-prodvizhenie/",
     "services/geo-prodvizhenie/",
-    "#services",
+    "services/ekspertnye-stati/",
     "services/seo-stati/",
     "services/keisy-dlya-biznesa/",
     "services/razrabotka-saitov/"
