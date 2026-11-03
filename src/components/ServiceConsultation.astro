@@ -20,7 +20,6 @@ const {
   tags = ['Примеры структуры', 'Примеры дизайна', 'Состав проекта', 'Коммерческое предложение', 'Сроки и стоимость'],
   subject = 'Консультация по разработке сайта',
   greeting = 'Здравствуйте! Хочу обсудить разработку сайта.',
-  note,
   className = '',
 } = Astro.props;
 const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
@@ -56,13 +55,12 @@ if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('P
         <input id="contact-website" name="website" inputmode="url" autocomplete="url" placeholder="company.ru" maxlength="300" />
       </div>
       <label class="form-consent"><input type="checkbox" name="consent" required /> <span>Даю <a href={`${import.meta.env.BASE_URL}consent/`}>согласие на обработку персональных данных</a></span></label>
-      <p class="form-policy"><a href={`${import.meta.env.BASE_URL}privacy/`}>Политика обработки персональных данных</a></p>
       <button class="button form-submit" type="submit">{formEndpoint ? 'Отправить заявку' : 'Отправить по почте'} <span aria-hidden="true">→</span></button>
-      {note && <p class="form-note">{note}</p>}
       {!formEndpoint && <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>}
       <noscript><p class="form-note">Для отправки заявки включите JavaScript или напишите на <a href={`mailto:${contacts.email}`}>{contacts.email}</a>.</p></noscript>
       <p class="form-status" role="status" aria-live="polite" hidden></p>
       <a class="form-telegram" href={contacts.telegram}>Написать в Telegram <span aria-hidden="true">→</span></a>
+      <p class="form-policy"><a href={`${import.meta.env.BASE_URL}privacy/`}>Политика обработки персональных данных</a></p>
     </form>
   </div>
 </section>
@@ -73,7 +71,7 @@ if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('P
   .form-consent { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; margin: 20px 0 8px; }
   .form-consent input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 2px; }
   .form-consent a, .form-policy a { text-decoration: underline; }
-  .form-policy { font-size: 12px; margin: 0 0 20px; }
+  .form-policy { font-size: 12px; margin: 18px 0 0; text-align: center; }
   .form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); pointer-events: none; }
   .form-submit:disabled { opacity: .65; cursor: wait; }
   .form-status[data-error="true"] { color: #9e3025; }
