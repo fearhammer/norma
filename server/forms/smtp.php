@@ -9,11 +9,12 @@ function smtpSend(array $message, array $config): bool
     if (!is_string($password) || $password === '') throw new \RuntimeException('SMTP not configured');
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
     $mail->isSMTP();
-    $mail->Host = 'smtp.yandex.ru';
+    // Server-owned settings only; visitors cannot choose the relay or sender.
+    $mail->Host = $config['smtp_host'] ?? 'mail.hosting.reg.ru';
     $mail->Port = 465;
     $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
     $mail->SMTPAuth = true;
-    $mail->Username = 'anton@norma-studio.ru';
+    $mail->Username = $config['smtp_username'] ?? 'forms@notify.norma-studio.ru';
     $mail->Password = $password;
     if (PHP_SAPI === 'cli-server' && isset($config['test_smtp_port'])) {
         $mail->Host = '127.0.0.1';
@@ -25,7 +26,7 @@ function smtpSend(array $message, array $config): bool
     $mail->Encoding = 'base64';
     $mail->Timeout = 10;
     $mail->CharSet = 'UTF-8';
-    $mail->setFrom('anton@norma-studio.ru', 'Norma Studio');
+    $mail->setFrom($mail->Username, 'Norma Studio');
     $mail->addAddress(RECIPIENT);
     $mail->addReplyTo($message['headers']['Reply-To']);
     $mail->Subject = SUBJECT;

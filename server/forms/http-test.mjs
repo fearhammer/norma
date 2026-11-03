@@ -66,7 +66,7 @@ try {
   assert.equal((await sent.json()).ok, true);
   assert.equal(mails.length, 1);
   assert.match(mails[0], /To: mail@norma-studio.ru/);
-  assert.match(mails[0], /anton@norma-studio.ru/);
+  assert.match(mails[0], /From: Norma Studio <forms@notify.norma-studio.ru>/);
   const encoded = mails[0].match(/Subject: =\?UTF-8\?B\?(.+?)\?=/)[1];
   assert.equal(Buffer.from(encoded, 'base64').toString(), 'Заявка с сайта Norma Studio');
   const content = Buffer.from(mails[0].split('\r\n\r\n').slice(1).join('\r\n\r\n').replace(/\s/g, ''), 'base64').toString();

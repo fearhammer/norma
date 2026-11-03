@@ -141,7 +141,7 @@ function message(array $data): array
         'to' => RECIPIENT,
         'subject' => '=?UTF-8?B?' . base64_encode(SUBJECT) . '?=',
         'body' => chunk_split(base64_encode(implode("\r\n", $lines)), 76, "\r\n"),
-        'headers' => ['From' => 'Norma Studio <anton@norma-studio.ru>', 'Reply-To' => $data['email'],
+        'headers' => ['From' => 'Norma Studio <forms@notify.norma-studio.ru>', 'Reply-To' => $data['email'],
             'MIME-Version' => '1.0', 'Content-Type' => 'text/plain; charset=UTF-8', 'Content-Transfer-Encoding' => 'base64'],
     ];
 }
