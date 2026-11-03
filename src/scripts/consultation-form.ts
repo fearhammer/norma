@@ -1,4 +1,15 @@
-const subject = 'Заявка с сайта Norma';
+const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+let attribution: Record<string, string> = {};
+try {
+  attribution = JSON.parse(sessionStorage.getItem('norma-attribution') || '{}');
+  if (!attribution.landing) {
+    attribution = { landing: location.origin + location.pathname };
+    const query = new URLSearchParams(location.search);
+    for (const key of attributionKeys) if (query.has(key)) attribution[key] = query.get(key)!.slice(0, 200);
+    sessionStorage.setItem('norma-attribution', JSON.stringify(attribution));
+  }
+} catch { attribution = {}; }
+const subject = 'Заявка с сайта Norma Studio';
 
 document.querySelectorAll<HTMLFormElement>('.consultation-form').forEach(form => {
   const status = form.querySelector<HTMLElement>('.form-status')!;
@@ -53,7 +64,7 @@ document.querySelectorAll<HTMLFormElement>('.consultation-form').forEach(form =>
     if (!endpoint) {
       const body = [form.dataset.greeting || 'Здравствуйте!', '', `Имя: ${value('name')}`, `Email: ${value('email')}`,
         `Telegram: ${value('telegram') || 'не указан'}`, `Сайт компании: ${value('website') || 'не указан'}`,
-        `Услуга: ${form.dataset.subject || ''}`, `Страница: ${page}`].join('\r\n');
+        `Услуга: ${form.dataset.subject || ''}`, `Страница: ${page}`, ...Object.entries(attribution).map(([key, val]) => `${key}: ${val}`), 'Согласие: подтверждено; версия 2026-11-03'].join('\r\n');
       window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       showStatus('Письмо подготовлено. Отправьте его из почтовой программы. Если она не открылась, напишите нам в Telegram.');
       return;
@@ -69,7 +80,7 @@ document.querySelectorAll<HTMLFormElement>('.consultation-form').forEach(form =>
       if (remaining > 0) await new Promise(resolve => window.setTimeout(resolve, remaining));
       const result = await request({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
         name: value('name'), email: value('email'), telegram: value('telegram'), website: value('website'),
-        company_fax: value('company_fax'), service: form.dataset.subject || '', page, token,
+        ...attribution, consent: data.get('consent') === 'on', consent_version: '2026-11-03', company_fax: value('company_fax'), service: form.dataset.subject || '', page, token,
       }) });
       if (result.ok !== true) throw new Error('Не удалось подтвердить отправку. Попробуйте позже.');
       form.reset();

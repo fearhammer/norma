@@ -11,7 +11,7 @@ $origin = $config['origins'][0];
 $mail = [];
 $send = function (array $message) use (&$mail): bool { $mail[] = $message; return true; };
 $base = ['name' => 'Тестовый клиент', 'email' => 'test@example.com', 'telegram' => '@test', 'website' => 'example.com',
-    'service' => 'Ведение корпоративного блога', 'page' => $origin . '/norma/services/vedenie-korporativnogo-bloga/', 'company_fax' => ''];
+    'service' => 'Ведение корпоративного блога', 'page' => $origin . '/norma/services/vedenie-korporativnogo-bloga/', 'company_fax' => '', 'consent' => true, 'consent_version' => NormaForms\CONSENT_VERSION];
 $assertions = 0;
 function check(bool $pass, string $name): void {
     global $assertions;
@@ -31,13 +31,14 @@ function submit(array $input): void {
     NormaForms\submit($input, $config, $ip, $origin, $now, $send);
 }
 try {
+    reject(fn() => submit(fresh(['consent' => false])), 422, 'consent required');
     $valid = fresh(['to' => 'attacker@example.com', 'subject' => 'Wrong subject']);
     submit($valid);
     check(count($mail) === 1, 'valid submission');
     check($mail[0]['to'] === 'mail@norma-studio.ru', 'fixed recipient');
-    check(base64_decode(substr($mail[0]['subject'], 10, -2)) === 'Заявка с сайта Norma', 'fixed UTF-8 subject');
+    check(base64_decode(substr($mail[0]['subject'], 10, -2)) === 'Заявка с сайта Norma Studio', 'fixed UTF-8 subject');
     $body = base64_decode($mail[0]['body']);
-    foreach ($base as $key => $value) if ($value !== '') check(str_contains($body, $value), 'field in email: ' . $key);
+    foreach ($base as $key => $value) if ($value !== '' && !in_array($key, ['consent', 'consent_version'])) check(str_contains($body, $value), 'field in email: ' . $key);
     check($mail[0]['headers']['Reply-To'] === 'test@example.com', 'safe reply-to');
     submit($valid);
     submit(fresh());

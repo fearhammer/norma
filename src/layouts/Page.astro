@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
 interface Props { title: string; description: string; image: string; ogType?: 'website' | 'article'; publishedTime?: string; noindex?: boolean; }
 const { title, description, image, ogType = 'website', publishedTime, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -29,6 +30,7 @@ const assetBase = import.meta.env.BASE_URL;
   </head>
   <body>
     <slot />
+    <Analytics />
     <script>
       import '../scripts/parallax';
     </script>

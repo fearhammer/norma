@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace NormaForms;
 
 const RECIPIENT = 'mail@norma-studio.ru';
-const SUBJECT = 'Заявка с сайта Norma';
+const SUBJECT = 'Заявка с сайта Norma Studio';
+const CONSENT_VERSION = '2026-11-03';
 
 final class FormError extends \RuntimeException
 {
@@ -32,8 +33,11 @@ function field(array $input, string $key, int $limit, bool $required = false): s
 
 function validate(array $input, array $origins): array
 {
+    if (($input['consent'] ?? false) !== true || ($input['consent_version'] ?? '') !== CONSENT_VERSION) {
+        throw new FormError(422, 'Подтвердите согласие на обработку персональных данных.');
+    }
     $data = [];
-    foreach (['name' => 120, 'email' => 254, 'telegram' => 100, 'website' => 300, 'service' => 200, 'page' => 1000] as $key => $limit) {
+    foreach (['name' => 120, 'email' => 254, 'telegram' => 100, 'website' => 300, 'service' => 200, 'page' => 1000, 'landing' => 1000, 'utm_source' => 200, 'utm_medium' => 200, 'utm_campaign' => 300, 'utm_content' => 300, 'utm_term' => 300] as $key => $limit) {
         $data[$key] = field($input, $key, $limit, in_array($key, ['name', 'email', 'page'], true));
     }
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -127,11 +131,17 @@ function message(array $data): array
     $lines = [SUBJECT, '', 'Имя: ' . $data['name'], 'Email: ' . $data['email'],
         'Telegram: ' . ($data['telegram'] ?: 'не указан'), 'Сайт компании: ' . ($data['website'] ?: 'не указан'),
         'Услуга: ' . ($data['service'] ?: 'не указана'), 'Страница: ' . $data['page']];
+    foreach (['landing', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as $key) {
+        if (!empty($data[$key])) $lines[] = $key . ': ' . $data[$key];
+    }
+    $lines[] = 'Согласие: подтверждено; версия ' . CONSENT_VERSION;
+    $lines[] = 'Дата (UTC): ' . gmdate('c');
+    $lines[] = 'Номер заявки: ' . bin2hex(random_bytes(8));
     return [
         'to' => RECIPIENT,
         'subject' => '=?UTF-8?B?' . base64_encode(SUBJECT) . '?=',
         'body' => chunk_split(base64_encode(implode("\r\n", $lines)), 76, "\r\n"),
-        'headers' => ['From' => 'Norma Studio <' . RECIPIENT . '>', 'Reply-To' => $data['email'],
+        'headers' => ['From' => 'Norma Studio <anton@norma-studio.ru>', 'Reply-To' => $data['email'],
             'MIME-Version' => '1.0', 'Content-Type' => 'text/plain; charset=UTF-8', 'Content-Transfer-Encoding' => 'base64'],
     ];
 }

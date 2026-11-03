@@ -41,6 +41,9 @@ jobs:
       - name: Upload compiled site
         run: |
           printf 'ErrorDocument 404 /404.html\n' > dist/.htaccess
+          mkdir -p dist/api/forms/vendor/PHPMailer
+          cp server/forms/index.php server/forms/lib.php server/forms/smtp.php dist/api/forms/
+          cp server/forms/vendor/PHPMailer/*.php server/forms/vendor/PHPMailer/LICENSE dist/api/forms/vendor/PHPMailer/
           test -s dist/index.html && test -s dist/404.html
           rsync -az --delay-updates --chmod=D755,F644 -e "ssh -i ~/.ssh/regru -o BatchMode=yes -o StrictHostKeyChecking=yes" dist/ u3706210@server84.hosting.reg.ru:.
       - name: Remove runner key

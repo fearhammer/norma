@@ -1,0 +1,37 @@
+---
+const production = import.meta.env.PUBLIC_INDEXABLE === 'true';
+---
+{production && <>
+<script is:inline type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114039796', 'ym');
+    ym(114039796, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114039796" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<aside class="cookie-notice" aria-label="Использование cookies" hidden>
+  <p>Мы используем cookie и Яндекс Метрику для анализа посещаемости сайта. <a href="/privacy/">Политика обработки персональных данных</a></p>
+  <button type="button" class="button">Понятно</button>
+</aside>
+<script>
+  const notice = document.querySelector<HTMLElement>('.cookie-notice');
+  if (notice) {
+    let dismissed = false;
+    try { dismissed = localStorage.getItem('norma-cookie-notice') === '1'; } catch {}
+    notice.hidden = dismissed;
+    notice.querySelector('button')?.addEventListener('click', () => {
+      notice.hidden = true;
+      try { localStorage.setItem('norma-cookie-notice', '1'); } catch {}
+    });
+  }
+</script>
+</>}
+<style>
+  .cookie-notice { position: fixed; z-index: 100; bottom: 16px; left: 16px; right: 16px; max-width: 720px; margin-inline: auto; padding: 20px; border: 1px solid #d8c9bc; border-radius: 10px; background: #f4ebe2; color: #45382b; box-shadow: 0 4px 20px #0002; display: flex; align-items: center; gap: 20px; }
+  .cookie-notice[hidden] { display: none; }
+  p { font-size: 14px; line-height: 1.5; margin: 0; } a { text-decoration: underline; } button { flex-shrink: 0; }
+  @media(max-width: 600px) { .cookie-notice { flex-direction: column; align-items: start; } }
+</style>

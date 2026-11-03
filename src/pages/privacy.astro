@@ -1,0 +1,12 @@
+---
+import Page from '../layouts/Page.astro';
+import Header from '../components/Header.astro';
+import ServiceFooter from '../components/ServiceFooter.astro';
+import paragraphs from '../data/privacy.json';
+---
+<Page title="Политика обработки персональных данных — Norma Studio" description="Политика обработки персональных данных" image={`${import.meta.env.BASE_URL}favicon.svg`}>
+<Header />
+<main class="legal container"><h1>Политика обработки персональных данных</h1>{paragraphs.map(text => <p>{text}</p>)}</main>
+<ServiceFooter />
+</Page>
+<style>.legal { padding-block: 150px 80px; max-width: 1000px; } h1 { font-size: clamp(32px,5vw,56px); margin-bottom: 40px; } p { margin-bottom: 18px; line-height: 1.65; overflow-wrap: anywhere; }</style>

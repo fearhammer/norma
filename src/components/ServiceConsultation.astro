@@ -35,7 +35,7 @@ if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('P
     <ul class="consultation-tags" aria-label="Что обсудим">
       {tags.map(text => <li>{text}</li>)}
     </ul>
-    <form class="consultation-form" action={`mailto:${contacts.email}?subject=${encodeURIComponent('Заявка с сайта Norma')}`} method="post" enctype="text/plain" data-email={contacts.email} data-subject={subject} data-greeting={greeting} data-endpoint={formEndpoint}>
+    <form class="consultation-form ym-hide-content" action={`mailto:${contacts.email}?subject=${encodeURIComponent('Заявка с сайта Norma Studio')}`} method="post" enctype="text/plain" data-email={contacts.email} data-subject={subject} data-greeting={greeting} data-endpoint={formEndpoint}>
       <div class="form-trap" aria-hidden="true" inert>
         <label>Company fax <input name="company_fax" tabindex="-1" autocomplete="off" /></label>
       </div>
@@ -55,6 +55,8 @@ if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('P
         <label for="contact-website">Сайт компании <small>(необязательно)</small></label>
         <input id="contact-website" name="website" inputmode="url" autocomplete="url" placeholder="company.ru" maxlength="300" />
       </div>
+      <label class="form-consent"><input type="checkbox" name="consent" required /> <span>Даю <a href={`${import.meta.env.BASE_URL}consent/`}>согласие на обработку персональных данных</a></span></label>
+      <p class="form-policy"><a href={`${import.meta.env.BASE_URL}privacy/`}>Политика обработки персональных данных</a></p>
       <button class="button form-submit" type="submit">{formEndpoint ? 'Отправить заявку' : 'Отправить по почте'} <span aria-hidden="true">→</span></button>
       {note && <p class="form-note">{note}</p>}
       {!formEndpoint && <p class="form-note">Откроется письмо на <a href={`mailto:${contacts.email}`}>{contacts.email}</a> в вашей почтовой программе. Отправьте его, чтобы мы получили заявку.</p>}
@@ -68,6 +70,10 @@ if (formEndpoint && !/^https:\/\/[^\s]+$/.test(formEndpoint)) throw new Error('P
   import '../scripts/consultation-form';
 </script>
 <style>
+  .form-consent { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; margin: 20px 0 8px; }
+  .form-consent input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 2px; }
+  .form-consent a, .form-policy a { text-decoration: underline; }
+  .form-policy { font-size: 12px; margin: 0 0 20px; }
   .form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); pointer-events: none; }
   .form-submit:disabled { opacity: .65; cursor: wait; }
   .form-status[data-error="true"] { color: #9e3025; }

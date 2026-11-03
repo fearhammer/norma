@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
+require __DIR__ . '/smtp.php';
 
 use NormaForms\FormError;
 
@@ -20,6 +21,7 @@ try {
         throw new RuntimeException('Invalid configuration');
     }
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    if ($origin === '' && ($_SERVER['HTTP_SEC_FETCH_SITE'] ?? '') === 'same-origin') $origin = 'https://' . ($_SERVER['HTTP_HOST'] ?? '');
     if (!in_array($origin, $config['origins'], true)) throw new FormError(403, 'Отправка с этого сайта запрещена.');
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -42,8 +44,8 @@ try {
     if (strlen($body) > 8192) throw new FormError(413, 'Слишком большой запрос.');
     $input = json_decode($body, true);
     if (!is_array($input)) throw new FormError(400, 'Неверный формат запроса.');
-    NormaForms\submit($input, $config, $ip, $origin, $now, function (array $mail): bool {
-        return mail($mail['to'], $mail['subject'], $mail['body'], $mail['headers']);
+    NormaForms\submit($input, $config, $ip, $origin, $now, function (array $mail) use ($config): bool {
+        return NormaForms\smtpSend($mail, $config);
     });
     echo json_encode(['ok' => true]);
 } catch (FormError $error) {
