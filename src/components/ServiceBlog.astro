@@ -1,6 +1,7 @@
 ---
 import ArticleRelated from './ArticleRelated.astro';
+import { showEditorialSections } from '../data/features';
 interface Props { className?: string; }
 const { className = '' } = Astro.props;
 ---
-<ArticleRelated id="blog" className={`marketing-blog ${className}`} title="Читайте про контент-маркетинг в блоге Norma Studio" includePreviews />
+{showEditorialSections && <ArticleRelated id="blog" className={`marketing-blog ${className}`} title="Читайте про контент-маркетинг в блоге Norma Studio" includePreviews />}

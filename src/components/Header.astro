@@ -1,14 +1,15 @@
 ---
 // Адреса существующего сайта сохраняются до подготовки остальных страниц.
 import { contacts } from '../data/contacts';
+import { showEditorialSections } from '../data/features';
 interface Props { servicesHref?: string; blogHref?: string; }
 const { servicesHref = '#formats', blogHref = '#blog' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const withBase = (href: string) => href.startsWith('/') ? `${base}${href.slice(1)}` : href;
 const links = [
-  { href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' },
+  ...(showEditorialSections ? [{ href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' }] : []),
   { href: `${base}#team`, label: 'О студии' },
-  { href: withBase(blogHref), label: 'Блог' },
+  ...(showEditorialSections ? [{ href: withBase(blogHref), label: 'Блог' }] : []),
 ];
 const services = [
   { label: 'Контент-маркетинг', href: withBase('/services/kontent-marketing/') },
