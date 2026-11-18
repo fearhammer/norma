@@ -2,7 +2,7 @@
 import BlogArticle from '../../layouts/BlogArticle.astro';
 import ArticleRelated from '../../components/ArticleRelated.astro';
 import article from '../../data/content-marketing-cost.json';
-import cover from '../../assets/photos/team-discussion.jpg';
+import { costArticleCover as cover } from '../../data/blogArticles';
 const slug = 'skolko-stoit-kontent-marketing-autsors';
 const schema = [
   { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, datePublished: '2026-11-18', author: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' }, mainEntityOfPage: `https://norma-studio.ru/blog/${slug}/`, image: new URL(cover.src, Astro.site).href },

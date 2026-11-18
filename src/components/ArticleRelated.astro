@@ -20,7 +20,7 @@ const { firstFeature, firstRow, secondFeature, secondRow } = getRelatedArticles(
         <p>{firstFeature.description}</p>
         <span class="button" aria-hidden="true">Читать <span>→</span></span>
       </div>
-      <div class="blog-cover" aria-hidden="true"></div>
+      <div class="blog-cover" aria-hidden="true">{firstFeature.cover && <img src={firstFeature.cover.src} width={firstFeature.cover.width} height={firstFeature.cover.height} alt="" loading="lazy" />}</div>
     </a>
   </article>}
 
@@ -43,7 +43,7 @@ const { firstFeature, firstRow, secondFeature, secondRow } = getRelatedArticles(
         <p>{secondFeature.description}</p>
         <span class="button" aria-hidden="true">Читать <span>→</span></span>
       </div>
-      <div class="blog-cover" aria-hidden="true"></div>
+      <div class="blog-cover" aria-hidden="true">{secondFeature.cover && <img src={secondFeature.cover.src} width={secondFeature.cover.width} height={secondFeature.cover.height} alt="" loading="lazy" />}</div>
     </a>
   </article>}
 

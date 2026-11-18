@@ -1,3 +1,7 @@
+import type { ImageMetadata } from 'astro';
+import costArticleCover from '../assets/photos/team-discussion.jpg';
+export { costArticleCover };
+
 export interface BlogArticleCard {
   slug: string;
   title: string;
@@ -5,13 +9,14 @@ export interface BlogArticleCard {
   dateTime: string;
   readingTime: string;
   featured?: boolean;
+  cover?: ImageMetadata;
   status: 'published' | 'preview' | 'draft';
 }
 
 // Preview records demonstrate the layout until real materials are added.
 // Drafts never enter recommendations. Published pages use only published records.
 export const blogArticles: BlogArticleCard[] = [
-  {"slug":"skolko-stoit-kontent-marketing-autsors","title":"Сколько стоит контент-маркетинг на аутсорсе: из чего складывается бюджет","description":"Разбираем реальную стоимость контент-маркетинга на аутсорсе: из чего складывается бюджет, какие скрытые часы тратит команда, сравнение со штатом и фрилансом.","dateTime":"2026-11-18","readingTime":"15 минут","featured":true,"status":"published"},
+  {cover: costArticleCover,"slug":"skolko-stoit-kontent-marketing-autsors","title":"Сколько стоит контент-маркетинг на аутсорсе: из чего складывается бюджет","description":"Разбираем реальную стоимость контент-маркетинга на аутсорсе: из чего складывается бюджет, какие скрытые часы тратит команда, сравнение со штатом и фрилансом.","dateTime":"2026-11-18","readingTime":"15 минут","featured":true,"status":"published"},
   {
     slug: 'kak-prodvigat-stati',
     title: 'Как продвигать статьи: подробное руководство по привлечению трафика и клиентов',
