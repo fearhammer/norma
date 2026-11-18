@@ -193,16 +193,16 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .desktop-nav { display: none; }
   .brand { font-size: 1.375rem; }
   .mobile-menu { display: block; }
-  .mobile-menu summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
+  .mobile-menu > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
   .menu-icon { display: flex; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; }
   .menu-icon > span { display: block; height: 2px; width: 100%; background: currentColor; border-radius: 2px; }
   .mobile-menu summary::-webkit-details-marker { display: none; }
   .mobile-menu nav { position: absolute; inset-inline: 0; top: calc(100% + 8px); display: flex; flex-direction: column; padding: 16px 20px; border-radius: 24px; background: rgb(246 240 234 / .35); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: 0 8px 24px rgb(68 56 44 / .08); }
   .mobile-menu nav a { padding-block: 13px; text-decoration: none; }
   .mobile-services-menu { border-bottom: 1px solid rgb(112 93 74 / .16); }
-  .mobile-services-menu summary { display: flex; align-items: center; justify-content: space-between; padding-block: 13px; cursor: pointer; list-style: none; }
+  .mobile-services-menu summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; min-height: 48px; white-space: nowrap; padding-block: 13px; cursor: pointer; list-style: none; }
   .mobile-services-menu summary::-webkit-details-marker { display: none; }
-  .mobile-services-menu summary span { font-size: .65rem; transition: transform .25s ease; }
+  .mobile-services-menu summary span { flex: 0 0 24px; text-align: center; font-size: 1.25rem; line-height: 1; transition: transform .25s ease; }
   .mobile-services-menu[open] summary span { transform: rotate(180deg); }
   .mobile-services-menu > div { display: grid; padding: 0 0 10px 14px; }
   .mobile-services-menu a, .mobile-services-menu > div > span { display: block; padding-block: 13px; color: #6d6259; font-size: .875rem; line-height: 1.3; }
