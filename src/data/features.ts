@@ -1,2 +1,2 @@
-// Temporarily hide editorial sections while keeping their content for relaunch.
-export const showEditorialSections = false;
+// Shared visibility of blog sections and editorial navigation.
+export const showEditorialSections = true;

@@ -11,6 +11,7 @@ export interface BlogArticleCard {
 // Preview records demonstrate the layout until real materials are added.
 // Drafts never enter recommendations. Published pages use only published records.
 export const blogArticles: BlogArticleCard[] = [
+  {"slug":"skolko-stoit-kontent-marketing-autsors","title":"Сколько стоит контент-маркетинг на аутсорсе: из чего складывается бюджет","description":"Разбираем реальную стоимость контент-маркетинга на аутсорсе: из чего складывается бюджет, какие скрытые часы тратит команда, сравнение со штатом и фрилансом.","dateTime":"2026-11-18","readingTime":"15 минут","featured":true,"status":"published"},
   {
     slug: 'kak-prodvigat-stati',
     title: 'Как продвигать статьи: подробное руководство по привлечению трафика и клиентов',

@@ -9,6 +9,7 @@ import '../styles/blog-article.css';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   category: string;
   date: string;
@@ -20,11 +21,11 @@ interface Props {
   preview?: boolean;
 }
 
-const { title, description, category, date, dateTime, cover, coverAlt, contents, readingTime, preview = false } = Astro.props;
+const { title, seoTitle, description, category, date, dateTime, cover, coverAlt, contents, readingTime, preview = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
-<Page title={`${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={preview ? undefined : dateTime} noindex={preview}>
-  <Header blogHref="/services/seo-stati/#blog" />
+<Page title={seoTitle ?? `${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={preview ? undefined : dateTime} noindex={preview}>
+  <Header blogHref="/#blog" />
   <main id="main-content" class="article-page">
     <article>
       <header class="article-hero">
@@ -54,5 +55,5 @@ const base = import.meta.env.BASE_URL;
     <ArticleTelegram />
     <slot name="related" />
   </main>
-  <ServiceFooter servicesHref={`${base}services/razrabotka-saitov/#formats`} blogHref={`${base}services/seo-stati/#blog`} contactHref={`${base}services/seo-stati/#consultation`} />
+  <ServiceFooter servicesHref={`${base}#services`} blogHref={`${base}#blog`} contactHref={`${base}#consultation`} />
 </Page>

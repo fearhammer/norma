@@ -7,9 +7,11 @@ const { servicesHref = '#formats', blogHref = '#blog' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const withBase = (href: string) => href.startsWith('/') ? `${base}${href.slice(1)}` : href;
 const links = [
-  ...(showEditorialSections ? [{ href: 'https://norma-studio.ru/', label: 'Полезные материалы ↓' }] : []),
   { href: `${base}#team`, label: 'О студии' },
   ...(showEditorialSections ? [{ href: withBase(blogHref), label: 'Блог' }] : []),
+];
+const usefulMaterials = [
+  { href: withBase('/blog/skolko-stoit-kontent-marketing-autsors/'), label: 'Сколько стоит контент-маркетинг на аутсорсе' },
 ];
 const services = [
   { label: 'Контент-маркетинг', href: withBase('/services/kontent-marketing/') },
@@ -38,6 +40,10 @@ const services = [
           ))}
         </div>
       </details>
+      {showEditorialSections && <details class="services-menu useful-menu">
+        <summary><span class="services-menu-label">Полезные материалы</span> <span class="services-menu-arrow" aria-hidden="true">↓</span></summary>
+        <div class="services-menu-panel useful-menu-panel">{usefulMaterials.map(item => <a href={item.href}>{item.label}</a>)}</div>
+      </details>}
       {links.map(link => <a href={link.href}>{link.label}</a>)}
     </nav>
     <a class="header-contact" href={contacts.telegramChannel}>Про контент-маркетинг в Telegram <span aria-hidden="true">→</span></a>
@@ -50,6 +56,10 @@ const services = [
             {services.map(service => service.href ? <a href={service.href}>{service.label}</a> : <span>{service.label}</span>)}
           </div>
         </details>
+        {showEditorialSections && <details class="mobile-services-menu">
+          <summary>Полезные материалы <span aria-hidden="true">↓</span></summary>
+          <div>{usefulMaterials.map(item => <a href={item.href}>{item.label}</a>)}</div>
+        </details>}
         {links.map(link => <a href={link.href}>{link.label}</a>)}
       </nav>
     </details>
@@ -57,7 +67,12 @@ const services = [
 </header>
 <script>
   const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
-  const servicesMenu = document.querySelector<HTMLDetailsElement>('.services-menu');
+  const toggle = menu?.querySelector('summary');
+  menu?.addEventListener('toggle', () => {
+    toggle?.setAttribute('aria-label', menu.open ? 'Закрыть меню' : 'Открыть меню');
+  });
+  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+  document.querySelectorAll<HTMLDetailsElement>('.services-menu').forEach(servicesMenu => {
   const servicesSummary = servicesMenu?.querySelector('summary');
   const hoverMenu = window.matchMedia('(hover: hover) and (pointer: fine)');
   const closeServicesMenu = () => { if (servicesMenu) servicesMenu.open = false; };
@@ -68,11 +83,6 @@ const services = [
     if (!(event.relatedTarget instanceof Node) || !servicesMenu?.contains(event.relatedTarget)) closeServicesMenu();
   });
   servicesSummary?.addEventListener('click', event => { if (hoverMenu.matches) event.preventDefault(); });
-  const toggle = menu?.querySelector('summary');
-  menu?.addEventListener('toggle', () => {
-    toggle?.setAttribute('aria-label', menu.open ? 'Закрыть меню' : 'Открыть меню');
-  });
-  menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && menu?.open) { menu.open = false; toggle?.focus(); }
     if (event.key === 'Escape' && servicesMenu?.open) { servicesMenu.open = false; servicesMenu.querySelector('summary')?.focus(); }
@@ -82,6 +92,7 @@ const services = [
     if (servicesMenu?.open && event.target instanceof Node && !servicesMenu.contains(event.target)) servicesMenu.open = false;
   });
   servicesMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { servicesMenu.open = false; }));
+  });
 
   const header = document.querySelector<HTMLElement>('.site-header');
   const footer = document.querySelector<HTMLElement>('.site-footer');
