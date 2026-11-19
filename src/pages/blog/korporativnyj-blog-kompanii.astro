@@ -1,0 +1,24 @@
+---
+import BlogArticle from '../../layouts/BlogArticle.astro';
+import ArticleRelated from '../../components/ArticleRelated.astro';
+import article from '../../data/corporate-blog-guide.json';
+import { corporateBlogCover as cover } from '../../data/blogArticles';
+const slug = 'korporativnyj-blog-kompanii';
+const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, datePublished: '2026-11-19', dateModified: '2026-11-19', author: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' }, mainEntityOfPage: `https://norma-studio.ru/blog/${slug}/`, image: new URL(cover.src, Astro.site).href };
+---
+<BlogArticle title={article.title} seoTitle={article.seoTitle} description={article.description} category="Контент-маркетинг" date="19 ноября 2026" dateTime="2026-11-19" readingTime={article.readingTime} cover={cover} coverAlt="Редактор работает над статьёй" contents={article.contents}>
+  <Fragment slot="intro" set:html={article.intro} />
+  <Fragment set:html={article.body} />
+  <script type="application/ld+json" set:html={JSON.stringify([schema, { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: article.faqs.map(item => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }]).replace(/</g, '\\u003c')} />
+  <ArticleRelated slot="related" currentSlug={slug} />
+</BlogArticle>
+<style is:global>
+  .article-section h4 { margin: 1.75rem 0 .75rem; font-size: 1rem; line-height: 1.3; font-weight: 500; color: var(--color-heading); }
+  .article-prose > .article-pull-quote { width: min(61.25rem, calc(100vw - 40px)); margin-left: 50%; margin-right: 0; transform: translateX(-50%); }
+  .article-data-table { width: min(61.25rem, calc(100vw - 40px)); margin: 2rem 0 2rem 50%; transform: translateX(-50%); overflow-x: auto; border: 1px solid #e4d9cf; border-radius: 8px; background: #f5ebe1; }
+  .article-data-table table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .875rem; line-height: 1.5; }
+  .article-data-table th, .article-data-table td { padding: 1.25rem; text-align: left; vertical-align: top; border-bottom: 1px solid #e4d9cf; }
+  .article-data-table th { background: #e8d9ca; color: var(--color-heading); font-weight: 500; }
+  .article-data-table p { margin: 0; }
+  .article-data-table tr:last-child td { border-bottom: 0; }
+</style>
