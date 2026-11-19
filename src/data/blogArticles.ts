@@ -18,7 +18,7 @@ export interface BlogArticleCard {
 // Preview records demonstrate the layout until real materials are added.
 // Drafts never enter recommendations. Published pages use only published records.
 export const blogArticles: BlogArticleCard[] = [
-  { cover: leadsArticleCover, slug: 'blog-chitayut-a-zayavok-net', title: "Блог читают, а заявок нет: почему это происходит и как это исправить", description: "Разбираем 8 причин, почему статьи в корпоративном блоге собирают трафик, но не приводят клиентов в B2B. Пошаговый план аудита, реальные кейсы и настройка воронки.", dateTime: '2026-11-18', readingTime: '18 минут', featured: true, status: 'published' },
+  { cover: leadsArticleCover, slug: 'blog-chitayut-a-zayavok-net', title: "Блог читают, а заявок нет: почему это происходит и как это исправить", description: "Разбираем 8 причин, почему статьи в корпоративном блоге собирают трафик, но не приводят клиентов в B2B. Пошаговый план аудита, реальные кейсы и настройка воронки.", dateTime: '2026-11-18', readingTime: '14 минут', featured: true, status: 'published' },
   {cover: costArticleCover,"slug":"skolko-stoit-kontent-marketing-autsors","title":"Сколько стоит контент-маркетинг на аутсорсе: из чего складывается бюджет","description":"Разбираем реальную стоимость контент-маркетинга на аутсорсе: из чего складывается бюджет, какие скрытые часы тратит команда, сравнение со штатом и фрилансом.","dateTime":"2026-11-18","readingTime":"15 минут","featured":true,"status":"published"},
   {
     slug: 'kak-prodvigat-stati',

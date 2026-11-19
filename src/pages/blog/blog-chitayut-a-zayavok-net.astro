@@ -4,9 +4,9 @@ import ArticleRelated from '../../components/ArticleRelated.astro';
 import article from '../../data/blog-leads.json';
 import { leadsArticleCover as cover } from '../../data/blogArticles';
 const slug = 'blog-chitayut-a-zayavok-net';
-const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, datePublished: '2026-11-18', author: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' }, mainEntityOfPage: `https://norma-studio.ru/blog/${slug}/`, image: new URL(cover.src, Astro.site).href };
+const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, datePublished: '2026-11-18', dateModified: '2026-11-19', author: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' }, mainEntityOfPage: `https://norma-studio.ru/blog/${slug}/`, image: new URL(cover.src, Astro.site).href };
 ---
-<BlogArticle title={article.title} seoTitle={article.seoTitle} description={article.description} category="Контент-маркетинг" date="18 ноября 2026" dateTime="2026-11-18" readingTime="18 минут" cover={cover} coverAlt="Коллеги обсуждают материалы в студии" contents={article.contents}>
+<BlogArticle title={article.title} seoTitle={article.seoTitle} description={article.description} category="Контент-маркетинг" date="18 ноября 2026" dateTime="2026-11-18" readingTime="14 минут" cover={cover} coverAlt="Коллеги обсуждают материалы в студии" contents={article.contents}>
   <Fragment slot="intro" set:html={article.intro} />
   <Fragment set:html={article.body} />
   <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
