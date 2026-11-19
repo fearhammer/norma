@@ -23,6 +23,7 @@
 .article-section h3 { margin: 2.3rem 0 1rem; color: var(--color-heading); font-size: 1.125rem; line-height: 1.2; font-weight: 500; letter-spacing: -.01em; }
 .article-rich-list { display: grid; gap: 1.15rem; margin: 1.5rem 0; padding-left: 1.35rem; }
 .article-rich-list li { padding-left: .4rem; }
+.article-rich-list .article-rich-list { gap: .55rem; margin-block: .65rem 0; }
 .article-rich-list li::marker { color: #b18d70; }
 .article-pull-quote { width: min(61.25rem, calc(100% - 64px)); margin: 4.25rem auto; padding: clamp(2rem, 5vw, 4rem); border-radius: 8px; background: #e8d9ca; color: var(--color-heading); }
 .article-pull-quote blockquote { margin: 0; max-width: 52rem; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.04; font-weight: 400; letter-spacing: -.03em; text-wrap: balance; }
