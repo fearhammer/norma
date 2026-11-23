@@ -1,5 +1,8 @@
 import type { ImageMetadata } from 'astro';
 import costArticleCover from '../assets/photos/team-discussion.jpg';
+import strategyGuideCover from '../assets/photos/content-strategy/hero.jpg';
+import strategyGuide from './strategy-guide.json';
+export { strategyGuideCover };
 import marketingGuideCover from '../assets/photos/content-marketing/benefits.jpg';
 import marketingGuide from './content-marketing-guide.json';
 export { marketingGuideCover };
@@ -24,6 +27,7 @@ export interface BlogArticleCard {
 // Preview records demonstrate the layout until real materials are added.
 // Drafts never enter recommendations. Published pages use only published records.
 export const blogArticles: BlogArticleCard[] = [
+  { cover: strategyGuideCover, slug: 'kontent-strategiya-primer-shablon', title: strategyGuide.title, description: strategyGuide.description, dateTime: '2026-11-23', readingTime: strategyGuide.readingTime, featured: true, status: 'published' },
   { cover: marketingGuideCover, slug: 'kontent-marketing-dlya-biznesa', title: marketingGuide.title, description: marketingGuide.description, dateTime: '2026-11-20', readingTime: marketingGuide.readingTime, featured: true, status: 'published' },
   { cover: corporateBlogCover, slug: 'korporativnyj-blog-kompanii', title: corporateBlogGuide.title, description: corporateBlogGuide.description, dateTime: '2026-11-19', readingTime: corporateBlogGuide.readingTime, featured: true, status: 'published' },
   { cover: leadsArticleCover, slug: 'blog-chitayut-a-zayavok-net', title: "Блог читают, а заявок нет: почему это происходит и как это исправить", description: "Разбираем 8 причин, почему статьи в корпоративном блоге собирают трафик, но не приводят клиентов в B2B. Пошаговый план аудита, реальные кейсы и настройка воронки.", dateTime: '2026-11-18', readingTime: '14 минут', featured: true, status: 'published' },
