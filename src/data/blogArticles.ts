@@ -1,4 +1,7 @@
 import type { ImageMetadata } from 'astro';
+import expertArticlesGuideCover from '../assets/photos/expert-articles/hero.jpg';
+import expertArticlesGuide from './expert-articles-guide.json';
+export { expertArticlesGuideCover };
 import costArticleCover from '../assets/photos/team-discussion.jpg';
 import strategyGuideCover from '../assets/photos/content-strategy/hero.jpg';
 import strategyGuide from './strategy-guide.json';
@@ -27,6 +30,7 @@ export interface BlogArticleCard {
 // Preview records demonstrate the layout until real materials are added.
 // Drafts never enter recommendations. Published pages use only published records.
 export const blogArticles: BlogArticleCard[] = [
+  { cover: expertArticlesGuideCover, slug: 'ekspertnye-stati-dlya-biznesa', title: expertArticlesGuide.title, description: expertArticlesGuide.description, dateTime: '2026-11-25', readingTime: expertArticlesGuide.readingTime, featured: true, status: 'published' },
   { cover: strategyGuideCover, slug: 'kontent-strategiya-primer-shablon', title: strategyGuide.title, description: strategyGuide.description, dateTime: '2026-11-23', readingTime: strategyGuide.readingTime, featured: true, status: 'published' },
   { cover: marketingGuideCover, slug: 'kontent-marketing-dlya-biznesa', title: marketingGuide.title, description: marketingGuide.description, dateTime: '2026-11-20', readingTime: marketingGuide.readingTime, featured: true, status: 'published' },
   { cover: corporateBlogCover, slug: 'korporativnyj-blog-kompanii', title: corporateBlogGuide.title, description: corporateBlogGuide.description, dateTime: '2026-11-19', readingTime: corporateBlogGuide.readingTime, featured: true, status: 'published' },
