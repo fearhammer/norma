@@ -40,7 +40,7 @@ jobs:
           chmod 600 ~/.ssh/regru ~/.ssh/known_hosts
       - name: Upload compiled site
         run: |
-          printf 'ErrorDocument 404 /404.html\n' > dist/.htaccess
+          printf 'ErrorDocument 404 /404.html\nErrorDocument 410 /404.html\nRedirectMatch 410 ^/blog/(kak-prodvigat-stati|ekspertiza-v-sistemnyy-kontent)(/.*)?$\n' > dist/.htaccess
           mkdir -p dist/api/forms/vendor/PHPMailer
           cp server/forms/index.php server/forms/lib.php server/forms/smtp.php dist/api/forms/
           cp server/forms/vendor/PHPMailer/*.php server/forms/vendor/PHPMailer/LICENSE dist/api/forms/vendor/PHPMailer/
