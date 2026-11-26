@@ -27,8 +27,7 @@ export interface BlogArticleCard {
   status: 'published' | 'preview' | 'draft';
 }
 
-// Preview records demonstrate the layout until real materials are added.
-// Drafts never enter recommendations. Published pages use only published records.
+// Only published materials appear on the site.
 export const blogArticles: BlogArticleCard[] = [
   { cover: expertArticlesGuideCover, slug: 'ekspertnye-stati-dlya-biznesa', title: expertArticlesGuide.title, description: expertArticlesGuide.description, dateTime: '2026-11-25', readingTime: expertArticlesGuide.readingTime, featured: true, status: 'published' },
   { cover: strategyGuideCover, slug: 'kontent-strategiya-primer-shablon', title: strategyGuide.title, description: strategyGuide.description, dateTime: '2026-11-23', readingTime: strategyGuide.readingTime, featured: true, status: 'published' },
@@ -36,63 +35,6 @@ export const blogArticles: BlogArticleCard[] = [
   { cover: corporateBlogCover, slug: 'korporativnyj-blog-kompanii', title: corporateBlogGuide.title, description: corporateBlogGuide.description, dateTime: '2026-11-19', readingTime: corporateBlogGuide.readingTime, featured: true, status: 'published' },
   { cover: leadsArticleCover, slug: 'blog-chitayut-a-zayavok-net', title: "Блог читают, а заявок нет: почему это происходит и как это исправить", description: "Разбираем 8 причин, почему статьи в корпоративном блоге собирают трафик, но не приводят клиентов в B2B. Пошаговый план аудита, реальные кейсы и настройка воронки.", dateTime: '2026-11-18', readingTime: '14 минут', featured: true, status: 'published' },
   {cover: costArticleCover,"slug":"skolko-stoit-kontent-marketing-autsors","title":"Сколько стоит контент-маркетинг на аутсорсе: из чего складывается бюджет","description":"Разбираем реальную стоимость контент-маркетинга на аутсорсе: из чего складывается бюджет, какие скрытые часы тратит команда, сравнение со штатом и фрилансом.","dateTime":"2026-11-18","readingTime":"15 минут","featured":true,"status":"published"},
-  {
-    slug: 'kontent-dlya-slozhnogo-produkta',
-    title: 'Как рассказывать о сложном продукте понятно и точно',
-    description: 'Разбираем, как соединить знания команды, вопросы клиентов и ясную структуру материала.',
-    dateTime: '2026-09-20',
-    readingTime: '9 минут',
-    featured: true,
-    status: 'preview',
-  },
-  {
-    slug: 'statya-iz-ekspertizy',
-    title: 'Как превратить экспертизу компании в полезный материал',
-    description: 'Показываем путь от интервью с экспертами до статьи, которая отвечает на вопросы читателей и помогает продажам.',
-    dateTime: '2026-09-12',
-    readingTime: '7 минут',
-    status: 'preview',
-  },
-  {
-    slug: 'struktura-stati',
-    title: 'Как подготовить структуру статьи до начала работы над текстом',
-    description: 'Разбираемся, как собрать фактуру, выбрать главное и выстроить материал вокруг задачи аудитории.',
-    dateTime: '2026-09-05',
-    readingTime: '6 минут',
-    status: 'preview',
-  },
-  {
-    slug: 'sleduyushchiy-shag-chitatelya',
-    title: 'Что читать после статьи: проектируем следующий шаг читателя',
-    description: 'Связываем публикации, кейсы и страницы услуг так, чтобы человек мог продолжить изучение темы.',
-    dateTime: '2026-08-25',
-    readingTime: '5 минут',
-    status: 'preview',
-  },
-  {
-    slug: 'intervyu-s-ekspertom',
-    title: 'Как провести интервью с экспертом для статьи',
-    description: 'Готовим вопросы, уточняем сложные детали и превращаем разговор в проверенную фактуру.',
-    dateTime: '2026-08-18',
-    readingTime: '6 минут',
-    status: 'preview',
-  },
-  {
-    slug: 'obnovlenie-statey',
-    title: 'Когда и как обновлять опубликованные статьи',
-    description: 'Смотрим на запросы и поведение читателей, чтобы материал оставался точным и полезным.',
-    dateTime: '2026-08-11',
-    readingTime: '5 минут',
-    status: 'preview',
-  },
-  {
-    slug: 'temy-dlya-b2b-bloga',
-    title: 'Как находить темы для B2B-блога',
-    description: 'Ищем пересечение вопросов аудитории, опыта компании и задач маркетинга.',
-    dateTime: '2026-08-04',
-    readingTime: '7 минут',
-    status: 'preview',
-  },
 ];
 
 const newestFirst = (a: BlogArticleCard, b: BlogArticleCard) =>
