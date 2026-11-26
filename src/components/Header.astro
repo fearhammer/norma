@@ -47,9 +47,7 @@ const services = [
       </details>
       {showEditorialSections && <details class="services-menu useful-menu">
         <summary><span class="services-menu-label">Полезные материалы</span> <span class="services-menu-arrow" aria-hidden="true">↓</span></summary>
-        <div class="services-menu-panel useful-menu-panel">
-          {[usefulMaterials.slice(0, Math.ceil(usefulMaterials.length / 2)), usefulMaterials.slice(Math.ceil(usefulMaterials.length / 2))].map(column => <div class="useful-menu-column">{column.map(item => <a href={item.href}>{item.label}</a>)}</div>)}
-        </div>
+        <div class="services-menu-panel useful-menu-panel">{usefulMaterials.map(item => <a href={item.href}>{item.label}</a>)}</div>
       </details>}
       {links.map(link => <a href={link.href}>{link.label}</a>)}
     </nav>

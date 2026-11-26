@@ -544,8 +544,5 @@ h2 { color: var(--color-heading); font-size: 3.375rem; line-height: .9; letter-s
   .channel-banner.channel-banner--compact + .service-experts { padding-top: 50.4px; }
 }
 
-.useful-menu-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 720px; column-gap: 0; padding: 28px 30px; background: rgb(255 255 255 / .9); left: 50%; transform: translateX(-50%); }
-.useful-menu-column { display: flex; flex-direction: column; gap: 24px; min-width: 0; padding-right: 30px; }
-.useful-menu-column + .useful-menu-column { border-left: 1px solid #cfcbc6; padding-right: 0; padding-left: 30px; }
-.useful-menu-column > a { display: block; white-space: normal; line-height: 1.45; text-decoration: none; }
-.useful-menu-column > a:hover, .useful-menu-column > a:focus-visible { text-decoration: underline; }
+.useful-menu-panel { grid-template-columns: 1fr; width: 340px; background: rgb(255 255 255 / .6); }
+.useful-menu-panel > a { white-space: normal; line-height: 1.45; }
