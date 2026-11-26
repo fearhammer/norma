@@ -1,0 +1,31 @@
+---
+import HuntLadderDiagram from '../../components/HuntLadderDiagram.astro';
+import ArticlePortraitQuote from '../../components/ArticlePortraitQuote.astro';
+import expertPhoto from '../../assets/photos/team-analyst.png';
+import editorPhoto from '../../assets/photos/team-chief-editor.png';
+import BlogArticle from '../../layouts/BlogArticle.astro';
+import ArticleRelated from '../../components/ArticleRelated.astro';
+import article from '../../data/hunt-ladder-guide.json';
+import { huntLadderCover as cover } from '../../data/blogArticles';
+const slug = 'lestnitsa-hanta-v-b2b';
+const schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, datePublished: '2026-11-26', dateModified: '2026-11-26', author: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' }, mainEntityOfPage: `https://norma-studio.ru/blog/${slug}/`, image: new URL(cover.src, Astro.site).href, inLanguage: 'ru-RU', publisher: { '@type': 'Organization', name: 'Norma Studio', url: 'https://norma-studio.ru/' } };
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: article.faq.map(item => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) };
+const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://norma-studio.ru/' }, { '@type': 'ListItem', position: 2, name: 'Блог', item: 'https://norma-studio.ru/blog/' }, { '@type': 'ListItem', position: 3, name: article.title, item: `https://norma-studio.ru/blog/${slug}/` }] };
+const parts = article.body.split(/(<!--HUNT-DIAGRAM-->|<!--PORTRAIT-1-->|<!--PORTRAIT-2-->)/);
+---
+<BlogArticle title={article.title} seoTitle={article.seoTitle} description={article.description} category="Контент-маркетинг" date="26 ноября 2026" dateTime="2026-11-26" readingTime={article.readingTime} cover={cover} coverAlt="Команда обсуждает материалы за ноутбуком" contents={article.contents}>
+  <Fragment slot="intro" set:html={article.intro} />
+  {parts.map(part => part === '<!--HUNT-DIAGRAM-->' ? <HuntLadderDiagram /> : part === '<!--PORTRAIT-1-->' ? <ArticlePortraitQuote image={expertPhoto} imageAlt="Эксперт Norma Studio" quote={article.quotes[0]} name="Norma Studio" role="Комментарий эксперта" /> : part === '<!--PORTRAIT-2-->' ? <ArticlePortraitQuote image={editorPhoto} imageAlt="Главный редактор Norma Studio" quote={article.quotes[1]} name="Norma Studio" role="Главный редактор" /> : <Fragment set:html={part} />)}
+  <script type="application/ld+json" set:html={JSON.stringify([schema, faqSchema, breadcrumbs]).replace(/</g, '\\u003c')} />
+  <ArticleRelated slot="related" currentSlug={slug} />
+</BlogArticle>
+<style is:global>
+  .article-prose > .article-portrait-quote { width: min(61.25rem, calc(100vw - 40px)); margin-left: 50%; margin-right: 0; transform: translateX(-50%); }
+  .article-prose > .article-pull-quote { width: min(61.25rem, calc(100vw - 40px)); margin-left: 50%; margin-right: 0; transform: translateX(-50%); }
+  .article-data-table { width: min(61.25rem, calc(100vw - 40px)); margin: 2rem 0 2rem 50%; transform: translateX(-50%); overflow-x: auto; border: 1px solid #e4d9cf; border-radius: 8px; background: #f5ebe1; }
+  .article-data-table table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .875rem; line-height: 1.5; }
+  .article-data-table th, .article-data-table td { padding: 1.25rem; text-align: left; vertical-align: top; border-bottom: 1px solid #e4d9cf; }
+  .article-data-table th { background: #e8d9ca; color: var(--color-heading); font-weight: 500; }
+  .article-data-table p { margin: 0; }
+  .article-data-table tr:last-child td { border-bottom: 0; }
+</style>

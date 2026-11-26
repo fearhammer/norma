@@ -1,4 +1,7 @@
 import type { ImageMetadata } from 'astro';
+import huntLadderCover from '../assets/photos/team-collaboration.jpg';
+import huntLadderGuide from './hunt-ladder-guide.json';
+export { huntLadderCover };
 import expertArticlesGuideCover from '../assets/photos/expert-articles/hero.jpg';
 import expertArticlesGuide from './expert-articles-guide.json';
 export { expertArticlesGuideCover };
@@ -29,6 +32,7 @@ export interface BlogArticleCard {
 
 // Only published materials appear on the site.
 export const blogArticles: BlogArticleCard[] = [
+  { cover: huntLadderCover, slug: 'lestnitsa-hanta-v-b2b', title: huntLadderGuide.title, description: huntLadderGuide.description, dateTime: '2026-11-26', readingTime: huntLadderGuide.readingTime, featured: true, status: 'published' },
   { cover: expertArticlesGuideCover, slug: 'ekspertnye-stati-dlya-biznesa', title: expertArticlesGuide.title, description: expertArticlesGuide.description, dateTime: '2026-11-25', readingTime: expertArticlesGuide.readingTime, featured: true, status: 'published' },
   { cover: strategyGuideCover, slug: 'kontent-strategiya-primer-shablon', title: strategyGuide.title, description: strategyGuide.description, dateTime: '2026-11-23', readingTime: strategyGuide.readingTime, featured: true, status: 'published' },
   { cover: marketingGuideCover, slug: 'kontent-marketing-dlya-biznesa', title: marketingGuide.title, description: marketingGuide.description, dateTime: '2026-11-20', readingTime: marketingGuide.readingTime, featured: true, status: 'published' },

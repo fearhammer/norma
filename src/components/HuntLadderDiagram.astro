@@ -1,0 +1,32 @@
+---
+const steps = [
+  ['Нет проблемы', 'Всё ли работает как надо?', 'Не видит цену бездействия', 'Разбор скрытых потерь'],
+  ['Осознание проблемы', 'Почему возникает сбой?', 'Не понимает причину', 'Диагностика и чек-листы'],
+  ['Сравнение способов', 'Каким способом решить задачу?', 'Боится выбрать неверный подход', 'Сравнение подходов'],
+  ['Выбор методологии', 'Как устроено решение?', 'Не хватает критериев оценки', 'Разбор технологии и требований'],
+  ['Выбор подрядчика', 'Кому доверить проект?', 'Не доверяет обещаниям', 'Кейсы, сметы и критерии выбора'],
+  ['Готовность к сделке', 'Как согласовать и начать?', 'Согласования и формальные риски', 'Порядок работы и ответы на возражения'],
+];
+---
+<figure class="hunt-diagram">
+  <figcaption>Лестница Ханта для B2B и сложных услуг</figcaption>
+  <ol start="0">
+    {steps.map(([title, question, barrier, format], i) => <li>
+      <span class="hunt-step" aria-hidden="true">{i}</span>
+      <h3>{title}</h3><p class="hunt-question">{question}</p>
+      <p><strong>Барьер:</strong> {barrier}</p><p><strong>Контент:</strong> {format}</p>
+    </li>)}
+  </ol>
+</figure>
+<style>
+  .hunt-diagram { width: min(61.25rem, calc(100vw - 40px)); margin: 2.5rem 0 2.5rem 50%; transform: translateX(-50%); }
+  figcaption { margin-bottom: 24px; font-size: 1.5rem; font-weight: 500; color: var(--color-heading); }
+  ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
+  li { padding: 24px; border: 1px solid #e4d9cf; border-radius: 8px; background: #efe3d7; }
+  li:nth-child(even) { background: #f4e6d9; }
+  .hunt-step { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #e5cdb5; color: #936c47; }
+  .hunt-diagram h3 { margin: 20px 0 12px; font-size: 1.125rem; font-weight: 500; line-height: 1.2; }
+  .hunt-diagram p { margin: 10px 0 0; font-size: .875rem; line-height: 1.5; }
+  .hunt-diagram .hunt-question { margin-bottom: 18px; font-weight: 500; }
+  @media(max-width: 767px) { ol { grid-template-columns: 1fr; } }
+</style>
