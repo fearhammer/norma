@@ -1,0 +1,15 @@
+---
+interface Props { quote: string; }
+const { quote } = Astro.props;
+---
+<figure class="article-comment">
+  <span class="article-quote-eyebrow">Комментарий</span>
+  <blockquote>{quote}</blockquote>
+  <figcaption>Алексей Шпанов, руководитель Norma Studio</figcaption>
+</figure>
+<style>
+  .article-comment { width: min(61.25rem, calc(100vw - 40px)); margin: 3rem 0 3rem 50%; transform: translateX(-50%); padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid #e4d9cf; border-radius: 8px; background: #faf9f6; }
+  blockquote { margin: 1.5rem 0 0; color: var(--color-heading); font-size: 1.5rem; line-height: 1.4; font-weight: 400; letter-spacing: -.01em; }
+  figcaption { margin-top: 1.75rem; color: var(--color-heading); font-size: .875rem; line-height: 1.4; font-weight: 500; }
+  @media(max-width: 767px) { blockquote { font-size: 1.125rem; line-height: 1.5; } }
+</style>

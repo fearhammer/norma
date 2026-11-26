@@ -1,8 +1,6 @@
 ---
 import HuntLadderDiagram from '../../components/HuntLadderDiagram.astro';
-import ArticlePortraitQuote from '../../components/ArticlePortraitQuote.astro';
-import expertPhoto from '../../assets/photos/team-analyst.png';
-import editorPhoto from '../../assets/photos/team-chief-editor.png';
+import ArticleComment from '../../components/ArticleComment.astro';
 import BlogArticle from '../../layouts/BlogArticle.astro';
 import ArticleRelated from '../../components/ArticleRelated.astro';
 import article from '../../data/hunt-ladder-guide.json';
@@ -15,12 +13,11 @@ const parts = article.body.split(/(<!--HUNT-DIAGRAM-->|<!--PORTRAIT-1-->|<!--POR
 ---
 <BlogArticle title={article.title} seoTitle={article.seoTitle} description={article.description} category="Контент-маркетинг" date="26 ноября 2026" dateTime="2026-11-26" readingTime={article.readingTime} cover={cover} coverAlt="Команда обсуждает материалы за ноутбуком" contents={article.contents}>
   <Fragment slot="intro" set:html={article.intro} />
-  {parts.map(part => part === '<!--HUNT-DIAGRAM-->' ? <HuntLadderDiagram /> : part === '<!--PORTRAIT-1-->' ? <ArticlePortraitQuote image={expertPhoto} imageAlt="Эксперт Norma Studio" quote={article.quotes[0]} name="Norma Studio" role="Комментарий эксперта" /> : part === '<!--PORTRAIT-2-->' ? <ArticlePortraitQuote image={editorPhoto} imageAlt="Главный редактор Norma Studio" quote={article.quotes[1]} name="Norma Studio" role="Главный редактор" /> : <Fragment set:html={part} />)}
+  {parts.map(part => part === '<!--HUNT-DIAGRAM-->' ? <HuntLadderDiagram /> : part === '<!--PORTRAIT-1-->' ? <ArticleComment quote={article.quotes[0]} /> : part === '<!--PORTRAIT-2-->' ? <ArticleComment quote={article.quotes[1]} /> : <Fragment set:html={part} />)}
   <script type="application/ld+json" set:html={JSON.stringify([schema, faqSchema, breadcrumbs]).replace(/</g, '\\u003c')} />
   <ArticleRelated slot="related" currentSlug={slug} />
 </BlogArticle>
 <style is:global>
-  .article-prose > .article-portrait-quote { width: min(61.25rem, calc(100vw - 40px)); margin-left: 50%; margin-right: 0; transform: translateX(-50%); }
   .article-prose > .article-pull-quote { width: min(61.25rem, calc(100vw - 40px)); margin-left: 50%; margin-right: 0; transform: translateX(-50%); }
   .article-data-table { width: min(61.25rem, calc(100vw - 40px)); margin: 2rem 0 2rem 50%; transform: translateX(-50%); overflow-x: auto; border: 1px solid #e4d9cf; border-radius: 8px; background: #f5ebe1; }
   .article-data-table table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .875rem; line-height: 1.5; }
