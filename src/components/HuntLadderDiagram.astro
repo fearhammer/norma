@@ -15,7 +15,7 @@ const steps = [
       <h3><span class="hunt-step">{i}.</span> {title}</h3>
       <div class="hunt-copy">
         <p>{question}</p>
-        <p>Барьер: {barrier}<br />Контент: {format}</p>
+        <p>Барьер: {barrier}. Контент: {format}.</p>
       </div>
     </li>)}
   </ol>
@@ -24,7 +24,7 @@ const steps = [
   .hunt-diagram { width: min(61.25rem, calc(100vw - 40px)); margin: 2.5rem 0 2.5rem 50%; transform: translateX(-50%); }
   figcaption { margin-bottom: 24px; text-align: center; font-size: 1.5rem; font-weight: 500; color: var(--color-heading); }
   ol { display: flex; flex-direction: column; align-items: center; gap: 16px; list-style: none; padding: 0; margin: 0; }
-  li { width: calc(55% + var(--step) * 9%); padding: 24px; border: 1px solid #e4d9cf; border-radius: 8px; background: #efe3d7; }
+  li { width: calc(55% + var(--step) * 9%); padding: 24px; text-align: center; border: 1px solid #e4d9cf; border-radius: 8px; background: #efe3d7; }
   li:nth-child(even) { background: #f4e6d9; }
   .hunt-diagram h3 { margin: 0 0 15px; font-size: 1.125rem; font-weight: 500; line-height: 1.2; }
   .hunt-copy { font-size: .875rem; line-height: 1.6; font-weight: 400; color: #454545; }

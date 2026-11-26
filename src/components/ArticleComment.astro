@@ -1,10 +1,12 @@
 ---
 interface Props { quote: string; }
 const { quote } = Astro.props;
+const text = quote.trim();
+const punctuatedQuote = /[.!?…][»”"“]*$/.test(text) ? text : `${text}.`;
 ---
 <figure class="article-comment">
   <span class="article-quote-eyebrow">Комментарий</span>
-  <blockquote>{quote}</blockquote>
+  <blockquote>{punctuatedQuote}</blockquote>
   <figcaption>Алексей Шпанов, руководитель Norma Studio</figcaption>
 </figure>
 <style>
