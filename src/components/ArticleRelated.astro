@@ -3,14 +3,14 @@ import { blogArticleDate, blogArticleHref, getRelatedArticles } from '../data/bl
 import type { BlogArticleCard } from '../data/blogArticles';
 import '../styles/article-related.css';
 
-interface Props { currentSlug?: string; includePreviews?: boolean; title?: string; id?: string; className?: string; }
-const { currentSlug = '', includePreviews = false, title = 'Другие материалы', id = 'related', className = '' } = Astro.props;
+interface Props { currentSlug?: string; includePreviews?: boolean; title?: string; id?: string; className?: string; hideHeading?: boolean; }
+const { currentSlug = '', includePreviews = false, title = 'Другие материалы', id = 'related', className = '', hideHeading = false } = Astro.props;
 const { firstFeature, firstRow, secondFeature, secondRow } = getRelatedArticles(currentSlug, includePreviews);
 ---
-<section id={id} class:list={['article-related', 'container', className]} aria-labelledby={`${id}-title`}>
-  <div class="article-related-heading">
+<section id={id} class:list={['article-related', 'container', className]} aria-labelledby={hideHeading ? undefined : `${id}-title`} aria-label={hideHeading ? title : undefined}>
+  {!hideHeading && <div class="article-related-heading">
     <h2 id={`${id}-title`}>{title}</h2>
-  </div>
+  </div>}
 
   {firstFeature && <article class="blog-feature article-related-feature">
     <a class="blog-feature-link" href={blogArticleHref(firstFeature.slug)} aria-label={`Читать: ${firstFeature.title}`}>
