@@ -25,7 +25,7 @@ const { title, seoTitle, description, category, date, dateTime, cover, coverAlt,
 const base = import.meta.env.BASE_URL;
 ---
 <Page title={seoTitle ?? `${title} — Блог Norma Studio`} description={description} image={cover.src} ogType="article" publishedTime={preview ? undefined : dateTime} noindex={preview}>
-  <Header blogHref="/#blog" />
+  <Header />
   <main id="main-content" class="article-page">
     <article>
       <header class="article-hero">
@@ -55,5 +55,5 @@ const base = import.meta.env.BASE_URL;
     <ArticleTelegram />
     <slot name="related" />
   </main>
-  <ServiceFooter servicesHref={`${base}#services`} blogHref={`${base}#blog`} contactHref={`${base}#consultation`} />
+  <ServiceFooter servicesHref={`${base}#services`} contactHref={`${base}#consultation`} />
 </Page>

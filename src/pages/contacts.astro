@@ -12,7 +12,7 @@ const links = [
 ];
 ---
 <Page title="Контакты — Norma Studio" description="Свяжитесь с Norma Studio по почте, в Telegram или по телефону." image={`${base}favicon.svg`}>
-  <Header servicesHref="/#services" blogHref="/#blog" />
+  <Header servicesHref="/#services" />
   <main id="main" class="contacts-page container">
     <h1>Контакты</h1>
     <div class="contact-grid">
@@ -22,7 +22,7 @@ const links = [
       </div>)}
     </div>
   </main>
-  <ServiceFooter blogHref={`${base}#blog`} />
+  <ServiceFooter />
 </Page>
 <style>
   .contacts-page { padding-block: 180px 140px; min-height: 75svh; }

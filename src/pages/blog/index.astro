@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Page from '../../layouts/Page.astro';
+import Header from '../../components/Header.astro';
+import ServiceFooter from '../../components/ServiceFooter.astro';
+import { blogArticles, blogArticleHref, blogArticleDate } from '../../data/blogArticles';
+const articles = blogArticles.filter(article => article.status === 'published').sort((a, b) => b.dateTime.localeCompare(a.dateTime) || a.slug.localeCompare(b.slug));
+const base = import.meta.env.BASE_URL;
+---
+<Page title="Блог — Norma Studio" description="Материалы о контент-маркетинге для бизнеса: стратегии, экспертные статьи, корпоративные блоги, SEO и GEO." image={articles[0]?.cover?.src ?? `${base}favicon.svg`}>
+  <Header />
+  <main id="main" class="blog-index container">
+    <header class="blog-index-heading">
+      <h1>Блог</h1>
+      <p>Про контент-маркетинг, экспертные статьи и продвижение бизнеса</p>
+    </header>
+    <div class="blog-index-grid">
+      {articles.map(article => <article class="index-card">
+        <a href={blogArticleHref(article.slug)}>
+          {article.cover && <Image src={article.cover} alt="" widths={[480, 800, 1200]} sizes="(max-width: 767px) calc(100vw - 40px), 46vw" loading="lazy" class="index-cover" />}
+          <div class="index-meta"><time datetime={article.dateTime}>{blogArticleDate(article.dateTime)}</time><span>{article.readingTime}</span></div>
+          <h2>{article.title}</h2>
+          <p>{article.description}</p>
+          <span class="button">Читать <span aria-hidden="true">→</span></span>
+        </a>
+      </article>)}
+    </div>
+  </main>
+  <ServiceFooter />
+</Page>
+<style>
+  .blog-index { padding-block: 180px 100px; }
+  .blog-index-heading { margin-bottom: 64px; max-width: 850px; }
+  h1 { margin: 0 0 24px; color: var(--color-heading); font-size: clamp(3rem, 5vw, 4.875rem); line-height: 1; font-weight: 350; letter-spacing: -.04em; }
+  .blog-index-heading p { font-size: clamp(1.125rem, 2vw, 1.5rem); line-height: 1.4; }
+  .blog-index-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px 40px; }
+  .index-card { min-width: 0; }
+  .index-card > a { display: flex; flex-direction: column; align-items: flex-start; height: 100%; text-decoration: none; }
+  .index-cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+  .index-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 22px; font-size: .875rem; color: #786b5f; }
+  h2 { margin: 18px 0; font-size: clamp(1.5rem, 2.3vw, 2.125rem); font-weight: 350; line-height: 1.12; letter-spacing: -.02em; color: var(--color-heading); }
+  .index-card p { margin: 0 0 24px; font-size: 1rem; line-height: 1.5; }
+  .index-card .button { margin-top: auto; }
+  .index-card a:hover h2 { text-decoration: underline; text-underline-offset: 5px; }
+  .index-card a:focus-visible { outline: 2px solid currentColor; outline-offset: 8px; border-radius: 8px; }
+  @media(max-width: 767px) {
+    .blog-index { padding-block: 130px 70px; }
+    .blog-index-heading { margin-bottom: 40px; }
+    .blog-index-grid { grid-template-columns: 1fr; gap: 44px; }
+  }
+</style>

@@ -32,7 +32,7 @@ const experts = content.team.items.map((item, index) => ({ ...item, image: team.
 const faq = content.faq.map(({ question, answer }) => ({ title: question, text: answer }));
 ---
 <Page title="SEO-продвижение — Norma Studio" description={content.hero.intro} image={hero.src}>
-  <Header servicesHref="#seo-benefits" blogHref="#blog" />
+  <Header servicesHref="#seo-benefits" />
   <main id="main" class="seo-promotion-page">
     <ServiceHero className="seo-promotion-hero" content={content.hero} image={hero} mobileImage={hero} imageAlt="Специалист работает за компьютером у окна" primaryAction={content.heroPrimary} primaryHref="#consultation" secondaryAction={content.heroSecondary} secondaryHref="#consultation" parallax="up" stepLinks={['#seo-strategy', '#seo-strategy', '#seo-content', '#seo-included', '#seo-included', '#seo-results']} />
     <SiteFormats id="seo-benefits" title={content.benefits.title} intro={content.benefits.intro} formats={content.benefits.items} noteTitle={content.benefits.noteTitle} note={content.benefits.note} image={benefits} imageAlt="Коллеги изучают материалы за ноутбуком" />
